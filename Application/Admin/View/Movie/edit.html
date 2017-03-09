@@ -1,0 +1,149 @@
+<include file="Index/header" />
+<body>
+<div id="wrapper">
+
+  <include file="Index/nav"/>
+ <!--  <script src="/Public/js/kindeditor/kindeditor-all.js"></script> -->
+  <div id="page-wrapper">
+
+    <div class="container-fluid">
+
+      <!-- Page Heading -->
+      <div class="row">
+        <div class="col-lg-12">
+
+          <ol class="breadcrumb">
+            <li>
+              <i class="fa fa-dashboard"></i>  <a href="/admin.php?c=movie">电影管理</a>
+            </li>
+            <li class="active">
+              <i class="fa fa-edit"></i> 电影修改
+            </li>
+          </ol>
+        </div>
+      </div>
+      <!-- /.row -->
+
+      <div class="row">
+        <div class="col-lg-6">
+
+          <form class="form-horizontal" id="singcms-form">
+            <div class="form-group">
+              <label for="inputname" class="col-sm-2 control-label">电影名称:</label>
+              <div class="col-sm-5">
+                <input value="{$movie.movie_name}" type="text" name="movie_name" class="form-control" id="inputname">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputname" class="col-sm-2 control-label">上映时间:</label>
+              <div class="col-sm-5">
+                <input value="{$movie.up_time}" type="text" name="up_time" class="form-control" id="inputname">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputname" class="col-sm-2 control-label">缩图:</label>
+              <div class="col-sm-5">
+                <input id="file_upload"  type="file" multiple="true" >
+                <img style="display: none" id="upload_org_code_img" src="{$movie.pic}" width="150" height="150">
+                <input id="file_upload_image" name="pic" type="hidden" multiple="true" value="{$movie.pic}">
+              </div>
+            </div>
+           
+            <div class="form-group">
+              <label for="inputname" class="col-sm-2 control-label">类型:</label>
+              <div class="col-sm-5">
+                  <select class="form-control" name="movie_type">
+                    <foreach name="movieType" item="mvType">
+                      <option value="{$key}" <if condition="$key eq $movie['movie_type']">selected="selected"</if>>{$mvType}</option>
+                    </foreach>
+                  </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputname" class="col-sm-2 control-label">评分:</label>
+              <div class="col-sm-5">
+                <input value="{$movie.grade}" type="text" name="grade" class="form-control" id="inputname">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="inputname" class="col-sm-2 control-label">描述:</label>
+              <div class="col-sm-5">
+                <textarea class="input js-editor" id="editor_singcms" name="describle" rows="25" >{$movie.describle}</textarea>
+              </div>
+            </div>
+             <div class="form-group">
+              <label for="inputname" class="col-sm-2 control-label">排名:</label>
+              <div class="col-sm-5">
+                <input value="{$movie.rank}" type="text" name="rank" class="form-control" id="inputname">
+              </div>
+            </div>
+             <div class="form-group">
+              <label for="inputname" class="col-sm-2 control-label">票房数:</label>
+              <div class="col-sm-5">
+                <input value="{$movie.count}" type="text" name="count" class="form-control" id="inputname">
+              </div>
+            </div>
+             <div class="form-group">
+              <label for="inputname" class="col-sm-2 control-label">主演:</label>
+              <div class="col-sm-5">
+                <input value="{$movie.actors}" type="text" name="actors" class="form-control" id="inputname">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputname" class="col-sm-2 control-label">导演:</label>
+              <div class="col-sm-5">
+                <input value="{$movie.director}" type="text" name="director" class="form-control" id="inputname">
+              </div>
+            </div>
+
+         
+                <input value="{$movie.movie_id}" type="hidden" name="movie_id" class="form-control">
+
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <button type="button" class="btn btn-default" id="singcms-button-submit">提交</button>
+              </div>
+            </div>
+          </form>
+
+
+        </div>
+
+      </div>
+      <!-- /.row -->
+
+    </div>
+    <!-- /.container-fluid -->
+
+  </div>
+  <!-- /#page-wrapper -->
+
+</div>
+<script>
+  var SCOPE = {
+    'save_url' : '/admin.php?c=movie&a=add',
+    'jump_url' : '/admin.php?c=movie',
+    'ajax_upload_image_url' : '/admin.php?c=image&a=ajaxuploadimage',
+    'ajax_upload_swf' : '/Public/js/party/uploadify.swf',
+  };
+
+</script>
+<!-- /#wrapper -->
+<script src="/Public/js/admin/image.js"></script>
+<!-- <script>
+  // 6.2
+  KindEditor.ready(function(K) {
+    window.editor = K.create('#editor_singcms',{
+      uploadJson : '/admin.php?c=image&a=kindupload',
+      afterBlur : function(){this.sync();}, //
+    });
+  });
+</script> -->
+<script>
+  var thumb = "{$news.thumb}";
+  if(thumb) {
+    $("#upload_org_code_img").show();
+  }
+</script>
+<include file="Index/footer" />
