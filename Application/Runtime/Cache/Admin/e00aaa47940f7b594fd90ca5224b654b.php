@@ -92,10 +92,10 @@
 
 				<ol class="breadcrumb">
 					<li>
-						<i class="fa fa-dashboard"></i>  <a href="/admin.php?c=position">推荐位管理</a>
+						<i class="fa fa-dashboard"></i>  <a href="/admin.php?c=rank_movie">电影排行推荐管理</a>
 					</li>
 					<li class="active">
-						<i class="fa fa-edit"></i> 添加
+						<i class="fa fa-edit"></i> 添加推荐内容
 					</li>
 				</ol>
 			</div>
@@ -107,26 +107,48 @@
 
 				<form class="form-horizontal" id="singcms-form">
 					<div class="form-group">
-						<label for="inputname" class="col-sm-2 control-label">推荐位名称:</label>
+						<label for="inputname" class="col-sm-2 control-label">电影名称:</label>
 						<div class="col-sm-5">
-							<input type="text" name="name" class="form-control" id="inputname" placeholder="请填写推荐位名称">
+							<input type="text" name="movie_name" class="form-control" id="inputname" placeholder="请填写电影名">
+						</div>
+					</div>
+					
+
+					<div class="form-group">
+						<label for="inputname" class="col-sm-2 control-label">缩图:</label>
+						<div class="col-sm-5">
+							<input id="file_upload"  type="file" multiple="true" >
+							<img style="display: none" id="upload_org_code_img" src="" width="150" height="150">
+							<input id="file_upload_image" name="pic" type="hidden" multiple="true" value="">
 						</div>
 					</div>
 
 					<div class="form-group">
-						<label for="inputPassword3" class="col-sm-2 control-label">推荐位描述:</label>
+						<label for="inputUrl" class="col-sm-2 control-label">url:</label>
 						<div class="col-sm-5">
-							<input type="text" class="form-control" name="description" id="inputPassword3" placeholder="请填写描述">
+							<input type="text" class="form-control" name="url" id="inputUrl" placeholder="请url地址">
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="inputPassword3" class="col-sm-2 control-label">状态:</label>
+		              <label for="inputname" class="col-sm-2 control-label">推荐排名:</label>
+		              <div class="col-sm-5">
+		                <input type="text" name="rank" class="form-control" id="inputname" placeholder="请填写排名">
+		              </div>
+		            </div>
+					<div class="form-group">
+						<label for="inputname" class="col-sm-2 control-label">电影id:</label>
 						<div class="col-sm-5">
-							<input type="radio" name="status" id="optionsRadiosInline1" value="1" checked> 开启
-							<input type="radio" name="status" id="optionsRadiosInline2" value="0"> 关闭
+							<input type="text" name="movie_id" class="form-control" id="inputname" placeholder="如果和文章无关联的可以不添加电影id">
 						</div>
-
 					</div>
+					<div class="form-group">
+					<label for="inputPassword3" class="col-sm-2 control-label">状态:</label>
+					<div class="col-sm-5">
+						<input type="radio" name="status" id="optionsRadiosInline1" value="1" checked> 开启
+						<input type="radio" name="status" id="optionsRadiosInline2" value="0"> 关闭
+					</div>
+
+				</div>
 
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
@@ -146,18 +168,18 @@
 
 </div>
 <!-- /#page-wrapper -->
-
 </div>
 <script>
 	var SCOPE = {
-		'save_url' : '/admin.php?c=position&a=add',
-		'jump_url' : '/admin.php?c=position'
+		'save_url' : '/admin.php?c=rank_movie&a=add',
+		'jump_url' : '/admin.php?c=rank_movie&a=index',
+		'ajax_upload_image_url' : '/admin.php?c=image&a=ajaxuploadimage',
+		'ajax_upload_swf' : '/Public/js/party/uploadify.swf'
 	};
-
-
 </script>
 <!-- /#wrapper -->
 <script type="text/javascript" src="/Public/js/admin/form.js"></script>
+<script src="/Public/js/admin/image.js"></script>
 <script src="/Public/js/admin/common.js"></script>
 
 

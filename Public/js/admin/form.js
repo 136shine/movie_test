@@ -3,5 +3,7 @@
  */
 
 var form  = {
-    submit : function()
+    submit : function(){
+    	
+    }
 }

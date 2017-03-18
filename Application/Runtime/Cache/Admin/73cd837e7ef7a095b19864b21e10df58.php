@@ -147,7 +147,7 @@
              <div class="form-group">
               <label for="inputname" class="col-sm-2 control-label">描述:</label>
               <div class="col-sm-5">
-                <textarea class="input js-editor" id="editor_singcms" name="describle" rows="25" ></textarea>
+                <textarea class="input js-editor" id="editor_singcms" name="describle" rows="20" cols="60"></textarea>
               </div>
             </div>
              <div class="form-group">

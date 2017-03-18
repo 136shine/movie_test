@@ -74,7 +74,7 @@
                 <volist name="Movie" id="movie">
                   <tr>
                     <td><input type="checkbox" name="pushcheck" value="{$movie.movie_id}"></td>
-                     <td><input size=4 type='text'  name='listorder[{$movie.movie_id}]' value="{$movie.listorder}"/></td>
+                     <td><input size=4 type='text' name='listorder[{$movie.movie_id}]' value="{$movie.listorder}"/></td>
                     <td>{$movie.movie_id}</td>
                     <td>{$movie.movie_name}</td>
                     <td>{$movie.movie_type|getMovieTypeByKey}</td>
@@ -106,12 +106,12 @@
               </div>
             </form>
             <div class="input-group">
-              <select class="form-control" name="position_id" id="select-push">
-                <option value="0">请选择推荐位进行推送</option>
-                <foreach name="positions" item="position">
-                  <option value="{$position.id}">{$position.name}</option>
-                </foreach>
-              </select>
+            <!--   <select class="form-control" name="position_id" id="select-push">
+              <option value="0">请选择推荐位进行推送</option>
+              <foreach name="positions" item="position">
+                <option value="{$position.id}">{$position.name}</option>
+              </foreach>
+            </select> -->
               <button id="singcms-push" type="button" class="btn btn-primary">推送</button>
             </div>
 

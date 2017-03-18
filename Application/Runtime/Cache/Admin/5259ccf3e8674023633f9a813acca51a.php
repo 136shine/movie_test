@@ -123,7 +123,7 @@
               <label for="inputname" class="col-sm-2 control-label">缩图:</label>
               <div class="col-sm-5">
                 <input id="file_upload"  type="file" multiple="true" >
-                <img style="display: none" id="upload_org_code_img" src="<?php echo ($movie["pic"]); ?>" width="150" height="150">
+                <img id="upload_org_code_img" src="<?php echo ($movie["pic"]); ?>" width="150" height="150">
                 <input id="file_upload_image" name="pic" type="hidden" multiple="true" value="<?php echo ($movie["pic"]); ?>">
               </div>
             </div>
@@ -218,10 +218,10 @@
   });
 </script> -->
 <script>
-  var thumb = "<?php echo ($news["thumb"]); ?>";
-  if(thumb) {
-    $("#upload_org_code_img").show();
-  }
+  // var pic = "<?php echo ($movie["pic"]); ?>";
+  // if(pic) {
+  //   $("#upload_org_code_img").show();
+  // }
 </script>
 <script src="/Public/js/admin/common.js"></script>
 

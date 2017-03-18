@@ -41,7 +41,7 @@
 <body>
 <div id="wrapper">
 
-    <?php
+  <?php
  $navs = D("Menu")->getAdminMenus(); $username = getLoginUsername(); foreach($navs as $k=>$v) { if($v['c'] == 'admin' && $username != 'admin') { unset($navs[$k]); } } $index = 'index'; ?>
 <!-- Navigation -->
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -82,82 +82,108 @@
   </div>
   <!-- /.navbar-collapse -->
 </nav>
-<div id="page-wrapper">
+  <div id="page-wrapper">
 
 	<div class="container-fluid">
 
-		<!-- Page Heading -->
-		<div class="row">
-			<div class="col-lg-12">
+	  <!-- Page Heading -->
+	  <div class="row">
+		<div class="col-lg-12">
 
-				<ol class="breadcrumb">
-					<li>
-						<i class="fa fa-dashboard"></i>  <a href="/admin.php?c=position">推荐位管理</a>
-					</li>
-					<li class="active">
-						<i class="fa fa-edit"></i> 添加
-					</li>
-				</ol>
-			</div>
+		  <ol class="breadcrumb">
+			<li>
+			  <i class="fa fa-dashboard"></i>  <a href="/admin.php?c=rank_movie">电影推荐排行管理</a>
+			</li>
+			<li class="active">
+			  <i class="fa fa-edit"></i> 修改电影推荐排行
+			</li>
+		  </ol>
 		</div>
-		<!-- /.row -->
+	  </div>
+	  <!-- /.row -->
 
-		<div class="row">
-			<div class="col-lg-6">
+	  <div class="row">
+		<div class="col-lg-6">
 
-				<form class="form-horizontal" id="singcms-form">
-					<div class="form-group">
-						<label for="inputname" class="col-sm-2 control-label">推荐位名称:</label>
-						<div class="col-sm-5">
-							<input type="text" name="name" class="form-control" id="inputname" placeholder="请填写推荐位名称">
-						</div>
-					</div>
+		  <form class="form-horizontal" id="singcms-form">
+			<div class="form-group">
+			  <label for="inputname" class="col-sm-2 control-label">电影名称:</label>
+			  <div class="col-sm-5">
+				<input type="text" name="movie_name" class="form-control" id="inputname" placeholder="请填写标题" value="<?php echo ($vo["movie_name"]); ?>">
+			  </div>
+			</div>
+			
 
-					<div class="form-group">
-						<label for="inputPassword3" class="col-sm-2 control-label">推荐位描述:</label>
-						<div class="col-sm-5">
-							<input type="text" class="form-control" name="description" id="inputPassword3" placeholder="请填写描述">
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="inputPassword3" class="col-sm-2 control-label">状态:</label>
-						<div class="col-sm-5">
-							<input type="radio" name="status" id="optionsRadiosInline1" value="1" checked> 开启
-							<input type="radio" name="status" id="optionsRadiosInline2" value="0"> 关闭
-						</div>
-
-					</div>
-
-					<div class="form-group">
-						<div class="col-sm-offset-2 col-sm-10">
-							<button type="button" class="btn btn-default" id="singcms-button-submit">提交</button>
-						</div>
-					</div>
-				</form>
-
-
+			<div class="form-group">
+			  <label for="inputname" class="col-sm-2 control-label">缩图:</label>
+			  <div class="col-sm-5">
+				<input id="file_upload"  type="file" multiple="true" >
+				<img id="upload_org_code_img" src="<?php echo ($vo["pic"]); ?>" width="150" height="150">
+				<input id="file_upload_image" name="pic" type="hidden" multiple="true" value="<?php echo ($vo["pic"]); ?>">
+			  </div>
 			</div>
 
+			<div class="form-group">
+			  <label for="inputPassword3" class="col-sm-2 control-label">url:</label>
+			  <div class="col-sm-5">
+				<input type="text" class="form-control" value="<?php echo ($vo["url"]); ?>" name="url" id="inputPassword3" placeholder="请url地址">
+			  </div>
+			</div>
+			<div class="form-group">
+              <label for="inputname" class="col-sm-2 control-label">推荐排名:</label>
+              <div class="col-sm-5">
+                <input type="text" name="rank" value="<?php echo ($vo["rank"]); ?>" class="form-control" id="inputname" placeholder="请填写排名">
+              </div>
+            </div>
+			<div class="form-group">
+			  <label for="inputname" class="col-sm-2 control-label">电影id:</label>
+			  <div class="col-sm-5">
+				<input type="text" name="news_id" value="<?php echo ($vo["movie_id"]); ?>" class="form-control" id="inputname" placeholder="如果和文章无关联的可以不添加文章id">
+			  </div>
+			</div>
+			<div class="form-group">
+			  <label for="inputPassword3" class="col-sm-2 control-label">状态:</label>
+			  <div class="col-sm-5">
+				<input type="radio" name="status" id="optionsRadiosInline1" value="1" <?php if($vo['status'] == 1): ?>checked<?php endif; ?>> 开启
+				<input type="radio" name="status" id="optionsRadiosInline2" value="0" <?php if($vo['status'] == 0): ?>checked<?php endif; ?>> 关闭
+			  </div>
+			  <input type="hidden" name="id"  value="<?php echo ($vo["id"]); ?>"/>
+			</div>
+
+			<div class="form-group">
+			  <div class="col-sm-offset-2 col-sm-10">
+				<button type="button" class="btn btn-default" id="singcms-button-submit">提交</button>
+			  </div>
+			</div>
+		  </form>
+
+
 		</div>
-		<!-- /.row -->
+
+	  </div>
+	  <!-- /.row -->
 
 	</div>
 	<!-- /.container-fluid -->
 
-</div>
-<!-- /#page-wrapper -->
-
+  </div>
+  <!-- /#page-wrapper -->
 </div>
 <script>
-	var SCOPE = {
-		'save_url' : '/admin.php?c=position&a=add',
-		'jump_url' : '/admin.php?c=position'
-	};
-
-
+  var SCOPE = {
+	'save_url' : '/admin.php?c=rank_movie&a=add',
+	'jump_url' : '/admin.php?c=rank_movie&a=index',
+	'ajax_upload_image_url' : '/admin.php?c=image&a=ajaxuploadimage',
+	'ajax_upload_swf' : '/Public/js/party/uploadify.swf'
+  };
+ //  var thumb = "<?php echo ($vo["thumb"]); ?>";
+ //  if(thumb) {
+	// $("#upload_org_code_img").show();
+ //  }
 </script>
 <!-- /#wrapper -->
 <script type="text/javascript" src="/Public/js/admin/form.js"></script>
+<script src="/Public/js/admin/image.js"></script>
 <script src="/Public/js/admin/common.js"></script>
 
 

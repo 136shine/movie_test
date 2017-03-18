@@ -159,19 +159,18 @@ class MovieController extends CommonController {
     }
 
     public function listorder() {
-        $listorder = $_POST['listorder'];
-        //print_r($listorder);exit;
-        $jumpUrl = $_SERVER['HTTP_REFERER'];
+        $listorder = $_POST['listorder'];//获取排序数组
+        $jumpUrl = $_SERVER['HTTP_REFERER'];//获取前一页面的url
         $errors = array();
         try {
             if ($listorder) {
                 foreach ($listorder as $MovieId => $v) {
                     // 执行更新
-                    $id = D("Movie")->updateMvListorderById($MovieId, $v);
+                    $res = D("Movie")->updateMvListorderById($MovieId, $v);
                     //print_r($id);
 
-                    if ($id === false) {
-                        $errors[] = $MovieId;
+                    if ($res === false) {
+                        $errors[] = $MovieId;//更新失败的id存入数组
                     }
                 }
                 if ($errors) {
@@ -182,44 +181,39 @@ class MovieController extends CommonController {
         }catch (Exception $e) {
             return show(0, $e->getMessage());
         }
-        return show(0,'排序数据失败',array('jump_url' => $jumpUrl));
+        return show(0,'获取排序数据失败',array('jump_url' => $jumpUrl));
     }
 
-    // public function push() {
-    //     $jumpUrl = $_SERVER['HTTP_REFERER'];
-    //     $positonId = intval($_POST['position_id']);
-    //     $MovieId = $_POST['push'];
+    public function push() {
+        $jumpUrl = $_SERVER['HTTP_REFERER'];
+        $movieId = $_POST;
+       
+        if(!$movieId || !is_array($movieId)) {
+            return show(0, '请选择推荐电影ID进行推荐');
+        }
+       
+        try {
+            $Movie = D("Movie")->getMovieByMovieIdIn($movieId);
+            if (!$Movie) {
+                return show(0, '没有相关内容');
+            }
+            print_r($Movie);
+            foreach ($Movie as $new) {
+                $data = array(
+                    'movie_name' => $new['movie_name'],
+                    'pic' => $new['pic'],
+                    'movie_id' => $new['movie_id'],
+                    'status' => 1,
+                    
+                );
+                $rank_movie = D("RankMovie")->insert($data);
+            }
+        }catch(Exception $e) {
+            return show(0, $e->getMessage());
+        }
 
-    //     if(!$MovieId || !is_array($MovieId)) {
-    //         return show(0, '请选择推荐的文章ID进行推荐');
-
-    //     }
-    //     if(!$positonId) {
-    //         return show(0, '没有选择推荐位');
-    //     }
-    //     try {
-    //         $Movie = D("Movie")->getMovieByMovieIdIn($MovieId);
-    //         if (!$Movie) {
-    //             return show(0, '没有相关内容');
-    //         }
-
-    //         foreach ($Movie as $new) {
-    //             $data = array(
-    //                 'position_id' => $positonId,
-    //                 'title' => $new['title'],
-    //                 'thumb' => $new['thumb'],
-    //                 'Movie_id' => $new['Movie_id'],
-    //                 'status' => 1,
-    //                 'create_time' => $new['create_time'],
-    //             );
-    //             $position = D("PositionContent")->insert($data);
-    //         }
-    //     }catch(Exception $e) {
-    //         return show(0, $e->getMessage());
-    //     }
-
-    //     return show(1, '推荐成功',array('jump_url'=>$jumpUrl));
+        return show(1, '推荐成功',array('jump_url'=>$jumpUrl));
 
 
-    // }
+    }
 }

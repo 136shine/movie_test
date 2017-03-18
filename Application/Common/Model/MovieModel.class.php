@@ -94,7 +94,7 @@ class MovieModel extends Model {
 
         return $this->_db->where('movie_id='.$id)->save($data);
     }
-    //排序
+    //更新排序
     public function updateMvListorderById($id, $listorder) {
         if(!$id || !is_numeric($id)) {
             throw_exception('ID不合法');
@@ -103,16 +103,15 @@ class MovieModel extends Model {
         return $this->_db->where('movie_id='.$id)->save($data);
     }
 
-    public function getNewsByNewsIdIn($newsIds) {
-        if(!is_array($newsIds)) {
+    public function getMovieByMovieIdIn($movieIds) {
+        if(!is_array($movieIds)) {
             throw_exception("参数不合法");
         }
 
         $data = array(
-
-            'news_id' => array('in',implode(',', $newsIds)),
+            'movie_id' => array('in',implode(',', $movieIds)),
         );
-
+       
         return $this->_db->where($data)->select();
     }
 

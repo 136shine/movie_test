@@ -1,0 +1,300 @@
+[ 2017-03-14T20:33:18+08:00 ] 127.0.0.1 /admin.php?&c=login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000125s ]
+INFO: [ app_init ] --END-- [ RunTime:0.070679s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.021027s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.021313s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000743s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000978s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.099271s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.099490s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.019266s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.019466s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.020939s ]
+INFO: [ app_end ] --END-- [ RunTime:0.021151s ]
+
+[ 2017-03-14T20:33:23+08:00 ] 127.0.0.1 /admin.php?&c=login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000053s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001719s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002575s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002812s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000133s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000339s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.025238s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.025514s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001123s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001257s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002102s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002277s ]
+
+[ 2017-03-14T20:37:49+08:00 ] 127.0.0.1 /admin.php?c=login&a=check
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000442s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000675s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000728s ]
+SQL: SHOW COLUMNS FROM `tb_admin` [ RunTime:0.0651s ]
+SQL: SELECT * FROM `tb_admin` WHERE ( username="admin" ) LIMIT 1   [ RunTime:0.0014s ]
+SQL: UPDATE `tb_admin` SET `lastlogintime`='1489495069' WHERE ( admin_id=1 ) [ RunTime:0.0471s ]
+
+[ 2017-03-14T20:37:52+08:00 ] 127.0.0.1 /admin.php?c=index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000380s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000552s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000610s ]
+NOTIC: [2048] Declaration of Common\Model\NewsModel::find() should be compatible with Think\Model::find($options = Array) F:\phpStudy\WWW\movie_test\Application\Common\Model\NewsModel.class.php 第 9 行.
+SQL: SHOW COLUMNS FROM `tb_news` [ RunTime:0.0433s ]
+SQL: SELECT * FROM `tb_news` WHERE `status` = 1 ORDER BY count desc LIMIT 1   [ RunTime:0.0020s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_news` WHERE `status` <> -1 LIMIT 1   [ RunTime:0.0495s ]
+NOTIC: [2048] Declaration of Common\Model\PositionModel::find() should be compatible with Think\Model::find($options = Array) F:\phpStudy\WWW\movie_test\Application\Common\Model\PositionModel.class.php 第 81 行.
+SQL: SHOW COLUMNS FROM `tb_position` [ RunTime:0.0615s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_position` WHERE `status` = 1 LIMIT 1   [ RunTime:0.0015s ]
+SQL: SHOW COLUMNS FROM `tb_admin` [ RunTime:0.0123s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_admin` WHERE `status` = 1 AND `lastlogintime` > 1489420800 LIMIT 1   [ RunTime:0.0011s ]
+NOTIC: [2] Illegal string offset 'tp_count' F:\phpStudy\WWW\movie_test\Application\Common\Model\AdminModel.class.php 第 75 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000195s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000363s ]
+NOTIC: [2048] Declaration of Common\Model\MenuModel::find() should be compatible with Think\Model::find($options = Array) F:\phpStudy\WWW\movie_test\Application\Common\Model\MenuModel.class.php 第 92 行.
+SQL: SHOW COLUMNS FROM `tb_menu` [ RunTime:0.0653s ]
+SQL: SELECT * FROM `tb_menu` WHERE `status` <> -1 AND `type` = 1 ORDER BY listorder desc,menu_id desc  [ RunTime:0.0018s ]
+NOTIC: [8] Undefined index: a F:\phpStudy\WWW\movie_test\Application\Common\Common\function.php 第 33 行.
+NOTIC: [8] Undefined index: a F:\phpStudy\WWW\movie_test\Application\Common\Common\function.php 第 33 行.
+NOTIC: [8] Undefined index: a F:\phpStudy\WWW\movie_test\Application\Common\Common\function.php 第 33 行.
+NOTIC: [8] Undefined index: a F:\phpStudy\WWW\movie_test\Application\Common\Common\function.php 第 33 行.
+NOTIC: [8] Undefined index: a F:\phpStudy\WWW\movie_test\Application\Common\Common\function.php 第 33 行.
+NOTIC: [8] Undefined index: a F:\phpStudy\WWW\movie_test\Application\Common\Common\function.php 第 33 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.292022s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.292221s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001350s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001503s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002734s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002973s ]
+
+[ 2017-03-14T20:53:16+08:00 ] 127.0.0.1 /admin.php?c=movie
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000429s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000676s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000734s ]
+NOTIC: [2048] Declaration of Admin\Controller\MovieController::setStatus() should be compatible with Admin\Controller\CommonController::setStatus($data, $models) F:\phpStudy\WWW\movie_test\Application\Admin\Controller\MovieController.class.php 第 12 行.
+NOTIC: [2048] Declaration of Admin\Controller\MovieController::listorder() should be compatible with Admin\Controller\CommonController::listorder($model = '') F:\phpStudy\WWW\movie_test\Application\Admin\Controller\MovieController.class.php 第 12 行.
+NOTIC: [8] Undefined variable: movieId F:\phpStudy\WWW\movie_test\Application\Admin\Controller\MovieController.class.php 第 16 行.
+NOTIC: [8] Undefined index: movie_type F:\phpStudy\WWW\movie_test\Application\Admin\Controller\MovieController.class.php 第 19 行.
+NOTIC: [8] Undefined index: p F:\phpStudy\WWW\movie_test\Application\Admin\Controller\MovieController.class.php 第 23 行.
+NOTIC: [2048] Declaration of Common\Model\MovieModel::find() should be compatible with Think\Model::find($options = Array) F:\phpStudy\WWW\movie_test\Application\Common\Model\MovieModel.class.php 第 9 行.
+SQL: SHOW COLUMNS FROM `tb_movie` [ RunTime:0.0634s ]
+SQL: SELECT * FROM `tb_movie` WHERE `status` <> -1 ORDER BY listorder desc ,movie_id desc LIMIT 0,10   [ RunTime:0.0016s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_movie` WHERE `status` <> -1 LIMIT 1   [ RunTime:0.0009s ]
+NOTIC: [8] Undefined variable: sing_path F:\phpStudy\WWW\movie_test\ThinkPHP\Common\functions.php 第 991 行.
+NOTIC: [2048] Declaration of Common\Model\PositionModel::find() should be compatible with Think\Model::find($options = Array) F:\phpStudy\WWW\movie_test\Application\Common\Model\PositionModel.class.php 第 81 行.
+SQL: SHOW COLUMNS FROM `tb_position` [ RunTime:0.0128s ]
+SQL: SELECT * FROM `tb_position` WHERE `status` = 1 ORDER BY id  [ RunTime:0.0011s ]
+NOTIC: [2048] Declaration of Common\Model\MenuModel::find() should be compatible with Think\Model::find($options = Array) F:\phpStudy\WWW\movie_test\Application\Common\Model\MenuModel.class.php 第 92 行.
+SQL: SHOW COLUMNS FROM `tb_menu` [ RunTime:0.0144s ]
+SQL: SELECT * FROM `tb_menu` WHERE `status` = 1 AND `type` = 0 ORDER BY listorder desc,menu_id desc  [ RunTime:0.0012s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000233s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000410s ]
+SQL: SELECT * FROM `tb_menu` WHERE `status` <> -1 AND `type` = 1 ORDER BY listorder desc,menu_id desc  [ RunTime:0.0014s ]
+NOTIC: [8] Undefined index: a F:\phpStudy\WWW\movie_test\Application\Common\Common\function.php 第 33 行.
+NOTIC: [8] Undefined index: a F:\phpStudy\WWW\movie_test\Application\Common\Common\function.php 第 33 行.
+NOTIC: [8] Undefined index: a F:\phpStudy\WWW\movie_test\Application\Common\Common\function.php 第 33 行.
+NOTIC: [8] Undefined index: a F:\phpStudy\WWW\movie_test\Application\Common\Common\function.php 第 33 行.
+NOTIC: [8] Undefined index: a F:\phpStudy\WWW\movie_test\Application\Common\Common\function.php 第 33 行.
+NOTIC: [8] Undefined index: a F:\phpStudy\WWW\movie_test\Application\Common\Common\function.php 第 33 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.063925s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.064176s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001279s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001420s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.003072s ]
+INFO: [ app_end ] --END-- [ RunTime:0.003376s ]
+
+[ 2017-03-14T20:53:22+08:00 ] 127.0.0.1 /admin.php?c=menu
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000417s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000554s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000610s ]
+NOTIC: [2048] Declaration of Admin\Controller\MenuController::setStatus() should be compatible with Admin\Controller\CommonController::setStatus($data, $models) F:\phpStudy\WWW\movie_test\Application\Admin\Controller\MenuController.class.php 第 9 行.
+NOTIC: [2048] Declaration of Admin\Controller\MenuController::listorder() should be compatible with Admin\Controller\CommonController::listorder($model = '') F:\phpStudy\WWW\movie_test\Application\Admin\Controller\MenuController.class.php 第 9 行.
+NOTIC: [8] Undefined index: p F:\phpStudy\WWW\movie_test\Application\Admin\Controller\MenuController.class.php 第 51 行.
+NOTIC: [8] Undefined index: pageSize F:\phpStudy\WWW\movie_test\Application\Admin\Controller\MenuController.class.php 第 52 行.
+NOTIC: [2048] Declaration of Common\Model\MenuModel::find() should be compatible with Think\Model::find($options = Array) F:\phpStudy\WWW\movie_test\Application\Common\Model\MenuModel.class.php 第 5 行.
+SQL: SHOW COLUMNS FROM `tb_menu` [ RunTime:0.0153s ]
+SQL: SELECT * FROM `tb_menu` WHERE `status` <> -1 ORDER BY listorder desc,menu_id desc LIMIT 0,3   [ RunTime:0.0016s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_menu` WHERE `status` <> -1 LIMIT 1   [ RunTime:0.0010s ]
+NOTIC: [8] Undefined variable: sing_path F:\phpStudy\WWW\movie_test\ThinkPHP\Common\functions.php 第 991 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000205s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000379s ]
+SQL: SELECT * FROM `tb_menu` WHERE `status` <> -1 AND `type` = 1 ORDER BY listorder desc,menu_id desc  [ RunTime:0.0014s ]
+NOTIC: [8] Undefined index: a F:\phpStudy\WWW\movie_test\Application\Common\Common\function.php 第 33 行.
+NOTIC: [8] Undefined index: a F:\phpStudy\WWW\movie_test\Application\Common\Common\function.php 第 33 行.
+NOTIC: [8] Undefined index: a F:\phpStudy\WWW\movie_test\Application\Common\Common\function.php 第 33 行.
+NOTIC: [8] Undefined index: a F:\phpStudy\WWW\movie_test\Application\Common\Common\function.php 第 33 行.
+NOTIC: [8] Undefined index: a F:\phpStudy\WWW\movie_test\Application\Common\Common\function.php 第 33 行.
+NOTIC: [8] Undefined index: a F:\phpStudy\WWW\movie_test\Application\Common\Common\function.php 第 33 行.
+NOTIC: [8] Undefined variable: nav F:\phpStudy\WWW\movie_test\Application\Runtime\Cache\Admin\b956215329b6f9aca22277599a4efdfc.php 第 101 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.067014s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.067192s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001041s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001208s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002278s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002522s ]
+
+[ 2017-03-14T20:53:29+08:00 ] 127.0.0.1 /admin.php
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000048s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001830s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.004230s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004413s ]
+NOTIC: [8] Undefined variable: sing_path F:\phpStudy\WWW\movie_test\ThinkPHP\Common\functions.php 第 991 行.
+NOTIC: [8] Undefined variable: module F:\phpStudy\WWW\movie_test\ThinkPHP\Common\functions.php 第 994 行.
+NOTIC: [8] Undefined variable: var F:\phpStudy\WWW\movie_test\ThinkPHP\Common\functions.php 第 997 行.
+NOTIC: [2] array_reverse() expects parameter 1 to be array, null given F:\phpStudy\WWW\movie_test\ThinkPHP\Common\functions.php 第 997 行.
+NOTIC: [2] http_build_query(): Parameter 1 expected to be Array or Object.  Incorrect value given F:\phpStudy\WWW\movie_test\ThinkPHP\Common\functions.php 第 997 行.
+
+[ 2017-03-14T21:05:15+08:00 ] 127.0.0.1 /admin.php?c=menu
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000592s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000689s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000747s ]
+NOTIC: [2048] Declaration of Admin\Controller\MenuController::setStatus() should be compatible with Admin\Controller\CommonController::setStatus($data, $models) F:\phpStudy\WWW\movie_test\Application\Admin\Controller\MenuController.class.php 第 9 行.
+NOTIC: [2048] Declaration of Admin\Controller\MenuController::listorder() should be compatible with Admin\Controller\CommonController::listorder($model = '') F:\phpStudy\WWW\movie_test\Application\Admin\Controller\MenuController.class.php 第 9 行.
+NOTIC: [8] Undefined index: p F:\phpStudy\WWW\movie_test\Application\Admin\Controller\MenuController.class.php 第 51 行.
+NOTIC: [8] Undefined index: pageSize F:\phpStudy\WWW\movie_test\Application\Admin\Controller\MenuController.class.php 第 52 行.
+NOTIC: [2048] Declaration of Common\Model\MenuModel::find() should be compatible with Think\Model::find($options = Array) F:\phpStudy\WWW\movie_test\Application\Common\Model\MenuModel.class.php 第 5 行.
+SQL: SHOW COLUMNS FROM `tb_menu` [ RunTime:0.0158s ]
+SQL: SELECT * FROM `tb_menu` WHERE `status` <> -1 ORDER BY listorder desc,menu_id desc LIMIT 0,3   [ RunTime:0.0013s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_menu` WHERE `status` <> -1 LIMIT 1   [ RunTime:0.0010s ]
+NOTIC: [8] Undefined variable: sing_path F:\phpStudy\WWW\movie_test\ThinkPHP\Common\functions.php 第 991 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000130s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000250s ]
+SQL: SELECT * FROM `tb_menu` WHERE `status` <> -1 AND `type` = 1 ORDER BY listorder desc,menu_id desc  [ RunTime:0.0007s ]
+NOTIC: [8] Undefined index: a F:\phpStudy\WWW\movie_test\Application\Common\Common\function.php 第 33 行.
+NOTIC: [8] Undefined index: a F:\phpStudy\WWW\movie_test\Application\Common\Common\function.php 第 33 行.
+NOTIC: [8] Undefined index: a F:\phpStudy\WWW\movie_test\Application\Common\Common\function.php 第 33 行.
+NOTIC: [8] Undefined index: a F:\phpStudy\WWW\movie_test\Application\Common\Common\function.php 第 33 行.
+NOTIC: [8] Undefined index: a F:\phpStudy\WWW\movie_test\Application\Common\Common\function.php 第 33 行.
+NOTIC: [8] Undefined index: a F:\phpStudy\WWW\movie_test\Application\Common\Common\function.php 第 33 行.
+NOTIC: [8] Undefined variable: nav F:\phpStudy\WWW\movie_test\Application\Runtime\Cache\Admin\b956215329b6f9aca22277599a4efdfc.php 第 101 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.031024s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.031142s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000598s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000669s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001445s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001559s ]
+
+[ 2017-03-14T21:06:01+08:00 ] 127.0.0.1 /admin.php?c=menu
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000489s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000670s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000723s ]
+NOTIC: [2048] Declaration of Admin\Controller\MenuController::setStatus() should be compatible with Admin\Controller\CommonController::setStatus($data, $models) F:\phpStudy\WWW\movie_test\Application\Admin\Controller\MenuController.class.php 第 9 行.
+NOTIC: [2048] Declaration of Admin\Controller\MenuController::listorder() should be compatible with Admin\Controller\CommonController::listorder($model = '') F:\phpStudy\WWW\movie_test\Application\Admin\Controller\MenuController.class.php 第 9 行.
+NOTIC: [8] Undefined index: p F:\phpStudy\WWW\movie_test\Application\Admin\Controller\MenuController.class.php 第 51 行.
+NOTIC: [8] Undefined index: pageSize F:\phpStudy\WWW\movie_test\Application\Admin\Controller\MenuController.class.php 第 52 行.
+NOTIC: [2048] Declaration of Common\Model\MenuModel::find() should be compatible with Think\Model::find($options = Array) F:\phpStudy\WWW\movie_test\Application\Common\Model\MenuModel.class.php 第 5 行.
+SQL: SHOW COLUMNS FROM `tb_menu` [ RunTime:0.0163s ]
+SQL: SELECT * FROM `tb_menu` WHERE `status` <> -1 ORDER BY listorder desc,menu_id desc LIMIT 0,3   [ RunTime:0.0015s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_menu` WHERE `status` <> -1 LIMIT 1   [ RunTime:0.0009s ]
+NOTIC: [8] Undefined variable: sing_path F:\phpStudy\WWW\movie_test\ThinkPHP\Common\functions.php 第 991 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000296s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000491s ]
+SQL: SELECT * FROM `tb_menu` WHERE `status` <> -1 AND `type` = 1 ORDER BY listorder desc,menu_id desc  [ RunTime:0.0015s ]
+NOTIC: [8] Undefined index: a F:\phpStudy\WWW\movie_test\Application\Common\Common\function.php 第 33 行.
+NOTIC: [8] Undefined index: a F:\phpStudy\WWW\movie_test\Application\Common\Common\function.php 第 33 行.
+NOTIC: [8] Undefined index: a F:\phpStudy\WWW\movie_test\Application\Common\Common\function.php 第 33 行.
+NOTIC: [8] Undefined index: a F:\phpStudy\WWW\movie_test\Application\Common\Common\function.php 第 33 行.
+NOTIC: [8] Undefined index: a F:\phpStudy\WWW\movie_test\Application\Common\Common\function.php 第 33 行.
+NOTIC: [8] Undefined index: a F:\phpStudy\WWW\movie_test\Application\Common\Common\function.php 第 33 行.
+NOTIC: [8] Undefined variable: nav F:\phpStudy\WWW\movie_test\Application\Runtime\Cache\Admin\b956215329b6f9aca22277599a4efdfc.php 第 101 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.044819s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.044992s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001449s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001588s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.003429s ]
+INFO: [ app_end ] --END-- [ RunTime:0.003705s ]
+
+[ 2017-03-14T21:06:12+08:00 ] 127.0.0.1 /admin.php?c=movie
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000591s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000872s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000958s ]
+NOTIC: [2048] Declaration of Admin\Controller\MovieController::setStatus() should be compatible with Admin\Controller\CommonController::setStatus($data, $models) F:\phpStudy\WWW\movie_test\Application\Admin\Controller\MovieController.class.php 第 12 行.
+NOTIC: [2048] Declaration of Admin\Controller\MovieController::listorder() should be compatible with Admin\Controller\CommonController::listorder($model = '') F:\phpStudy\WWW\movie_test\Application\Admin\Controller\MovieController.class.php 第 12 行.
+NOTIC: [8] Undefined variable: movieId F:\phpStudy\WWW\movie_test\Application\Admin\Controller\MovieController.class.php 第 16 行.
+NOTIC: [8] Undefined index: movie_type F:\phpStudy\WWW\movie_test\Application\Admin\Controller\MovieController.class.php 第 19 行.
+NOTIC: [8] Undefined index: p F:\phpStudy\WWW\movie_test\Application\Admin\Controller\MovieController.class.php 第 23 行.
+NOTIC: [2048] Declaration of Common\Model\MovieModel::find() should be compatible with Think\Model::find($options = Array) F:\phpStudy\WWW\movie_test\Application\Common\Model\MovieModel.class.php 第 9 行.
+SQL: SHOW COLUMNS FROM `tb_movie` [ RunTime:0.0692s ]
+SQL: SELECT * FROM `tb_movie` WHERE `status` <> -1 ORDER BY listorder desc ,movie_id desc LIMIT 0,10   [ RunTime:0.0015s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_movie` WHERE `status` <> -1 LIMIT 1   [ RunTime:0.0009s ]
+NOTIC: [8] Undefined variable: sing_path F:\phpStudy\WWW\movie_test\ThinkPHP\Common\functions.php 第 991 行.
+NOTIC: [2048] Declaration of Common\Model\PositionModel::find() should be compatible with Think\Model::find($options = Array) F:\phpStudy\WWW\movie_test\Application\Common\Model\PositionModel.class.php 第 81 行.
+SQL: SHOW COLUMNS FROM `tb_position` [ RunTime:0.0135s ]
+SQL: SELECT * FROM `tb_position` WHERE `status` = 1 ORDER BY id  [ RunTime:0.0011s ]
+NOTIC: [2048] Declaration of Common\Model\MenuModel::find() should be compatible with Think\Model::find($options = Array) F:\phpStudy\WWW\movie_test\Application\Common\Model\MenuModel.class.php 第 92 行.
+SQL: SHOW COLUMNS FROM `tb_menu` [ RunTime:0.0132s ]
+SQL: SELECT * FROM `tb_menu` WHERE `status` = 1 AND `type` = 0 ORDER BY listorder desc,menu_id desc  [ RunTime:0.0010s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000118s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000213s ]
+SQL: SELECT * FROM `tb_menu` WHERE `status` <> -1 AND `type` = 1 ORDER BY listorder desc,menu_id desc  [ RunTime:0.0007s ]
+NOTIC: [8] Undefined index: a F:\phpStudy\WWW\movie_test\Application\Common\Common\function.php 第 33 行.
+NOTIC: [8] Undefined index: a F:\phpStudy\WWW\movie_test\Application\Common\Common\function.php 第 33 行.
+NOTIC: [8] Undefined index: a F:\phpStudy\WWW\movie_test\Application\Common\Common\function.php 第 33 行.
+NOTIC: [8] Undefined index: a F:\phpStudy\WWW\movie_test\Application\Common\Common\function.php 第 33 行.
+NOTIC: [8] Undefined index: a F:\phpStudy\WWW\movie_test\Application\Common\Common\function.php 第 33 行.
+NOTIC: [8] Undefined index: a F:\phpStudy\WWW\movie_test\Application\Common\Common\function.php 第 33 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.030022s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.030135s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000499s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000565s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001210s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001313s ]
+

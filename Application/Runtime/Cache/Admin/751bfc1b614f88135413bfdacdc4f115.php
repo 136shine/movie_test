@@ -150,7 +150,7 @@
                 <tbody>
                 <?php if(is_array($Movie)): $i = 0; $__LIST__ = $Movie;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$movie): $mod = ($i % 2 );++$i;?><tr>
                     <td><input type="checkbox" name="pushcheck" value="<?php echo ($movie["movie_id"]); ?>"></td>
-                     <td><input size=4 type='text'  name='listorder[<?php echo ($movie["movie_id"]); ?>]' value="<?php echo ($movie["listorder"]); ?>"/></td>
+                     <td><input size=4 type='text' name='listorder[<?php echo ($movie["movie_id"]); ?>]' value="<?php echo ($movie["listorder"]); ?>"/></td>
                     <td><?php echo ($movie["movie_id"]); ?></td>
                     <td><?php echo ($movie["movie_name"]); ?></td>
                     <td><?php echo (getMovieTypeByKey($movie["movie_type"])); ?></td>
@@ -181,10 +181,10 @@
               </div>
             </form>
             <div class="input-group">
-              <select class="form-control" name="position_id" id="select-push">
-                <option value="0">请选择推荐位进行推送</option>
-                <?php if(is_array($positions)): foreach($positions as $key=>$position): ?><option value="<?php echo ($position["id"]); ?>"><?php echo ($position["name"]); ?></option><?php endforeach; endif; ?>
-              </select>
+            <!--   <select class="form-control" name="position_id" id="select-push">
+              <option value="0">请选择推荐位进行推送</option>
+              <?php if(is_array($positions)): foreach($positions as $key=>$position): ?><option value="<?php echo ($position["id"]); ?>"><?php echo ($position["name"]); ?></option><?php endforeach; endif; ?>
+            </select> -->
               <button id="singcms-push" type="button" class="btn btn-primary">推送</button>
             </div>
 
