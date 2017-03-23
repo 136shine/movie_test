@@ -20,6 +20,9 @@ define('HTML_PATH', './');
 // 定义应用目录
 define('APP_PATH','./Application/');
 
+define('DB_FIELD_CACHE',false);
+define('HTML_CACHE_ON',false);
+
 // 引入ThinkPHP入口文件
 require './ThinkPHP/ThinkPHP.php';
 

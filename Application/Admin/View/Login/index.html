@@ -9,7 +9,7 @@
   <meta name="author" content="">
   <link rel="icon" href="">
 
-  <title>WO管理平台</title>
+  <title>KM管理平台</title>
 
   <!-- Bootstrap core CSS -->
   <link href="/Public/css/bootstrap.min.css" rel="stylesheet">
@@ -18,7 +18,6 @@
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
-
   <![endif]-->
 </head>
 
@@ -27,12 +26,9 @@
     <div class="middle-box text-center animated fadeInDown">
         <div>
             <div>
-
-                <h1 class="logo-name">WO</h1>
-
+                <h1 class="logo-name">KM</h1>
             </div>
-            <h3>欢迎使用 wo</h3>
-
+            <h3>欢迎使用 KM</h3>
             <form class="m-t" role="form" enctype="multipart/form-data" method="post">
                 <div class="form-group">
                     <input type="text" class="form-control" name='username'placeholder="用户名" required="">

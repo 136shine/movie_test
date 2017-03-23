@@ -1,1 +1,1 @@
-a:5:{s:5:"title";s:16:"singcms资讯网";s:8:"keywords";s:36:"singcms  资讯 体育 新闻 科技";s:11:"description";s:64:"singcms资讯网是提供最新的体育等栏目的新闻网站";s:9:"dumpmysql";s:1:"1";s:10:"cacheindex";s:1:"1";}
+a:5:{s:5:"title";s:9:"酷影吧";s:8:"keywords";s:41:"酷影吧 电影推荐网站 相关音乐";s:11:"description";s:55:"高分电影推荐网站 以及电影相关音乐推荐";s:9:"dumpmysql";s:1:"1";s:10:"cacheindex";s:1:"1";}

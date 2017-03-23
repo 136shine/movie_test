@@ -7,10 +7,10 @@ class CommentController extends CommonController {
     {
         $data['status'] = array('neq',-1);
 
-        $rank_movie = D("RankMovie")->select($data);
+        $rank_movie = D("Comment")->select($data);
         //print_r($rank_movie);exit;
         $this->assign('rank_movie',$rank_movie);
         $this->display();
     }
 }
-?>
+?> 

@@ -15,7 +15,6 @@ $("#singcms-button-submit").click(function(){
     $(data).each(function(i){
        postData[this.name] = this.value;
     });
-    //console.log(postData);
     // 将获取到的数据post给服务器
     url = SCOPE.save_url;
     jump_url = SCOPE.jump_url;

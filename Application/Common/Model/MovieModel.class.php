@@ -18,6 +18,12 @@ class MovieModel extends Model {
         $list = $this->_db->where($conditions)->order('movie_id desc')->limit($limit)->select();
         return $list;
     }
+    public function selectCarousel($data = array(), $limit = 3) {
+
+        $conditions = $data;
+        $list = $this->_db->where($conditions)->order('up_time desc')->limit($limit)->select();
+        return $list;
+    }
     //添加
     public function insert($data = array()) {
         if(!is_array($data) || !$data) {
@@ -28,6 +34,7 @@ class MovieModel extends Model {
         $data['grade'] = $_POST['grade'];
         $data['up_time'] = $_POST['up_time'];
         $data['pic'] = $_POST['pic'];
+        $data['big_pic'] = $_POST['big_pic'];
         return $this->_db->add($data);
     }
 

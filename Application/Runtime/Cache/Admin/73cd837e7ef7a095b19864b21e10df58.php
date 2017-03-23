@@ -116,15 +116,23 @@
             <div class="form-group">
               <label for="inputname" class="col-sm-2 control-label">上映时间:</label>
               <div class="col-sm-5">
-                <input type="text" name="up_time" class="form-control" id="inputname" placeholder="请填写上映时间">
+                <input type="text" name="up_time" class="form-control" id="inputname" placeholder="请填写上映时间 如:2017-03-16">
               </div>
             </div>
             <div class="form-group">
               <label for="inputname" class="col-sm-2 control-label">缩图:</label>
               <div class="col-sm-5">
-                <input id="file_upload"  type="file" multiple="true" >
+                <input id="file_upload" type="file" multiple="true" >
                 <img style="display: none" id="upload_org_code_img" src="" width="150" height="150">
                 <input id="file_upload_image" name="pic" type="hidden" multiple="true" value="">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputname" class="col-sm-2 control-label">大图:</label>
+              <div class="col-sm-5">
+                <input id="img_upload" type="file" multiple="true" >
+                <img style="display: none" id="upload_org_big_pic" src="" width="300" height="150">
+                <input id="file_upload_big_pic" name="big_pic" type="hidden" multiple="true" value="">
               </div>
             </div>
 

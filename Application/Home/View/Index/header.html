@@ -18,15 +18,19 @@
     <div class="container">
       <div class="navbar-header">
         <a href="/">
-          <img src="/Public/images/logo.png" alt="">
+          <img src="/Public/images/" alt="">
         </a>
       </div>
-      <ul class="nav navbar-nav navbar-left">
+      <ul class="nav navbar-nav">
         <li><a href="/" <if condition="$result['catId'] eq 0">class="curr"</if>>首页</a></li>
         <foreach name="navs" item="vo">
           <li><a href="/index.php?c=cat&id={$vo.menu_id}" <if condition="$vo['menu_id'] eq $result['catId']">class="curr"</if>>{$vo.name}</a></li>
         </foreach>
       </ul>
+      <div class="nav navbar-nav navbar-right" style="padding: 16px 0;">
+        <a href="/index.php?c=user"><button type="button" class="btn btn-default">注册</button></a>
+        <a href="/index.php?c=user&a=login"><button type="button" class="btn btn-default">登录</button></a> 
+      </div>
     </div>
   </div>
 </header>

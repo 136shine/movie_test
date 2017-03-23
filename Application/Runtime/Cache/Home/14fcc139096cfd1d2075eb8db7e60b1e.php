@@ -51,10 +51,9 @@
 				</div>
 				<!--start right -->
 
-				<div class="col-sm-3 col-md-3">
-  <div class="right-title">
-    <h3>文章排行</h3>
-    <span>TOP ARTICLES</span>
+				  <div class="right-title">
+    <h3>电影排行</h3>
+    <span>TOP MOVIE</span>
   </div>
 
   <div class="right-content">
@@ -70,7 +69,7 @@
   <?php if(is_array($result['advNews'])): $k = 0; $__LIST__ = $result['advNews'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($k % 2 );++$k;?><div class="right-hot">
     <a target="_blank" href="<?php echo ($vo["url"]); ?>"><img src="<?php echo ($vo["thumb"]); ?>" alt="<?php echo ($vo["name"]); ?>"></a>
   </div><?php endforeach; endif; else: echo "" ;endif; ?>
-</div>
+
 				<!-- end right-->
 			</div>
 		</div>

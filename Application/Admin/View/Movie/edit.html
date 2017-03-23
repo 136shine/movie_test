@@ -43,9 +43,17 @@
             <div class="form-group">
               <label for="inputname" class="col-sm-2 control-label">缩图:</label>
               <div class="col-sm-5">
-                <input id="file_upload"  type="file" multiple="true" >
+                <input id="file_upload" type="file" multiple="true" >
                 <img id="upload_org_code_img" src="{$movie.pic}" width="150" height="150">
                 <input id="file_upload_image" name="pic" type="hidden" multiple="true" value="{$movie.pic}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputname" class="col-sm-2 control-label">大图:</label>
+              <div class="col-sm-5">
+                <input id="img_upload" class="img_upload" type="file" multiple="true" >
+                <img id="upload_org_big_pic" src="{$movie.big_pic}" width="300" height="150">
+                <input id="file_upload_big_pic" name="big_pic" type="hidden" multiple="true" value="{$movie.big_pic}">
               </div>
             </div>
            

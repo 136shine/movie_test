@@ -8,4 +8,6 @@ return array(
     'LOAD_EXT_CONFIG' => 'db',
     'MD5_PRE' => 'sing_cms',
     'HTML_FILE_SUFFIX' => '.html',
+    'TMPL_CACHE_ON' => false,//禁止模板编译缓存
+	'HTML_CACHE_ON' => false,//禁止静态缓存
 );

@@ -6,9 +6,6 @@ namespace Admin\Controller;
 use Think\Controller;
 use Think\Upload;
 
-/**
- * 文章内容管理
- */
 class ImageController extends CommonController {
     private $_uploadObj;
     public function __construct() {
