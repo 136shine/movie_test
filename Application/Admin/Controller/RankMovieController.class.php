@@ -1,6 +1,6 @@
 <?php
 /**
- * 后台推荐位相关
+ * 
  */
 namespace Admin\Controller;
 use Think\Controller;
@@ -8,16 +8,13 @@ class RankMovieController extends CommonController {
     public function index()
     {
         $data['status'] = array('neq',-1);
-
         $rank_movie = D("RankMovie")->select($data);
-        //print_r($rank_movie);exit;
         $this->assign('rank_movie',$rank_movie);
         $this->display();
     }
 
     public function add() {
         if($_POST) {
-           
             /**
              * 如果提交了id，那么及时编辑模式
              */

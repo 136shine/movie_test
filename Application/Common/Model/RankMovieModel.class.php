@@ -18,7 +18,7 @@ class RankMovieModel extends Model {
 		if($data['movie_name']) {
 			$data['movie_name'] = array('like', '%'.$data['movie_name'].'%');
 		}
-		$this->_db->where($data)->order('listorder desc ,id desc');
+		$this->_db->where($data)->order('rank asc ,id desc');
 		if($limit) {
 			$this->_db->limit($limit);
 		}

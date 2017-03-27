@@ -7,7 +7,7 @@ use Think\Controller;
 use Think\Exception;
 
 /**
- * 文章内容管理
+ * 电影内容管理
  */
 class MovieController extends CommonController {
 
@@ -28,10 +28,9 @@ class MovieController extends CommonController {
 
         $res  =  new \Think\Page($count,$pageSize);
         $pageres = $res->show();
-        $positions = D("Position")->getNormalPositions();
+
         $this->assign('pageres',$pageres);
         $this->assign('Movie',$Movie);
-        $this->assign('positions', $positions);
 
         $this->assign('webSiteMenu',D("Menu")->getBarMenus());
         $this->display();
@@ -197,17 +196,23 @@ class MovieController extends CommonController {
             if (!$Movie) {
                 return show(0, '没有相关内容');
             }
-            print_r($Movie);
             foreach ($Movie as $new) {
                 $data = array(
                     'movie_name' => $new['movie_name'],
                     'pic' => $new['pic'],
                     'movie_id' => $new['movie_id'],
                     'status' => 1,
+                    'grade' => $new['grade'],
+                    'listorder' => $new['listorder'],
+                    'push_time' =>Date('Y-m-d H:i:s'),
+
                     
                 );
+                $ret = D('MovieDetail')->find($data['movie_id']);
+                $data['rank']=$ret['rank'];
                 $rank_movie = D("RankMovie")->insert($data);
             }
+           
         }catch(Exception $e) {
             return show(0, $e->getMessage());
         }

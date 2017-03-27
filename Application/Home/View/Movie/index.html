@@ -1,0 +1,38 @@
+ <include file="Index/header" />
+   <div class="container" style=" background-color: rgb(245,245,245);">
+    <div class="row">
+
+        <div class="col-sm-12 col-md-12">
+          <span class="tag_movie">最新推荐</span>
+            <div class="movie-list">
+              <volist name="result['listNewMovies']" id="vo">
+                <div class="movie-item col-xs-1-5 col-sm-4 col-md-3 col-xs-6">
+                  <div class="movie-pic"><a target="_blank" href="/index.php?c=movie_detail&id={$vo.movie_id}" style="background:url({$vo.pic}) no-repeat center; background-size: 100% 100%;" ><span class="grade">{$vo.grade}</span></a></div>
+                  <div class="ms">
+                    <span class="movie_name">{$vo.movie_name}</span>
+                  </div>
+                </div>
+              </volist>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-12">
+          <span class="tag_movie">最热推荐</span>
+            <div class="movie-list">
+              <volist name="result['listHotMovies']" id="vo">
+                <div class="movie-item col-xs-1-5 col-sm-4 col-md-3 col-xs-6">
+                  <div class="movie-pic"><a target="_blank" href="/index.php?c=movie_detail&id={$vo.movie_id}" style="background:url({$vo.pic}) no-repeat center; background-size: 100% 100%;" ><span class="grade">{$vo.grade}</span></a></div>
+                  <div class="ms">
+                    <span class="movie_name">{$vo.movie_name}</span>
+                  </div>
+                </div>
+              </volist>
+            </div>
+        </div>
+       
+    </div>
+   </div>
+    
+  </body>
+<script type="text/javascript" src="/Public/js/jquery.js"></script>
+<script type="text/javascript" src="/Public/js/bootstrap.min.js"></script>
+</html>

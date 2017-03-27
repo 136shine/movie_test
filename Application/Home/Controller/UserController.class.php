@@ -8,9 +8,9 @@ use Think\Controller;
 class UserController extends Controller {
 
     public function index(){
-        // if(session('User')) {
-        //    $this->redirect('/index.php');
-        // }
+        if(session('user')) {
+           $this->redirect('/index.php');
+        }
         // admin.php?c=index
         $this->display();
     }
@@ -57,16 +57,19 @@ class UserController extends Controller {
             return show(0,'密码错误');
         }
 
-        D("User")->updateByAdminId($ret['user_id'],array('lastLoginTime'=>time()));
+        D("User")->updateByAdminId($ret['user_id'],array('lastLoginTime'=>Date('Y-m-d H:i:s')));
         D("User")->updateStatusById($ret['user_id'],1);
-        //session('User', $ret);
+        session('user', $ret);
+        // print_r($_SESSION['user']);exit;
         return show(1,'登录成功');
 
     }
 
     public function loginout() {
-        session('User', null);
+       
+        $ret = D('User')->getAdminByUsername($_SESSION['user']['username']);
         D("User")->updateStatusById($ret['user_id'],0);
+         session('user', null);
         $this->redirect('/index.php?c=user');
     }
 

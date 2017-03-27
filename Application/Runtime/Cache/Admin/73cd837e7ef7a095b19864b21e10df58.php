@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>sing后台管理平台</title>
+    <title>KM后台管理平台</title>
     <!-- Bootstrap Core CSS -->
     <link href="/Public/css/bootstrap.min.css" rel="stylesheet">
 
@@ -30,6 +30,7 @@
     <script src="/Public/js/bootstrap.min.js"></script>
     <script src="/Public/js/dialog/layer.js"></script>
     <script src="/Public/js/dialog.js"></script>
+    <script src="/Public/js/kindeditor/kindeditor-all-min.js"></script>
     <script type="text/javascript" src="/Public/js/party/jquery.uploadify.js"></script>
 
 </head>
@@ -82,11 +83,9 @@
   </div>
   <!-- /.navbar-collapse -->
 </nav>
- <!--  <script src="/Public/js/kindeditor/kindeditor-all.js"></script> -->
   <div id="page-wrapper">
 
     <div class="container-fluid">
-
       <!-- Page Heading -->
       <div class="row">
         <div class="col-lg-12">
@@ -119,28 +118,12 @@
                 <input type="text" name="up_time" class="form-control" id="inputname" placeholder="请填写上映时间 如:2017-03-16">
               </div>
             </div>
-            <div class="form-group">
-              <label for="inputname" class="col-sm-2 control-label">缩图:</label>
-              <div class="col-sm-5">
-                <input id="file_upload" type="file" multiple="true" >
-                <img style="display: none" id="upload_org_code_img" src="" width="150" height="150">
-                <input id="file_upload_image" name="pic" type="hidden" multiple="true" value="">
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="inputname" class="col-sm-2 control-label">大图:</label>
-              <div class="col-sm-5">
-                <input id="img_upload" type="file" multiple="true" >
-                <img style="display: none" id="upload_org_big_pic" src="" width="300" height="150">
-                <input id="file_upload_big_pic" name="big_pic" type="hidden" multiple="true" value="">
-              </div>
-            </div>
-
+            
              <div class="form-group">
               <label for="inputname" class="col-sm-2 control-label">类型:</label>
               <div class="col-sm-5">
                 <select class="form-control" name="movie_type">
-                  <option value="">==请选择类型==</option>
+                  <option value="">--请选择类型--</option>
                     <?php if(is_array($movie_type)): foreach($movie_type as $key=>$Mtype): ?><option value="<?php echo ($key); ?>"><?php echo ($Mtype); ?></option><?php endforeach; endif; ?>
                 </select>
               </div>
@@ -152,12 +135,7 @@
                 <input type="text" name="grade" class="form-control" id="inputname" placeholder="请填写评分">
               </div>
             </div>
-             <div class="form-group">
-              <label for="inputname" class="col-sm-2 control-label">描述:</label>
-              <div class="col-sm-5">
-                <textarea class="input js-editor" id="editor_singcms" name="describle" rows="20" cols="60"></textarea>
-              </div>
-            </div>
+            
              <div class="form-group">
               <label for="inputname" class="col-sm-2 control-label">排名:</label>
               <div class="col-sm-5">
@@ -180,6 +158,30 @@
               <label for="inputname" class="col-sm-2 control-label">导演:</label>
               <div class="col-sm-5">
                 <input type="text" name="director" class="form-control" id="inputname" placeholder="请填写导演">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="inputname" class="col-sm-2 control-label">缩图:</label>
+              <div class="col-sm-5">
+                <input id="file_upload" type="file" multiple="true" >
+                <img style="display: none" id="upload_org_code_img" src="" width="150" height="150">
+                <input id="file_upload_image" name="pic" type="hidden" multiple="true" value="">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputname" class="col-sm-2 control-label">大图:</label>
+              <div class="col-sm-5">
+                <input id="img_upload" type="file" multiple="true" >
+                <img style="display: none" id="upload_org_big_pic" src="" width="300" height="150">
+                <input id="file_upload_big_pic" name="big_pic" type="hidden" multiple="true" value="">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="inputname" class="col-sm-2 control-label">描述:</label>
+              <div class="col-sm-5">
+                <textarea class="input js-editor" id="editor_content" name="describle" rows="20" cols="60"></textarea>
               </div>
             </div>
 
@@ -216,12 +218,12 @@
 <script src="/Public/js/admin/image.js"></script>
 <script>
   // 6.2
-  // KindEditor.ready(function(K) {
-  //   window.editor = K.create('#editor_singcms',{
-  //     uploadJson : '/admin.php?c=image&a=kindupload',
-  //     afterBlur : function(){this.sync();}, //
-  //   });
-  // });
+  KindEditor.ready(function(K) {
+    window.editor = K.create('#editor_content',{
+      uploadJson : '/admin.php?c=image&a=kindupload',
+      afterBlur : function(){this.sync();}, //
+    });
+  });
 </script>
 <script src="/Public/js/admin/common.js"></script>
 

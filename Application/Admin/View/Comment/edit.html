@@ -1,0 +1,117 @@
+<include file="Index/header" />
+<body>
+<div id="wrapper">
+
+  <include file="Index/nav"/>
+  <div id="page-wrapper">
+
+    <div class="container-fluid">
+
+      <!-- Page Heading -->
+      <div class="row">
+        <div class="col-lg-12">
+
+          <ol class="breadcrumb">
+            <li>
+              <i class="fa fa-dashboard"></i>  <a href="/admin.php?c=comment">影评管理</a>
+            </li>
+            <li class="active">
+              <i class="fa fa-edit"></i> 影评添加
+            </li>
+          </ol>
+        </div>
+      </div>
+      <!-- /.row -->
+
+      <div class="row">
+        <div class="col-lg-6">
+
+          <form class="form-horizontal" id="singcms-form">
+            <div class="form-group">
+              <label for="inputname" class="col-sm-2 control-label">电影名称:</label>
+              <div class="col-sm-5">
+                <input type="text" name="movie_name" class="form-control" id="inputname" value="{$comm.movie_name}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputname" class="col-sm-2 control-label">电影海报:</label>
+              <div class="col-sm-5">
+                <input id="file_upload" type="file" multiple="true" >
+                <img id="upload_org_code_img" src="{$comm.pic}" width="150" height="150">
+                <input id="file_upload_image" name="pic" type="hidden" multiple="true" value="{$comm.pic}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputname" class="col-sm-2 control-label">标题:</label>
+              <div class="col-sm-5">
+                <input type="text" name="title" class="form-control" id="inputname" value="{$comm.title}">
+              </div>
+            </div>
+           
+             <div class="form-group">
+              <label for="inputname" class="col-sm-2 control-label">作者:</label>
+              <div class="col-sm-5">
+                <input type="text" name="author" class="form-control" id="inputname" value="{$comm.author}">
+              </div>
+            </div>
+             <div class="form-group">
+              <label for="inputname" class="col-sm-2 control-label">发表时间:</label>
+              <div class="col-sm-5">
+                <input type="text" name="time" class="form-control" id="inputname" value="{$comm.time}">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="inputname" class="col-sm-2 control-label">文章来源:</label>
+              <div class="col-sm-5">
+                <input type="text" name="source" class="form-control" id="inputname" value="{$comm.source}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputPassword3" class="col-sm-2 control-label">内容:</label>
+              <div class="col-sm-5">
+                <textarea class="input js-editor" id="editor_content" name="content" rows="20" >{$comm.content}</textarea>
+              </div>
+            </div>
+            <input type="hidden" name="id" value="{$comm.id}"/>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <button type="button" class="btn btn-default" id="singcms-button-submit">提交</button>
+              </div>
+            </div>
+          </form>
+
+
+        </div>
+
+      </div>
+      <!-- /.row -->
+
+    </div>
+    <!-- /.container-fluid -->
+
+  </div>
+  <!-- /#page-wrapper -->
+
+</div>
+<script>
+  var SCOPE = {
+    'save_url' : '/admin.php?c=comment&a=add',
+    'jump_url' : '/admin.php?c=comment',
+    'ajax_upload_image_url' : '/admin.php?c=image&a=ajaxuploadimage',
+    'ajax_upload_swf' : '/Public/js/party/uploadify.swf',
+  };
+
+</script>
+<!-- /#wrapper -->
+<script src="/Public/js/admin/image.js"></script>
+<script>
+  // 6.2
+  KindEditor.ready(function(K) {
+    window.editor = K.create('#editor_content',{
+      uploadJson : '/admin.php?c=image&a=kindupload',
+      afterBlur : function(){this.sync();}, 
+    });
+  });
+</script>
+<include file="Index/footer" />

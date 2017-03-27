@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>sing后台管理平台</title>
+    <title>KM后台管理平台</title>
     <!-- Bootstrap Core CSS -->
     <link href="/Public/css/bootstrap.min.css" rel="stylesheet">
 
@@ -30,6 +30,7 @@
     <script src="/Public/js/bootstrap.min.js"></script>
     <script src="/Public/js/dialog/layer.js"></script>
     <script src="/Public/js/dialog.js"></script>
+    <script src="/Public/js/kindeditor/kindeditor-all-min.js"></script>
     <script type="text/javascript" src="/Public/js/party/jquery.uploadify.js"></script>
 
 </head>
@@ -130,9 +131,9 @@
 						</div>
 					</div>
 					<div class="form-group">
-		              <label for="inputname" class="col-sm-2 control-label">推荐排名:</label>
+		              <label for="inputname" class="col-sm-2 control-label">推荐评分:</label>
 		              <div class="col-sm-5">
-		                <input type="text" name="rank" class="form-control" id="inputname" placeholder="请填写排名">
+		                <input type="text" name="grade" class="form-control" id="inputname" placeholder="请填写评分">
 		              </div>
 		            </div>
 					<div class="form-group">

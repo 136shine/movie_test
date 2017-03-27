@@ -13,7 +13,7 @@ var login = {
         }
         if(!password) {
             dialog.error('密码不能为空');
-        }
+        } 
 
         var url = "/admin.php?c=login&a=check";
         var data = {'username':username,'password':password};

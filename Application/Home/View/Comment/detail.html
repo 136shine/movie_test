@@ -1,0 +1,35 @@
+<include file="Index/header" />
+<div class="com_wrap clearfix">
+	<div class="container">
+	<div class="row">
+		<div class="comment col-md-9 col-sm-9 col-xs-9">
+			<section class="reviDetL leftWp fL">
+		<section class="location">
+        	<!-- 当前位置：<a href="http://www.51oscar.com" title="首页" target="_blank"><img src="/Images/location_ind.png" alt="大众影评网" style="vertical-align:text-bottom;"></a> -->&nbsp;&nbsp;&gt;&gt;&nbsp;&nbsp;<a title="影评">影评</a>&nbsp;&nbsp;&gt;&gt;&nbsp;&nbsp;{$listcom.title}
+
+        </section>
+		<section class="titleBox">
+        	<div class="cont">
+            	<h1>{$listcom.title}</h1>
+                <div class="titB clearfix">
+                	<span>作者&nbsp;&nbsp;<a>{$listcom.author}</a>&nbsp;&nbsp;评论&nbsp;&nbsp;<a>{$listcom.movie_name}</a>&nbsp;&nbsp;时间 &nbsp;&nbsp;{$listcom.time}</span>
+                </div>
+            </div>   
+        </section>        
+		<section class="newCont">
+			<p>{$listcom.content}</p>
+		</section>
+    </section>
+		</div>
+	</div>
+</div>
+  <!--网站右侧信息-->
+  <div class="col-sm-3 col-md-3">
+    <include file="Index/right" />
+  </div>
+</div>
+
+<script type="text/javascript" src="/Public/js/jquery.js"></script>
+<script type="text/javascript" src="/Public/js/bootstrap.min.js"></script>
+</body>
+</html>

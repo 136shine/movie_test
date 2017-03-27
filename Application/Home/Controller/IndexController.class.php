@@ -6,14 +6,14 @@ use Think\Exception;
 class IndexController extends CommonController {
     public function index($type=''){
 
-        $topRecomment = D('Movie')->selectCarousel(array('big_pic'=>array('neq','')),3);
-        $listMovies = D("Movie")->select(array('status'=>1,'pic'=>array('neq','')),30);
+        $topRecomment = D('Movie')->select(array('status'=>1,'big_pic'=>array('neq','')),'movie_id asc',3);
+        $listMovies = D("Movie")->select(array('status'=>1,'pic'=>array('neq','')),'movie_id asc',30);
+        $rankMovie = D("RankMovie")->select(array('status'=>1),10);
 
        $this->assign('result', array(
             'topPic' => $topRecomment,
             'listMovies' => $listMovies,
-            // 'rankNews' => $rankNews,
-            // 'catId' => 0,
+            'rankMovies' => $rankMovie,
         ));
 
 

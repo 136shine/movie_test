@@ -12,18 +12,24 @@ class MovieModel extends Model {
     public function __construct() {
         $this->_db = M('movie');
     }
-    public function select($data = array(), $limit = 100) {
+    // public function select($data = array(), $limit = 100) {
+
+    //     $conditions = $data;
+    //     $list = $this->_db->where($conditions)->order('movie_id desc')->limit($limit)->select();
+    //     return $list;
+    // }
+    public function select($data = array(), $order = '', $limit = 100) {
 
         $conditions = $data;
-        $list = $this->_db->where($conditions)->order('movie_id desc')->limit($limit)->select();
+        $list = $this->_db->where($conditions)->order($order)->limit($limit)->select();
         return $list;
     }
-    public function selectCarousel($data = array(), $limit = 3) {
+    // public function selectCarousel($data = array(), $limit = 3) {
 
-        $conditions = $data;
-        $list = $this->_db->where($conditions)->order('up_time desc')->limit($limit)->select();
-        return $list;
-    }
+    //     $conditions = $data;
+    //     $list = $this->_db->where($conditions)->order('up_time desc')->limit($limit)->select();
+    //     return $list;
+    // }
     //添加
     public function insert($data = array()) {
         if(!is_array($data) || !$data) {

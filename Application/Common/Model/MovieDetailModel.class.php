@@ -66,7 +66,17 @@ class MovieDetailModel extends Model {
 
         return $this->_db->where('movie_id='.$id)->save($data);
     }
+    public function getMovieByMovieIdIn($movieIds) {
+        if(!is_array($movieIds)) {
+            throw_exception("参数不合法");
+        }
 
+        $data = array(
+            'movie_id' => array('in',implode(',', $movieIds)),
+        );
+       
+        return $this->_db->where($data)->select();
+    }
 
 
 
