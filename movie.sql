@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50553
 File Encoding         : 65001
 
-Date: 2017-03-23 20:22:12
+Date: 2017-03-30 17:10:32
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -24,7 +24,7 @@ CREATE TABLE `tb_admin` (
   `username` varchar(20) NOT NULL DEFAULT '',
   `password` varchar(32) NOT NULL DEFAULT '',
   `lastloginip` varchar(15) DEFAULT '0',
-  `lastlogintime` int(10) unsigned DEFAULT '0',
+  `lastlogintime` datetime DEFAULT '0000-00-00 00:00:00',
   `email` varchar(40) DEFAULT '',
   `realname` varchar(50) NOT NULL DEFAULT '',
   `status` tinyint(1) NOT NULL DEFAULT '1',
@@ -35,14 +35,7 @@ CREATE TABLE `tb_admin` (
 -- ----------------------------
 -- Records of tb_admin
 -- ----------------------------
-INSERT INTO `tb_admin` VALUES ('1', 'admin', 'd099d126030d3207ba102efa8e60630a', '0', '1490268936', 'tracywxh0830@126.com', 'singwa', '1');
-INSERT INTO `tb_admin` VALUES ('2', 'singwa', 'a8ea3a23aa715c8772dd5b4a981ba6f4', '0', '1458139801', '', '王新华', '-1');
-INSERT INTO `tb_admin` VALUES ('3', 'singwa', 'a8ea3a23aa715c8772dd5b4a981ba6f4', '0', '0', '', '', '-1');
-INSERT INTO `tb_admin` VALUES ('4', 'singwa3', '79d4026540fdd95e4a0b627c77e6fa44', '0', '1458144621', '', 'singwa', '0');
-INSERT INTO `tb_admin` VALUES ('5', 'singwa', '5ec68e6f496115b92ba5662a35922611', '0', '0', '', '1', '-1');
-INSERT INTO `tb_admin` VALUES ('6', 'singwa222', '6f071d49b5122a7352d8f2cc21680079', '0', '0', '', 'singwa', '-1');
-INSERT INTO `tb_admin` VALUES ('7', 'singwa222', '5ec68e6f496115b92ba5662a35922611', '0', '0', '', '1', '-1');
-INSERT INTO `tb_admin` VALUES ('8', 'singwa123', '204c93175e725ca51d28633055536e09', '0', '1458485298', 'singcms@singwa.com', 'singcms123', '1');
+INSERT INTO `tb_admin` VALUES ('1', 'admin', 'd099d126030d3207ba102efa8e60630a', '0', '0000-00-00 00:00:00', 'tracywxh0830@126.com', 'singwa', '1');
 
 -- ----------------------------
 -- Table structure for tb_comment
@@ -50,18 +43,24 @@ INSERT INTO `tb_admin` VALUES ('8', 'singwa123', '204c93175e725ca51d28633055536e
 DROP TABLE IF EXISTS `tb_comment`;
 CREATE TABLE `tb_comment` (
   `id` int(8) unsigned NOT NULL AUTO_INCREMENT,
-  `reply_id` int(8) DEFAULT NULL,
-  `movie_id` int(8) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `comment` varchar(255) NOT NULL,
-  `avator` varchar(255) NOT NULL,
+  `movie_name` varchar(50) NOT NULL,
+  `author` varchar(50) DEFAULT NULL,
+  `content` mediumtext NOT NULL,
+  `status` tinyint(2) NOT NULL DEFAULT '1',
   `time` datetime NOT NULL,
+  `source` varchar(255) DEFAULT NULL,
+  `listorder` int(8) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `pic` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tb_comment
 -- ----------------------------
+INSERT INTO `tb_comment` VALUES ('4', '血战钢锯岭', '未知', '<div style=\"color:#666666;font-family:宋体, Arial, Helvetica, sans-serif;font-size:14px;background-color:#FFFFFF;\">\r\n	真的已经快忘记了梅尔·吉布森这个曾经的大明星，以至于一时间都实在想不起来《勇敢的心》的片名，还是在上网查了一下才想起他曾经最为经典的一部作品。据说被好莱坞封杀了10年，这部《血战钢锯岭》也算是梅尔·吉布森的一次回归，若非本片有关梅尔·吉布森的话题也已经很久没有被人提起，好在这部', '1', '0000-00-00 00:00:00', '影评网', '2', '《血战钢锯岭》：敢于直面惨淡的人生才是真正的勇士', '');
+INSERT INTO `tb_comment` VALUES ('3', '一只狗的使命', '90后作家罗毅祥  ', '<img src=\"http://www.51oscar.com/Uploads/image/20170307/water_17223443882.jpg\" width=\"400\" height=\"260\" title=\"pic-0\" alt=\"pic-0\" /><p style=\"color:#333333;font-family:arial, \" font-size:16px;text-indent:32px;\"=\"\"><br />\r\n	</p>\r\n<p style=\"color:#333333;font-family:arial, \" font-size:16px;text-indent:32px;\"=\"\">\r\n	凡是涉及到小猫小狗小动物题材的电影，如果不是让人发笑的喜剧，便一定是能把人虐哭的正剧。\r\n</p>\r\n<p style=\"color:#333333;font-family:arial, \" font-size:16px;text-indent:32px;\"=\"\"><br />\r\n	</p>\r\n<p style=\"color:#333333;font-family:arial, \" font-size:16px;text-indent:32px;\"=\"\">\r\n	《一条狗的使命》便是这样一部能让人泪湿春衫袖却又温情四溢的关于一只小狗前世今生轮回转世的悲喜自传。\r\n</p>\r\n<p style=\"color:#333333;font-family:arial, \" font-size:16px;text-indent:32px;\"=\"\">\r\n	不错，这部电影是一只狗的自传，导演用一只狗的视角和狗的心理依次讲述了自己在轮回转世中所经历的五个主人的故事。五个故事，五次轮回，五段生死，其中最长的故事耗时一个小时，最短的则不超过五分钟。\r\n	</p>\r\n<p style=\"color:#333333;font-family:arial, \" font-size:16px;text-indent:32px;\"=\"\">\r\n	这部电影的导演是莱塞·霍尔斯道姆。也许你不认识他，但你一定知道《忠犬八公的故事》——一只叫小八的秋田犬用它至死不渝的忠诚和爱感动过亿万观众的故事。《一条狗的使命》正是莱塞导演最新的力作。\r\n</p>\r\n<p style=\"color:#333333;font-family:arial, \" font-size:16px;text-indent:32px;\"=\"\">\r\n	如果《八公》让你哭得泣不成声，那么《使命》绝对能让你哭得肝肠寸断。\r\n	</p>\r\n	<p>\r\n		<br />\r\n	</p>', '1', '2017-03-22 00:00:00', '大众影评网', '0', '电影《一条狗的使命》：爱与被爱的使命', '/upload/2017/03/26/58d790a37c9b8.jpg');
+INSERT INTO `tb_comment` VALUES ('5', '123666', '1', '<p>\r\n	<img src=\"/upload/2017/03/26/58d7904ce9abd.png\" alt=\"\" />\r\n</p>\r\n<p>\r\n	场女爱索多女错扩\r\n</p>', '-1', '2016-09-23 00:00:00', '3', '0', '23', '/upload/2017/03/26/58d7902f57dff.png');
 
 -- ----------------------------
 -- Table structure for tb_menu
@@ -82,7 +81,7 @@ CREATE TABLE `tb_menu` (
   KEY `listorder` (`listorder`),
   KEY `parentid` (`parentid`),
   KEY `module` (`m`,`c`,`f`)
-) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tb_menu
@@ -90,14 +89,14 @@ CREATE TABLE `tb_menu` (
 INSERT INTO `tb_menu` VALUES ('1', '', '0', '', '', '', '', '0', '-1', '0');
 INSERT INTO `tb_menu` VALUES ('14', '电影管理', '0', 'admin', 'movie', 'index', '', '0', '1', '1');
 INSERT INTO `tb_menu` VALUES ('15', '菜单管理', '0', 'admin', 'menu', 'index', '', '0', '1', '1');
-INSERT INTO `tb_menu` VALUES ('16', '推荐位管理', '0', 'admin', 'position', 'index', '', '0', '-1', '1');
+INSERT INTO `tb_menu` VALUES ('26', '用户管理', '0', 'admin', 'user', 'index', '', '0', '1', '1');
 INSERT INTO `tb_menu` VALUES ('17', '推荐详情管理', '0', 'admin', 'recomment', 'index', '', '0', '-1', '1');
 INSERT INTO `tb_menu` VALUES ('18', '相关音乐管理', '0', 'admin', 'music', 'index', '', '0', '1', '1');
 INSERT INTO `tb_menu` VALUES ('19', '影评管理', '0', 'admin', 'comment', 'index', '', '0', '1', '1');
 INSERT INTO `tb_menu` VALUES ('20', '留言管理', '0', 'admin', 'message', 'index', '', '0', '1', '1');
 INSERT INTO `tb_menu` VALUES ('21', '电影推荐排行管理', '0', 'admin', 'rank_movie', 'index', '', '0', '1', '1');
 INSERT INTO `tb_menu` VALUES ('22', '基本配置管理', '0', 'admin', 'basic', 'index', '', '0', '1', '1');
-INSERT INTO `tb_menu` VALUES ('23', '电影推荐', '0', 'home', 'cat', 'index', '', '3', '1', '0');
+INSERT INTO `tb_menu` VALUES ('23', '电影推荐', '0', 'home', 'movie', 'index', '', '3', '1', '0');
 INSERT INTO `tb_menu` VALUES ('24', '影视金曲', '0', 'home', 'music', 'index', '', '2', '1', '0');
 INSERT INTO `tb_menu` VALUES ('25', '影评', '0', 'home', 'comment', 'index', '', '1', '1', '0');
 
@@ -116,13 +115,20 @@ CREATE TABLE `tb_movie` (
   `listorder` smallint(5) NOT NULL,
   `big_pic` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`movie_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=52 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tb_movie
 -- ----------------------------
 INSERT INTO `tb_movie` VALUES ('44', '一只狗的使命', '2', '9.2', '/upload/2017/03/22/58d2666c65d59.jpg', '2017-03-03', '1', '0', '/upload/2017/03/22/58d2667021b54.jpg');
-INSERT INTO `tb_movie` VALUES ('43', '美女与野兽', '5', '7.0', '/upload/2017/03/22/58d2488d93075.jpg', '2017-03-17', '1', '0', '/upload/2017/03/22/58d2495223c4c.jpg');
+INSERT INTO `tb_movie` VALUES ('43', '美女与野兽', '5', '7.0', '/upload/2017/03/22/58d2488d93075.jpg', '2017-03-17', '1', '3', '/upload/2017/03/22/58d2495223c4c.jpg');
+INSERT INTO `tb_movie` VALUES ('45', '金刚：骷髅岛 ', '1', '6.4', '/upload/2017/03/24/58d4c0cfd9c45.jpg', '2017-03-24', '1', '2', '');
+INSERT INTO `tb_movie` VALUES ('46', '金刚狼3：殊死一战 ', '1', '8.3', '/upload/2017/03/24/58d4c2540f002.jpg', '2017-03-03', '1', '0', '');
+INSERT INTO `tb_movie` VALUES ('47', '爱乐之城', '5', '8.4', '/upload/2017/03/24/58d4d2b65ef0f.jpg', '2017-02-14', '-1', '0', '');
+INSERT INTO `tb_movie` VALUES ('48', '你的名字', '5', '8.5', '/upload/2017/03/24/58d4d376c1d95.jpg', '2016-12-02', '1', '0', '');
+INSERT INTO `tb_movie` VALUES ('49', '星球大战外传：侠盗一号', '4', '7.3', '/upload/2017/03/29/58db6a4ab3ffc.jpg', '2017-01-06', '1', '10', '/upload/2017/03/29/58db6a57708f1.jpg');
+INSERT INTO `tb_movie` VALUES ('50', '生化危机：终章', '1', '6.7', '/upload/2017/03/29/58db6bb0a8137.jpg', '2017-02-24', '1', '9', '/upload/2017/03/29/58db6bbc2e680.jpg');
+INSERT INTO `tb_movie` VALUES ('51', '刺客信条', '1', '5.5', '/upload/2017/03/29/58db6c8c8451d.jpg', '2017-02-24', '1', '8', '/upload/2017/03/29/58db6c9452950.jpg');
 
 -- ----------------------------
 -- Table structure for tb_movie_detail
@@ -137,39 +143,20 @@ CREATE TABLE `tb_movie_detail` (
   `rank` int(20) NOT NULL,
   `count` int(50) NOT NULL,
   PRIMARY KEY (`movie_detail_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=38 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tb_movie_detail
 -- ----------------------------
-INSERT INTO `tb_movie_detail` VALUES ('10', '17', 'a', 'b', '111', '1', '1');
-INSERT INTO `tb_movie_detail` VALUES ('11', '18', 'a', 'b', '111', '1', '1');
-INSERT INTO `tb_movie_detail` VALUES ('12', '19', 'a', 'b', '111', '1', '1');
-INSERT INTO `tb_movie_detail` VALUES ('13', '20', 'a', 'b', '111', '199', '1');
-INSERT INTO `tb_movie_detail` VALUES ('14', '21', 'a', 'b', '111', '1', '1');
-INSERT INTO `tb_movie_detail` VALUES ('15', '22', 'a', 'b', '111', '1', '1');
-INSERT INTO `tb_movie_detail` VALUES ('16', '23', 'a', 'b', '111', '1', '1');
-INSERT INTO `tb_movie_detail` VALUES ('17', '24', '1', '5', '123', '4', '2');
-INSERT INTO `tb_movie_detail` VALUES ('18', '25', '1', '1', '222', '1', '1');
-INSERT INTO `tb_movie_detail` VALUES ('19', '26', '1', '1', 'dsa', '1', '1');
-INSERT INTO `tb_movie_detail` VALUES ('20', '27', '1', '1', '1', '1', '1');
-INSERT INTO `tb_movie_detail` VALUES ('21', '28', '12', '2', '小王子小王子', '2', '300');
-INSERT INTO `tb_movie_detail` VALUES ('22', '29', 'asa lina', 'Alices', '爱乐之城爱乐之城爱乐之城爱乐之城爱乐之城爱乐之城爱乐之城爱乐之城爱乐之城爱乐之城爱乐之城爱乐之城爱乐之城爱乐之城', '2', '16000000');
-INSERT INTO `tb_movie_detail` VALUES ('23', '30', '孙悟空 白骨精', '唐曾', '三打白骨精三打白骨精三打白骨精三打白骨精三打白骨精三打白骨精三打白骨精三打白骨精三打白骨精三打白骨精三打白骨精三打白骨精三打白骨精三打白骨精三打白骨精三打白骨精三打白骨精三打白骨精三打白骨精三打白骨精三打白骨精三打白骨精三打白骨精三打白骨精三打白骨精三打白骨精三打白骨精三打白骨精三打白骨精三打白骨精三打白骨精三打白骨精三打白骨精三打白骨精三打白骨精三打白骨精三打白骨精三打白骨精三打白骨精三打白骨精三打白骨精三打白骨精三打白骨精三打白骨精三打白骨精三打白骨精三打白骨精三打白骨精三打白骨精三打白骨精三打白骨精', '12', '2500000');
-INSERT INTO `tb_movie_detail` VALUES ('24', '31', '你', '他', '万万没想到万万没想到万万没想到万万没想到万万没想到万万没想到万万没想到万万没想到万万没想到万万没想到万万没想到万万没想到万万没想到万万没想到万万没想到万万没想到万万没想到万万没想到万万没想到万万没想到万万没想到万万没想到万万没想到万万没想到万万没想到万万没想到万万没想到万万没想到万万没想到万万没想到万万没想到万万没想到万万没想到万万没想到万万没想到万万没想到万万没想到万万没想到万万没想到万万没想到万万没想到万万没想到万万没想到万万没想到万万没想到万万没想到万万没想到万万没想到万万没想到万万没想到万万没想到', '1', '56000000');
-INSERT INTO `tb_movie_detail` VALUES ('25', '32', '不知道', '未知', '谁的青春不迷茫谁的青春不迷茫谁的青春不迷茫谁的青春不迷茫谁的青春不迷茫谁的青春不迷茫谁的青春不迷茫谁的青春不迷茫谁的青春不迷茫谁的青春不迷茫', '20', '340000');
-INSERT INTO `tb_movie_detail` VALUES ('26', '33', 'aaa', 'bbbb', '美女与野兽美女与野兽美女与野兽美女与野兽美女与野兽美女与野兽美女与野兽美女与野兽美女与野兽美女与野兽美女与野兽美女与野兽美女与野兽美女与野兽美女与野兽美女与野兽美女与野兽美女与野兽美女与野兽美女与野兽美女与野兽美女与野兽', '12', '6790000');
-INSERT INTO `tb_movie_detail` VALUES ('27', '34', '1', '3', '三体三体三体三体三体三体三体三体三体三体三体三体三体三体三体三体三体三体三体三体三体三体三体三体三体三体三体三体三体三体三体三体三体三体三体三体三体三体三体三体三体三体三体三体三体三体', '14', '2390000');
-INSERT INTO `tb_movie_detail` VALUES ('28', '35', '2', '3', '疯狂动画城疯狂动画城疯狂动画城疯狂动画城疯狂动画城疯狂动画城疯狂动画城疯狂动画城疯狂动画城疯狂动画城疯狂动画城疯狂动画城疯狂动画城疯狂动画城疯狂动画城疯狂动画城疯狂动画城疯狂动画城疯狂动画城疯狂动画城疯狂动画城疯狂动画城疯狂动画城疯狂动画城', '11', '2320088');
-INSERT INTO `tb_movie_detail` VALUES ('29', '36', '43', '2', '请求', '2', '5');
-INSERT INTO `tb_movie_detail` VALUES ('30', '37', '9', '0', 'a', '1', '7');
-INSERT INTO `tb_movie_detail` VALUES ('31', '38', '4', '1', '摆渡人摆渡人摆渡人摆渡人摆渡人摆渡人摆渡人摆渡人摆渡人摆渡人摆渡人摆渡人摆渡人摆渡人摆渡人摆渡人摆渡人摆渡人摆渡人摆渡人摆渡人摆渡人摆渡人摆渡人摆渡人摆渡人摆渡人摆渡人摆渡人摆渡人摆渡人摆渡人摆渡人摆渡人摆渡人摆渡人摆渡人摆渡人', '5', '2147483647');
-INSERT INTO `tb_movie_detail` VALUES ('32', '39', '1', '3', '同桌的你同桌的你同桌的你同桌的你同桌的你同桌的你同桌的你同桌的你同桌的你同桌的你同桌的你同桌的你同桌的你同桌的你同桌的你同桌的你同桌的你同桌的你同桌的你同桌的你同桌的你同桌的你同桌的你同桌的你同桌的你同桌的你同桌的你', '22', '230000');
-INSERT INTO `tb_movie_detail` VALUES ('33', '40', '1', '3', '美人鱼美人鱼美人鱼美人鱼美人鱼美人鱼美人鱼美人鱼美人鱼美人鱼美人鱼美人鱼美人鱼美人鱼', '12', '3000011');
-INSERT INTO `tb_movie_detail` VALUES ('34', '41', '133', '3', 'aefffaefgfd', '12', '3342341');
-INSERT INTO `tb_movie_detail` VALUES ('35', '42', '9', '1', '速度与激情速度与激情速度与激情速度与激情速度与激情速度与激情速度与激情速度与激情速度与激情速度与激情速度与激情速度与激情速度与激情速度与激情速度与激情速度与激情速度与激情速度与激情速度与激情速度与激情速度与激情速度与激情', '4', '900000');
+INSERT INTO `tb_movie_detail` VALUES ('42', '49', '菲丽希缇·琼斯 / 迭戈·鲁纳 / 甄子丹 / 本·门德尔森 / 麦斯·米科尔森 / 艾伦·图代克 / 福里斯特·惠特克 / 姜文 / 里兹·阿迈德 / 乔纳森·阿里斯 / 尤妮斯·奥卢米德 / 克莱尔·陈 / 吉米·斯密茨 / 沃维克·戴维斯 / 马克·普雷斯顿 / 吉娜薇·欧瑞丽 / 詹姆斯·厄尔·琼斯 ', '加里斯·爱德华斯', '&lt;span style=&quot;color:#666666;font-family:&amp;quot;font-size:14px;background-color:#FFFFFF;&quot;&gt;这是一个战火频燃、纷争不断的动荡时代，一群有志之士集结在一起，计划盗走帝国大规模杀伤性武器“死星”的设计图。这个在《星球大战》系列里非常著名的重点事件 ，让一群平凡普通人结成了同盟，决定为世界的改变做出贡献；而在绝密行动的进行中，他们也逐渐成长为顶天立地的英雄。&lt;/span&gt;', '10', '6730000');
+INSERT INTO `tb_movie_detail` VALUES ('43', '50', '米拉·乔沃维奇 / 伊恩·格雷 / 艾丽·拉特 / 鲁比·罗丝 / 李准基 / 肖恩·罗伯茨 / 威廉·莱维 / 欧文·马肯 / 罗拉 / 艾尔·安德森 / 密尔顿·施尔 / 西沃恩·霍奇森 / 凯文·奥托 / 保罗·汉普赛尔', '保罗·安德森', '&lt;span style=&quot;color:#666666;font-family:&amp;quot;font-size:14px;background-color:#FFFFFF;&quot;&gt;爱丽丝（米拉·乔沃维奇 Milla Jovovich 饰）在华盛顿特区被威斯克背叛后身陷险境，人类几乎要失去最后的希望。作为唯一的幸存者，也是人类对抗僵尸大军的最后防线，爱丽丝必须回到噩梦开始的地方——浣熊市，才能完成拯救世界救赎人类的正义使命。回归故事发生的起点浣熊市，爱丽丝将和昔日的朋友一起', '18', '87340000');
+INSERT INTO `tb_movie_detail` VALUES ('44', '51', '迈克尔·法斯宾德 / 玛丽昂·歌迪亚 / 杰瑞米·艾恩斯 / 布莱丹·格里森 / 夏洛特·兰普林 / 迈克尔·威廉姆斯 / 丹尼斯·门诺切特 / 亚里安妮·拉贝德 / 赫立德·阿卜杜拉 / 艾斯·戴维斯 / 马蒂亚斯·瓦雷拉 / 卡勒姆·特纳 / 卡洛斯·巴登 / 哈维尔·古铁雷斯 / 霍威克·库区科利安', '贾斯汀·库泽尔', '&lt;span style=&quot;color:#666666;font-family:&amp;quot;font-size:14px;background-color:#FFFFFF;&quot;&gt;卡勒姆·林奇（迈克尔·法斯宾德 饰）在死刑即将执行之前清醒过来，发现他被索菲娅（玛丽昂·歌迪亚 饰）选中，来参加一个能让人类摆脱暴力冲动的计划。虚拟现实机器Animus能让用户体验祖先的记忆，被绑在机器上之后，卡勒姆·林奇意识到他是生活在西班牙宗教法庭时期一位刺客阿圭拉的后裔，他们寻找的是可以控', '23', '5623000');
 INSERT INTO `tb_movie_detail` VALUES ('36', '43', ' 艾玛·沃森 / 丹·史蒂文斯 / 卢克·伊万斯 / 凯文·克莱恩 / 乔什·加德', '比尔·康顿', '《美女与野兽》根据迪士尼1991年经典动画片及闻名全球的经典童话改编，讲述了少女贝儿的奇幻旅程——为了解救触怒野兽的父亲，勇敢善良的她只身一人来到古堡，代替父亲被囚禁其中。贝儿克服了恐惧，和城堡里的魔法家具们成为了朋友，也渐渐发现野兽其实是受了诅咒的王子，他可怖的外表下藏着一颗善良温柔的内心；这个故事也带领观众明白——美不仅仅是外表，更重要的是内心。', '1', '1200000');
 INSERT INTO `tb_movie_detail` VALUES ('37', '44', '布丽特·罗伯森 / 丹尼斯·奎德 / 佩吉·利普顿 / 乔什·加德 / K·J·阿帕', '拉斯·霍尔斯道姆  ', '　影片以汪星人的视角展现狗狗和人类的微妙情感，一只狗狗陪伴小主人长大成人，甚至为他追到了女朋友，后来它年迈死去又转世投胎变成其他性别和类型的汪，第二次轮回狗狗变成了警犬威风凛凛，再次转轮回，又成了陪伴一位单身女青年的小柯基犬。在经历了多次轮回之后，最终回到最初的主人身边。', '6', '120000');
+INSERT INTO `tb_movie_detail` VALUES ('38', '45', ' 汤姆·希德勒斯顿 / 布丽·拉尔森 / 塞缪尔·杰克逊 / 约翰·古德曼 / 景甜', '乔丹·沃格特-罗伯茨', '上世纪70年代，一支集结了科考队员、探险家、战地摄影记者、军人的探险队，冒险前往南太平洋上的神秘岛屿——骷髅岛。他们的到来惊扰了岛上之神——史上最大金刚。经过一番惨烈的激战之后，探险队员散落在了岛屿各处。此时，队员们才意识到这次探险并不是一次单纯的科考任务，而是去探索怪兽存在的证明。 \r\n　　在这片与世隔绝、危险密布的丛林，无数怪异的史前生物暗藏其中，时刻威胁着他们的生命。队员们还遇到了神秘的原始部落，金刚的身世和其守护岛屿的原因也被逐渐揭开，原来，恐怖阴森的骷髅岛上还蛰伏着更凶狠残暴的怪兽……', '10', '23090000');
+INSERT INTO `tb_movie_detail` VALUES ('39', '46', '休·杰克曼 / 帕特里克·斯图尔特 / 达芙妮·基恩 / 波伊德·霍布鲁克 / 斯戴芬·莫昌特 ', '詹姆斯·曼高德', '故事发生在2029年，彼时，X战警早已经解散，作为为数不多的仅存的变种人，金刚狼罗根（休·杰克曼 Hugh Jackman 饰）和卡利班（斯戴芬·莫昌特 Stephen Merchant 饰）照顾着年迈的X教授（帕特里克·斯图尔特 Patrick Stewart 饰），由于衰老，X教授已经丧失了对于自己超能力的控制，如果不依赖药物，他的超能力就会失控，在全球范围内制造无法挽回的灾难。不仅如此，金刚狼的自愈能力亦随着时间的流逝逐渐减弱，体能和力量都早已经大不如从前。 \r\n　　某日，一位陌生女子找到了金刚狼，', '12', '4580000');
+INSERT INTO `tb_movie_detail` VALUES ('40', '47', '瑞恩·高斯林 / 艾玛·斯通 / 约翰·传奇 / 罗丝玛丽·德薇特 / 芬·维特洛克', '达米恩·查泽雷', '米娅（艾玛·斯通 Emma Stone 饰）渴望成为一名演员，但至今她仍旧只是片场咖啡厅里的一名平凡的咖啡师，尽管不停的参加着大大小小的试镜，但米娅收获的只有失败。某日，在一场派对之中，米娅邂逅了名为塞巴斯汀（瑞恩·高斯林 Ryan Gosling 饰）的男子，起初两人之间产生了小小的矛盾，但很快，米娅便被塞巴斯汀身上闪耀的才华以及他对爵士乐的纯粹追求所吸引，最终两人走到了一起。 \r\n　　在塞巴斯汀的鼓励下，米娅辞掉了咖啡厅的工作，专心为自己写起了剧本，与此同时，塞巴斯汀为了获得一份稳定的收入，加入了一支', '6', '78230000');
+INSERT INTO `tb_movie_detail` VALUES ('41', '48', ' 神木隆之介 / 上白石萌音 / 长泽雅美 / 市原悦子 / 成田凌 ', ' 新海诚', '在远离大都会的小山村，住着巫女世家出身的高中女孩宫水三叶（上白石萌音 配音）。校园和家庭的原因本就让她充满烦恼，而近一段时间发生的奇怪事件，又让三叶摸不清头脑。不知从何时起，三叶在梦中就会变成一个住在东京的高中男孩。那里有陌生的同学和朋友，有亲切的前辈和繁华的街道，一切都是如此诱人而真实。另一方面，住在东京的高中男孩立花泷（神木隆之介 配音）则总在梦里来到陌生的小山村，以女孩子的身份过着全新的生活。许是受那颗神秘彗星的影响，立花和三叶在梦中交换了身份。他们以他者的角度体验着对方的人生，这期间有愤怒、有欢笑', '13', '45000000');
 
 -- ----------------------------
 -- Table structure for tb_music
@@ -191,115 +178,6 @@ CREATE TABLE `tb_music` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for tb_news
--- ----------------------------
-DROP TABLE IF EXISTS `tb_news`;
-CREATE TABLE `tb_news` (
-  `news_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `catid` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `title` varchar(80) NOT NULL DEFAULT '',
-  `small_title` varchar(30) NOT NULL DEFAULT '',
-  `title_font_color` varchar(250) DEFAULT NULL COMMENT '标题颜色',
-  `thumb` varchar(100) NOT NULL DEFAULT '',
-  `keywords` char(40) NOT NULL DEFAULT '',
-  `description` varchar(250) NOT NULL COMMENT '文章描述',
-  `posids` varchar(250) NOT NULL DEFAULT '',
-  `listorder` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `status` tinyint(1) NOT NULL DEFAULT '1',
-  `copyfrom` varchar(250) DEFAULT NULL COMMENT '来源',
-  `username` char(20) NOT NULL,
-  `create_time` int(10) unsigned NOT NULL DEFAULT '0',
-  `update_time` int(10) unsigned NOT NULL DEFAULT '0',
-  `count` int(10) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`news_id`),
-  KEY `status` (`status`,`listorder`,`news_id`),
-  KEY `listorder` (`catid`,`status`,`listorder`,`news_id`),
-  KEY `catid` (`catid`,`status`,`news_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of tb_news
--- ----------------------------
-INSERT INTO `tb_news` VALUES ('17', '3', 'test', 'test', '#5674ed', '/upload/2016/03/06/56dbdc0c483af.JPG', 'sss', 'sss', '', '1', '-1', '0', 'admin', '1455756856', '0', '0');
-INSERT INTO `tb_news` VALUES ('18', '3', '你好ssss', '你好', '#ed568b', '/upload/2016/03/06/56dbdc015e662.JPG', '你好', '你好sssss  ss', '', '2', '-1', '3', 'admin', '1455756999', '0', '0');
-INSERT INTO `tb_news` VALUES ('19', '8', '1', '11', '#5674ed', '/upload/2016/02/28/56d312b12ccec.png', '1', '1', '', '0', '-1', '0', 'admin', '1456673467', '0', '0');
-INSERT INTO `tb_news` VALUES ('20', '3', '事实上', '11', '', '/upload/2016/02/28/56d3185781237.png', '1', '11', '', '0', '-1', '0', 'admin', '1456674909', '0', '0');
-INSERT INTO `tb_news` VALUES ('21', '3', '习近平今日下午出席解放军代表团全体会议', '习近平出席解放军代表团全体会议', '', '/upload/2016/03/13/56e519a185c93.png', '中共中央总书记 国家主席 中央军委主席 习近平', '中共中央总书记', '', '2', '1', '1', 'admin', '1457854896', '0', '60');
-INSERT INTO `tb_news` VALUES ('22', '12', '李克强让部长们当第一新闻发言人', '李克强让部长们当第一新闻发言人', '', '/upload/2016/03/13/56e51b6ac8ce2.jpg', '李克强  新闻发言人', '部长直接面对媒体回应关切，还能直接读到民情民生民意，而不是看别人的舆情汇报。', '', '0', '1', '0', 'admin', '1457855362', '0', '33');
-INSERT INTO `tb_news` VALUES ('23', '3', '重庆美女球迷争芳斗艳', '重庆美女球迷争芳斗艳', '', '/upload/2016/03/13/56e51cbd34470.png', '重庆美女 球迷 争芳斗艳', '重庆美女球迷争芳斗艳', '', '10', '1', '0', 'admin', '1457855680', '0', '22');
-INSERT INTO `tb_news` VALUES ('24', '3', '中超-汪嵩世界波制胜 富力客场1-0力擒泰达', '中超-汪嵩世界波制胜 富力客场1-0力擒泰达', '', '/upload/2016/03/13/56e51fc82b13a.png', '中超 汪嵩世界波  富力客场 1-0力擒泰达', '中超-汪嵩世界波制胜 富力客场1-0力擒泰达', '', '1', '1', '0', 'admin', '1457856460', '0', '26');
-
--- ----------------------------
--- Table structure for tb_news_content
--- ----------------------------
-DROP TABLE IF EXISTS `tb_news_content`;
-CREATE TABLE `tb_news_content` (
-  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `news_id` mediumint(8) unsigned NOT NULL,
-  `content` mediumtext NOT NULL,
-  `create_time` int(10) unsigned NOT NULL DEFAULT '0',
-  `update_time` int(10) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `news_id` (`news_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of tb_news_content
--- ----------------------------
-INSERT INTO `tb_news_content` VALUES ('7', '17', '&lt;p&gt;\r\n	gsdggsgsgsgsg\r\n&lt;/p&gt;\r\n&lt;p&gt;\r\n	sgsg\r\n&lt;/p&gt;\r\n&lt;p&gt;\r\n	gsdgsg \r\n&lt;/p&gt;\r\n&lt;p style=&quot;text-align:center;&quot;&gt;\r\n	       ggg\r\n&lt;/p&gt;', '1455756856', '0');
-INSERT INTO `tb_news_content` VALUES ('8', '18', '&lt;p&gt;\r\n	你好\r\n&lt;/p&gt;\r\n&lt;p&gt;\r\n	我很好dsggfg\r\n&lt;/p&gt;\r\n&lt;p&gt;\r\n	&lt;br /&gt;\r\n&lt;/p&gt;\r\n&lt;p&gt;\r\n	gsgfgdfgd\r\n&lt;/p&gt;\r\n&lt;p&gt;\r\n	&lt;br /&gt;\r\n&lt;/p&gt;\r\n&lt;p&gt;\r\n	&lt;br /&gt;\r\n&lt;/p&gt;\r\n&lt;p&gt;\r\n	&lt;br /&gt;\r\n&lt;/p&gt;\r\n&lt;p&gt;\r\n	gggg\r\n&lt;/p&gt;', '1455756999', '0');
-INSERT INTO `tb_news_content` VALUES ('9', '19', '111', '1456673467', '0');
-INSERT INTO `tb_news_content` VALUES ('10', '20', '111', '1456674909', '0');
-INSERT INTO `tb_news_content` VALUES ('11', '21', '&lt;p&gt;\r\n	&lt;span style=&quot;font-family:\'Microsoft YaHei\', u5FAEu8F6Fu96C5u9ED1, Arial, SimSun, u5B8Bu4F53;font-size:16px;line-height:32px;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; 3月13日下午，中共中央总书记、国家主席、中央军委主席习近平出席十二届全国人大四次会议解放军代表团全体会议，并发表重要讲话。&lt;/span&gt;\r\n&lt;/p&gt;\r\n&lt;p&gt;\r\n	&lt;span style=&quot;font-family:\'Microsoft YaHei\', u5FAEu8F6Fu96C5u9ED1, Arial, SimSun, u5B8Bu4F53;font-size:16px;line-height:32px;&quot;&gt;&lt;img src=&quot;/upload/2016/03/13/56e519acb12ee.png&quot; alt=&quot;&quot; /&gt;&lt;br /&gt;\r\n&lt;/span&gt;\r\n&lt;/p&gt;', '1457854896', '0');
-INSERT INTO `tb_news_content` VALUES ('12', '22', '&lt;p style=&quot;font-size:16px;font-family:\'Microsoft YaHei\', u5FAEu8F6Fu96C5u9ED1, Arial, SimSun, u5B8Bu4F53;&quot;&gt;\r\n	&amp;nbsp; &amp;nbsp; “部长通道”是今年两会一大亮点，成为两会开放透明和善待媒体的一个象征。在这个通道上，以往记者拉着喊着部长接受采访的场景不见了，变为部长主动站出来回应关切，甚至变成部长排队10多分钟等着接受采访。媒体报道称，两会前李克强总理接连两次“发话”，要求各部委主要负责人“要积极回应舆论关切”。部长主动放料，使这个通道上传出了很多新闻，如交通部长对拥堵费传闻的回应，人社部部长称网传延迟退休时间表属误读等。\r\n&lt;/p&gt;\r\n&lt;p style=&quot;font-size:16px;font-family:\'Microsoft YaHei\', u5FAEu8F6Fu96C5u9ED1, Arial, SimSun, u5B8Bu4F53;&quot;&gt;\r\n	&amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;&lt;img src=&quot;/upload/2016/03/13/56e51b7fcd445.jpg&quot; alt=&quot;&quot; /&gt;\r\n&lt;/p&gt;\r\n&lt;p style=&quot;font-size:16px;font-family:\'Microsoft YaHei\', u5FAEu8F6Fu96C5u9ED1, Arial, SimSun, u5B8Bu4F53;&quot;&gt;\r\n	&amp;nbsp; &amp;nbsp; &amp;nbsp; 记者之所以喜欢跑两会，原因之一是两会上高官云集，能“堵”到、“逮”到、“抢”到很多大新闻——现在不需要堵、逮和抢，部长们主动曝料，打通了各种阻隔，树立了开明开放的政府形象。期待“部长通道”不只在两会期间存在，最好能成为一种官媒交流、官民沟通的常态化新闻通道。\r\n&lt;/p&gt;\r\n&lt;p style=&quot;font-size:16px;font-family:\'Microsoft YaHei\', u5FAEu8F6Fu96C5u9ED1, Arial, SimSun, u5B8Bu4F53;&quot;&gt;\r\n	&lt;span style=&quot;font-family:\'Microsoft YaHei\', u5FAEu8F6Fu96C5u9ED1, Arial, SimSun, u5B8Bu4F53;font-size:16px;line-height:32px;&quot;&gt;部长们多面对媒体多发言，不仅能提高自身的媒介素养，也带动部门新闻发言人，更加重视与媒体沟通。部长直接面对媒体回应关切，还能直接读到民情民生民意，而不是看别人的舆情汇报。&lt;/span&gt;\r\n&lt;/p&gt;', '1457855362', '0');
-INSERT INTO `tb_news_content` VALUES ('13', '23', '&lt;p&gt;\r\n	&lt;span style=&quot;color:#666666;font-family:\'Microsoft Yahei\', 微软雅黑, SimSun, 宋体, \'Arial Narrow\', serif;font-size:14px;line-height:28px;background-color:#FFFFFF;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; 2016年3月13日，2016年中超联赛第2轮：重庆力帆vs河南建业，主场美女球迷争芳斗艳。&lt;/span&gt;\r\n&lt;/p&gt;\r\n&lt;p&gt;\r\n	&lt;span style=&quot;color:#666666;font-family:\'Microsoft Yahei\', 微软雅黑, SimSun, 宋体, \'Arial Narrow\', serif;font-size:14px;line-height:28px;background-color:#FFFFFF;&quot;&gt;&lt;img src=&quot;/upload/2016/03/13/56e51cb17542e.png&quot; alt=&quot;&quot; /&gt;&lt;img src=&quot;/upload/2016/03/13/56e51cb180f8a.png&quot; alt=&quot;&quot; /&gt;&lt;br /&gt;\r\n&lt;/span&gt;\r\n&lt;/p&gt;', '1457855680', '0');
-INSERT INTO `tb_news_content` VALUES ('14', '24', '<p>\r\n	<br />\r\n</p>\r\n<p>\r\n	新浪体育讯　　北京时间2016年3月12日晚7点35分，2016年中超联赛第2轮的一场比赛在天津水滴体育场进行。由天津泰达主场对阵广州富力。上半场双方机会都不多，<strong>下半场第57分钟，常飞亚左路护住皮球回做，汪嵩迎球直接远射世界波破门。随后天津泰达尽管全力进攻，但伊万诺维奇和迪亚涅都浪费了近在咫尺的机会</strong>，最终不得不0-1主场告负。\r\n</p>\r\n<p>\r\n	<img src=\"/upload/2016/03/13/56e51f63a5742.png\" alt=\"\" width=\"474\" height=\"301\" title=\"\" align=\"\" /> \r\n</p>\r\n<p>\r\n	由于首轮中超对阵北京国安的比赛延期举行，因此本场比赛实际上是天津泰达本赛季的首次亮相。新援蒙特罗领衔锋线，两名外援中后卫均首发出场。另一方面，在首轮主场不敌中超新贵河北华夏之后，本赛季球员流失较多的广州富力也许不得不早早开始他们的保级谋划。本场陈志钊红牌停赛，澳大利亚外援吉安努顶替了上轮首发的肖智。\r\n</p>\r\n<p>\r\n	广州富力显然更快地适应了比赛节奏。第3分钟，吉安努前插领球大步杀入禁区形成单刀，回防的赞纳迪内果断放铲化解险情。第8分钟，雷纳尔迪尼奥左路踩单车过人后低平球传中，约万诺维奇伸出大长腿将球挡出底线。第14分钟，富力队左路传中到远点，聂涛头球解围险些失误，送出本场比赛第一个角球。\r\n</p>\r\n<p>\r\n	天津队中场的配合逐渐找到一些感觉。第23分钟，天津队通过一连串小配合打到左路，周海滨下底传中被挡出底线。角球被富力队顶出后天津队二次将球传到禁区前沿，蒙特罗转身后射门但软弱无力被程月磊得到。第27分钟，约万诺维奇断球后直塞蒙特罗，蒙特罗转身晃开后卫在禁区外大力轰门打高。第29分钟，瓦格纳任意球吊入禁区，程月磊出击失误没有击到球，天津队后点将球再次传中，姜至鹏在对方夹击下奋力将球顶出底线。\r\n</p>\r\n<p>\r\n	双方都没有太好的打开僵局的办法，开始陷入苦战。第33分钟，常飞亚左路晃开空档突然起脚，皮球擦着近门柱稍稍偏出底线。第43分钟，白岳峰被雷纳尔迪尼奥断球得手，后者利用速度甩开约万诺维奇，低平球传中又躲过了赞纳迪内的滑铲，但吉安努门前近在咫尺的推射被杨启鹏神奇地单腿挡出！双方半场只得0-0互交白卷。\r\n</p>\r\n<p>\r\n	中场休息双方都没有换人。第47分钟，蒙特罗前场扣过多名对方队员后将球交给周海滨，但周海滨传中时禁区内的胡人天越位在先。第51分钟，王嘉楠右路晃开聂涛下底，但传中球又高又远。第54分钟，雷纳尔迪尼奥中场拿球挑过李本舰，后者无奈将其放倒吃到黄牌。第57分钟，常飞亚左路护住皮球回做，汪嵩迎球直接远射，杨启鹏鞭长莫及，皮球呼啸着直挂远角！世界波！富力队客场1-0取得领先。\r\n</p>\r\n<p>\r\n	第62分钟，瓦格纳任意球吊到禁区，程月磊再次拿球脱手，幸亏张耀坤将球踢出了边线。天津队率先做出调整，迪亚涅和周通两名前锋登场换下郭皓和瓦格纳。第64分钟，天津队右路传中，周通禁区内甩头攻门，程月磊侧扑将球得到。富力队并未保守。第66分钟，常飞亚左路连续盘带杀入禁区，小角度射门打偏。不过一分钟，雷纳尔迪尼奥禁区右角远射，皮球在门前反弹后稍稍偏出。\r\n</p>\r\n<p>\r\n	第71分钟，吉安努禁区角上回做，常飞亚跟进远射，杨启鹏单掌将球托出。天津队马上打出反击，蒙特罗禁区内转身将球分到右路，胡人天的传中找到后排插上的周海滨，但后者的大力头球顶得太正被程月磊侯个正着。富力队肖智换下卢琳。第74分钟，迪亚涅依靠强壮的身体杀入禁区直塞，蒙特罗停球后射门被密集防守的后卫挡出。\r\n</p>\r\n<p>\r\n	于洋换下雷纳尔迪尼奥，富力队加强防守。第81分钟，天津队角球开出，迪亚涅甩头攻门顶偏。天津队连续得到角球机会。第85分钟，天津队角球二次进攻，周通传中，蒙特罗后点头球回做，约万诺维奇离门不到两米处转身扫射竟然将球踢飞！\r\n</p>\r\n<div id=\"ad_33\" class=\"otherContent_01\" style=\"margin:10px 20px 10px 0px;padding:4px;\">\r\n	<iframe width=\"300px\" height=\"250px\" frameborder=\"0\" src=\"http://img.adbox.sina.com.cn/ad/28543.html\">\r\n	</iframe>\r\n</div>\r\n<p>\r\n	天津队范柏群换下李本舰。富力队用宁安换下常飞亚。第88分钟，胡人天战术犯规吃到黄牌。天津队久攻不下，第90分钟，赞纳迪内40米开外远射打偏。第93分钟，蒙特罗左路传中，迪亚涅头球争顶下来之后顺势扫射，皮球贴着横梁高出。广州富力最终将优势保持到了终场取得三分。\r\n</p>\r\n<p>\r\n	进球信息：\r\n</p>\r\n<p>\r\n	天津泰达：无。\r\n</p>\r\n<p>\r\n	广州富力：第58分钟，卢琳左路回做，汪嵩跟上远射破网。\r\n</p>\r\n<p>\r\n	黄牌信息：\r\n</p>\r\n<p>\r\n	天津泰达：第54分钟，李本舰。第88分钟，胡人天。\r\n</p>\r\n<p>\r\n	广州富力：无。\r\n</p>\r\n<p>\r\n	红牌信息：\r\n</p>\r\n<p>\r\n	无。\r\n</p>\r\n<p>\r\n	双方出场阵容：\r\n</p>\r\n<p>\r\n	天津泰达（4-5-1）：29-杨启鹏，23-聂涛、3-赞纳迪内、5-约万诺维奇、19-白岳峰，6-周海滨、7-李本舰（86分钟，28-范柏群）、8-胡人天、11-瓦格纳（63分钟，9-迪亚涅）、22-郭皓（63分钟，33-周通），10-蒙特罗；\r\n</p>\r\n<p>\r\n	广州富力（4-5-1）：1-程月磊，11-姜至鹏、5-张耀坤、22-张贤秀、28-王嘉楠，7-斯文森、21-常飞亚（88分钟，15-宁安）、23-卢琳（73分钟，29-肖智）、31-雷纳尔迪尼奥（77分钟，3-于洋）、33-汪嵩，9-吉安努。\r\n</p>\r\n<p>\r\n	（卢小挠）\r\n</p>\r\n<div>\r\n</div>\r\n<div style=\"font-size:0px;\">\r\n</div>\r\n<p>\r\n	<br />\r\n</p>', '1457856460', '0');
-
--- ----------------------------
--- Table structure for tb_position
--- ----------------------------
-DROP TABLE IF EXISTS `tb_position`;
-CREATE TABLE `tb_position` (
-  `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
-  `name` char(30) NOT NULL DEFAULT '',
-  `status` tinyint(1) NOT NULL DEFAULT '1',
-  `description` char(100) DEFAULT NULL,
-  `create_time` int(10) unsigned NOT NULL DEFAULT '0',
-  `update_time` int(10) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of tb_position
--- ----------------------------
-INSERT INTO `tb_position` VALUES ('6', '首页主推', '1', '电影推荐', '1489223056', '0');
-INSERT INTO `tb_position` VALUES ('7', '排行推荐', '1', '电影排行推荐', '1489223155', '0');
-INSERT INTO `tb_position` VALUES ('8', '排行推荐', '1', '相关音乐推荐', '1489223206', '0');
-INSERT INTO `tb_position` VALUES ('9', '', '1', null, '1489230400', '0');
-
--- ----------------------------
--- Table structure for tb_position_content
--- ----------------------------
-DROP TABLE IF EXISTS `tb_position_content`;
-CREATE TABLE `tb_position_content` (
-  `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
-  `position_id` int(5) unsigned NOT NULL,
-  `title` varchar(30) NOT NULL DEFAULT '',
-  `thumb` varchar(100) NOT NULL DEFAULT '',
-  `url` varchar(100) DEFAULT NULL,
-  `news_id` mediumint(8) unsigned NOT NULL,
-  `listorder` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `status` tinyint(1) NOT NULL DEFAULT '1',
-  `create_time` int(10) unsigned NOT NULL DEFAULT '0',
-  `update_time` int(10) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=36 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of tb_position_content
--- ----------------------------
-
--- ----------------------------
 -- Table structure for tb_rank_movie
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_rank_movie`;
@@ -312,17 +190,35 @@ CREATE TABLE `tb_rank_movie` (
   `grade` double(5,0) NOT NULL,
   `listorder` int(8) NOT NULL,
   `status` tinyint(2) NOT NULL DEFAULT '1',
-  `push_time` int(10) unsigned NOT NULL,
+  `push_time` datetime NOT NULL,
+  `rank` int(5) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=128 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=198 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tb_rank_movie
 -- ----------------------------
-INSERT INTO `tb_rank_movie` VALUES ('124', '27', '1', '', '/upload/2017/03/11/58c3b4f626fe3.jpg', '0', '0', '-1', '0');
-INSERT INTO `tb_rank_movie` VALUES ('125', '17', 'aaaaaa', '', '/upload/2017/03/07/58be9b1210494.jpg', '0', '0', '-1', '0');
-INSERT INTO `tb_rank_movie` VALUES ('126', '24', '444', null, '/upload/2017/03/08/58c021118ab4d.jpg', '0', '0', '-1', '0');
-INSERT INTO `tb_rank_movie` VALUES ('127', '28', '小王子2', '', '/upload/2017/03/16/58caa29e6697a.jpg', '0', '0', '1', '1489674976');
+INSERT INTO `tb_rank_movie` VALUES ('128', '44', '一只狗的使命', null, '/upload/2017/03/22/58d2666c65d59.jpg', '0', '0', '1', '0000-00-00 00:00:00', '0');
+INSERT INTO `tb_rank_movie` VALUES ('129', '43', '美女与野兽', null, '/upload/2017/03/22/58d2488d93075.jpg', '0', '0', '1', '0000-00-00 00:00:00', '0');
+INSERT INTO `tb_rank_movie` VALUES ('130', '45', '金刚：骷髅岛 ', null, '/upload/2017/03/24/58d4c0cfd9c45.jpg', '0', '0', '1', '0000-00-00 00:00:00', '0');
+INSERT INTO `tb_rank_movie` VALUES ('131', '47', '爱乐之城', null, '/upload/2017/03/24/58d4d2b65ef0f.jpg', '0', '0', '1', '0000-00-00 00:00:00', '0');
+INSERT INTO `tb_rank_movie` VALUES ('132', '48', '你的名字', null, '/upload/2017/03/24/58d4d376c1d95.jpg', '0', '0', '1', '0000-00-00 00:00:00', '0');
+INSERT INTO `tb_rank_movie` VALUES ('133', '44', '一只狗的使命', null, '/upload/2017/03/22/58d2666c65d59.jpg', '0', '0', '1', '0000-00-00 00:00:00', '0');
+INSERT INTO `tb_rank_movie` VALUES ('134', '43', '美女与野兽', null, '/upload/2017/03/22/58d2488d93075.jpg', '0', '0', '1', '0000-00-00 00:00:00', '0');
+INSERT INTO `tb_rank_movie` VALUES ('135', '45', '金刚：骷髅岛 ', null, '/upload/2017/03/24/58d4c0cfd9c45.jpg', '0', '0', '1', '0000-00-00 00:00:00', '0');
+INSERT INTO `tb_rank_movie` VALUES ('136', '47', '爱乐之城', null, '/upload/2017/03/24/58d4d2b65ef0f.jpg', '0', '0', '1', '0000-00-00 00:00:00', '0');
+INSERT INTO `tb_rank_movie` VALUES ('137', '48', '你的名字', null, '/upload/2017/03/24/58d4d376c1d95.jpg', '0', '0', '1', '0000-00-00 00:00:00', '0');
+INSERT INTO `tb_rank_movie` VALUES ('138', '44', '一只狗的使命', null, '/upload/2017/03/22/58d2666c65d59.jpg', '0', '0', '1', '0000-00-00 00:00:00', '0');
+INSERT INTO `tb_rank_movie` VALUES ('139', '43', '美女与野兽', null, '/upload/2017/03/22/58d2488d93075.jpg', '0', '0', '1', '0000-00-00 00:00:00', '0');
+INSERT INTO `tb_rank_movie` VALUES ('188', '47', '爱乐之城', null, '/upload/2017/03/24/58d4d2b65ef0f.jpg', '0', '0', '1', '0000-00-00 00:00:00', '0');
+INSERT INTO `tb_rank_movie` VALUES ('189', '48', '你的名字', null, '/upload/2017/03/24/58d4d376c1d95.jpg', '0', '0', '1', '0000-00-00 00:00:00', '0');
+INSERT INTO `tb_rank_movie` VALUES ('191', '44', '一只狗的使命', null, '/upload/2017/03/22/58d2666c65d59.jpg', '9', '0', '1', '0000-00-00 00:00:00', '0');
+INSERT INTO `tb_rank_movie` VALUES ('192', '45', '金刚：骷髅岛 ', null, '/upload/2017/03/24/58d4c0cfd9c45.jpg', '6', '2', '1', '0000-00-00 00:00:00', '13');
+INSERT INTO `tb_rank_movie` VALUES ('193', '48', '你的名字', null, '/upload/2017/03/24/58d4d376c1d95.jpg', '8', '0', '1', '0000-00-00 00:00:00', '13');
+INSERT INTO `tb_rank_movie` VALUES ('194', '44', '一只狗的使命', null, '/upload/2017/03/22/58d2666c65d59.jpg', '9', '0', '1', '0000-00-00 00:00:00', '12');
+INSERT INTO `tb_rank_movie` VALUES ('195', '46', '金刚狼3：殊死一战 ', null, '/upload/2017/03/24/58d4c2540f002.jpg', '8', '0', '1', '0000-00-00 00:00:00', '12');
+INSERT INTO `tb_rank_movie` VALUES ('196', '43', '美女与野兽', null, '/upload/2017/03/22/58d2488d93075.jpg', '7', '3', '1', '0000-00-00 00:00:00', '1');
+INSERT INTO `tb_rank_movie` VALUES ('197', '46', '金刚狼3：殊死一战 ', null, '/upload/2017/03/24/58d4c2540f002.jpg', '8', '0', '1', '0000-00-00 00:00:00', '12');
 
 -- ----------------------------
 -- Table structure for tb_rank_music
@@ -342,6 +238,27 @@ CREATE TABLE `tb_rank_music` (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for tb_review
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_review`;
+CREATE TABLE `tb_review` (
+  `id` int(8) unsigned NOT NULL AUTO_INCREMENT,
+  `movie_id` int(8) NOT NULL,
+  `user_id` int(8) NOT NULL,
+  `avator` varchar(255) DEFAULT NULL,
+  `content` varchar(255) NOT NULL,
+  `time` datetime NOT NULL,
+  `username` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=64 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of tb_review
+-- ----------------------------
+INSERT INTO `tb_review` VALUES ('63', '43', '13', null, '66666', '2017-03-26 12:17:21', '123');
+INSERT INTO `tb_review` VALUES ('62', '43', '13', null, '4545', '2017-03-26 12:15:35', '123');
+
+-- ----------------------------
 -- Table structure for tb_user
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_user`;
@@ -351,22 +268,15 @@ CREATE TABLE `tb_user` (
   `password` varchar(255) NOT NULL,
   `lastLoginTime` datetime NOT NULL,
   `email` varchar(255) DEFAULT NULL,
-  `realname` varchar(255) DEFAULT NULL,
-  `status` tinyint(6) NOT NULL,
+  `phone` varchar(255) DEFAULT NULL,
+  `status` tinyint(2) NOT NULL,
+  `pic` varchar(255) DEFAULT NULL,
+  `sex` tinyint(2) NOT NULL DEFAULT '0',
   PRIMARY KEY (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tb_user
 -- ----------------------------
-INSERT INTO `tb_user` VALUES ('1', 'admin', '123456', '0000-00-00 00:00:00', null, null, '1');
-INSERT INTO `tb_user` VALUES ('2', 'jvbdsjvnaj', 'fhdfkdfnkds', '0000-00-00 00:00:00', null, null, '0');
-INSERT INTO `tb_user` VALUES ('3', 'xxxl', '81dc9bdb52d04dc20036dbd8313ed055', '0000-00-00 00:00:00', null, null, '1');
-INSERT INTO `tb_user` VALUES ('4', 'xxll', '81dc9bdb52d04dc20036dbd8313ed055', '0000-00-00 00:00:00', null, null, '0');
-INSERT INTO `tb_user` VALUES ('5', 'ada', '68053af2923e00204c3ca7c6a3150cf7', '0000-00-00 00:00:00', null, null, '1');
-INSERT INTO `tb_user` VALUES ('6', 'aaaaaa', '93279e3308bdbbeed946fc965017f67a', '0000-00-00 00:00:00', null, null, '0');
-INSERT INTO `tb_user` VALUES ('7', 'aaaaa2', '7fa8282ad93047a4d6fe6111c93b308a', '0000-00-00 00:00:00', null, null, '0');
-INSERT INTO `tb_user` VALUES ('8', 'aaaaa3', '3d2172418ce305c7d16d4b05597c6a59', '0000-00-00 00:00:00', null, null, '0');
-INSERT INTO `tb_user` VALUES ('9', 'aaaaa6', '0b4e7a0e5fe84ad35fb5f95b9ceeac79', '0000-00-00 00:00:00', null, null, '0');
-INSERT INTO `tb_user` VALUES ('10', '136aaa', '388c0c4fc22d8c2f74695413ee0e8e04', '0000-00-00 00:00:00', null, null, '0');
-INSERT INTO `tb_user` VALUES ('11', '136ass', '388c0c4fc22d8c2f74695413ee0e8e04', '0000-00-00 00:00:00', null, null, '0');
+INSERT INTO `tb_user` VALUES ('12', 'admin', 'e10adc3949ba59abbe56e057f20f883e', '2017-03-28 10:13:14', '1262359762@qq.com', '15779707825', '1', '', '0');
+INSERT INTO `tb_user` VALUES ('13', '123', '202cb962ac59075b964b07152d234b70', '2017-03-28 09:37:19', null, null, '-1', null, '0');
