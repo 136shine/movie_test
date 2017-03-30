@@ -10,72 +10,29 @@ class UserController extends CommonController {
 
 
     public function index() {
-        $users = D('User')->getAdmins();
+         //分页
+        $conds = array('status' => array('neq',-1));       
+        $page = $_REQUEST['p'] ? $_REQUEST['p'] : 1;
+        $pageSize = 8;
+
+        $users = D("User")->getList($conds,$page,$pageSize);
+        $count = D("User")->getCount($conds);
+
+        $res  =  new \Think\Page($count,$pageSize);
+        $pageres = $res->show();
+
+        $this->assign('pageres',$pageres);
         $this->assign('users', $users);
-        $this->display();
-    }
-
-    public function add() {
-
-        // 保存数据
-        if(IS_POST) {
-
-            if(!isset($_POST['username']) || !$_POST['username']) {
-                return show(0, '用户名不能为空');
-            }
-            if(!isset($_POST['password']) || !$_POST['password']) {
-                return show(0, '密码不能为空');
-            }
-            $_POST['password'] = getMd5Password($_POST['password']);
-            // 判定用户名是否存在
-            $admin = D("User")->getAdminByUsername($_POST['username']);
-            if($admin && $admin['status']!=-1) {
-                return show(0,'该用户存在');
-            }
-
-            // 新增
-            $id = D("User")->insert($_POST);
-            if(!$id) {
-                return show(0, '新增失败');
-            }
-            return show(1, '新增成功');
-        }
         $this->display();
     }
 
     public function setStatus() {
         $data = array(
-            'admin_id'=>intval($_POST['id']),
+            'user_id'=>intval($_POST['id']),
             'status' => intval($_POST['status']),
         );
         return parent::setStatus($_POST,'User');
     }
-
-    public function personal() {
-        $res = $this->getLoginUser();
-        $user = D("User")->getAdminByAdminId($res['user_id']);
-        $this->assign('vo',$user);
-        $this->display();
-    }
-
-    public function save() {
-        $user = $this->getLoginUser();
-        if(!$user) {
-            return show(0,'用户不存在');
-        }
-
-        $data['realname'] = $_POST['realname'];
-        $data['email'] = $_POST['email'];
-
-        try {
-            $id = D("User")->updateByAdminId($user['admin_id'], $data);
-            if($id === false) {
-                return show(0, '配置失败');
-            }
-            return show(1, '配置成功');
-        }catch(Exception $e) {
-            return show(0, $e->getMessage());
-        }
-    }
+ 
 
 }

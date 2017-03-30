@@ -8,6 +8,8 @@
   <meta name="description" content="<?php echo ($config["description"]); ?>" />
   <link rel="stylesheet" href="/Public/css/bootstrap.min.css" type="text/css" />
   <link rel="stylesheet" href="/Public/css/home/main.css" type="text/css" />
+  <script type="text/javascript" src="/Public/js/jquery.js"></script>
+
 </head>
 <body>
 <header id="header">
@@ -18,9 +20,12 @@
           <img src="/Public/images/logo.png" alt="KM-logo">
         </a>
       </div>
-      <ul class="nav navbar-nav">
-        <li><a href="/" <?php if($result['catId'] == 0): ?>class="curr"<?php endif; ?>>首页</a></li>
-        <?php if(is_array($navs)): foreach($navs as $key=>$vo): ?><li><a href="/index.php?c=cat&id=<?php echo ($vo["menu_id"]); ?>" <?php if($vo['menu_id'] == $result['catId']): ?>class="curr"<?php endif; ?>><?php echo ($vo["name"]); ?></a></li><?php endforeach; endif; ?>
+      <ul class="nav navbar-nav nav-top">
+        <li><a href="/">首页</a></li>
+        <!-- <li><a href="/index.php?c=movie">电影推荐</a></li>
+        <li><a href="/index.php?c=movie">影视金曲</a></li>
+        <li><a href="/index.php?c=comment">影评</a></li> -->
+        <?php if(is_array($navs)): foreach($navs as $key=>$vo): ?><li><a href="/index.php?c=<?php echo ($vo["c"]); ?>"><?php echo ($vo["name"]); ?></a></li><?php endforeach; endif; ?>
       </ul>
       <ul class="nav navbar-right user-nav nav-com" <?php if($_SESSION['user'] == null): ?>style="display:none;"<?php endif; ?>>
         <li class="dropdown">
@@ -44,27 +49,47 @@
     </div>
   </div>
 </header>
+  <script type="text/javascript">
+    $(function(){
+      var url = window.location.href,i = 0;      
+      var urlName = url.split('c=')[1];
+      
+      switch(urlName){
+        case 'movie': i = 1;break;
+        case 'music': i = 2;break;
+        case 'comment': i = 3;break;
+        case '': i = 0;break;
+      }
+      $('.nav-top li').eq(i).children('a').addClass('curr').parent().siblings('li').children('a').removeClass('curr');
+    })
+  </script>
 <div class="com_wrap clearfix">
 	<div class="container">
-	<div class="row">
-		<div class="comment col-md-9 col-sm-9 col-xs-9">
-			<?php if(is_array($result['listcom'])): $i = 0; $__LIST__ = $result['listcom'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><dl class="com_dl clearfix">
-	                <dt class="com_l fL">
-	                    <a><img class="com_avator" src="/Public/images/com_avator.png" alt="影评人头像"></a>
-	                    <a class="com_name"><?php echo ($vo["author"]); ?></a>
-	                </dt>                
-	                <dd class="com_c fL">
-	                    <p class="t"><a href="/index.php?c=comment&a=detail&id=<?php echo ($vo["id"]); ?>" title="<?php echo ($re["title"]); ?>"><?php echo ($vo["title"]); ?></a></p>
-	                    <p>...</p>
-	                </dd>
-	               
-	            </dl><?php endforeach; endif; else: echo "" ;endif; ?>
-		</div>
-	</div>
-</div>
-  <!--网站右侧信息-->
-  <div class="col-sm-3 col-md-3">
-      <div class="right-title">
+		<div class="row">
+			<div class="col-md-9 col-sm-9 col-xs-9">
+				<div class="top_com">
+					<img src="/Public/images/top_comment.jpg" />
+					<p><a href="{}">《长城》：别让长城围住自己</a><span><img src="/Public/images/icon_prince.png">最佳影评</span></p>
+				</div>
+				<div class="comment">
+					<span class="com_tag"> >> 新片影评</span>
+					<?php if(is_array($result['listcom'])): $i = 0; $__LIST__ = $result['listcom'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><dl class="com_dl clearfix">
+			                <dt class="com_l fL">
+			                    <a><img class="com_avator" src="/Public/images/com_avator.png" alt="影评人头像"></a>
+			                    <a class="com_name"><?php echo ($vo["author"]); ?></a>
+			                </dt>                
+			                <dd class="com_c fL">
+			                    <p class="com_title"><a href="/index.php?c=comment&a=detail&id=<?php echo ($vo["id"]); ?>" title="<?php echo ($re["title"]); ?>"><?php echo ($vo["title"]); ?></a></p>
+			                    <p><?php echo (msubstr(strip_tags(htmlspecialchars_decode($vo["content"])),0,150)); ?>...</p>
+			                </dd>
+			               
+			            </dl><?php endforeach; endif; else: echo "" ;endif; ?>
+				</div>
+				 <nav><ul><?php echo ($pageres); ?></ul></nav>
+			</div>
+			 <!--网站右侧信息-->
+	      	<div class="sider col-sm-3 col-md-3 col-xs-3">
+	        	  <div class="right-title">
     <h3>电影排行</h3>
     <span>TOP MOVIE</span>
   </div>
@@ -80,10 +105,12 @@
     <a target="_blank" href="<?php echo ($vo["url"]); ?>"><img src="<?php echo ($vo["thumb"]); ?>" alt="<?php echo ($vo["name"]); ?>"></a>
   </div><?php endforeach; endif; else: echo "" ;endif; ?> -->
 
-  </div>
+	      	</div>
+		</div>
+	</div>  
 </div>
 
+</body>
 <script type="text/javascript" src="/Public/js/jquery.js"></script>
 <script type="text/javascript" src="/Public/js/bootstrap.min.js"></script>
-</body>
 </html>

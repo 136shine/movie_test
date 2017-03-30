@@ -6,19 +6,24 @@ use Think\Exception;
 class CommentController extends CommonController {
     public function index(){
 
-        $listcom = D("Comment")->select(array('status'=>1),12);
-  //       public function cnsubstr($str,$strlen=10) {
-		// 	if(empty($str)||!is_numeric($strlen)){
-		// 		return false;
-		// 	}
-		// 	if(strlen($str)<=$strlen){
-		// 		return $str;
-		// 	}
-		// }
-  //       $listcom[smallCon] = $listcom['content'];
+         //分页
+        $conds['status'] = array('neq',-1);
+        $page = $_REQUEST['p'] ? $_REQUEST['p'] : 1;
+        $pageSize = 1;
+
+        $listcom = D("Comment")->getList($conds,$page,$pageSize);
+        $count = D("Comment")->getCount($conds);
+        $res  =  new \Think\Page($count,$pageSize);
+        $pageres = $res->show();
+        $this->assign('pageres',$pageres);
+
+        // $listcom = D("Comment")->select(array('status'=>1),12);
+        $rankMovie = D("RankMovie")->select(array('status'=>1),10);
+  
        
        $this->assign('result', array(
             'listcom' => $listcom,
+            'rankMovies' => $rankMovie,
         ));
         
         $this->display();

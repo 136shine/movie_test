@@ -29,6 +29,14 @@ function status($status) {
     }
     return $str;
 }
+function sex($sex) {
+    if($sex == 0) {
+        $str = '男';
+    }elseif($sex == 1) {
+        $str = '女';
+    }
+    return $str;
+}
 function getAdminMenuUrl($nav) {
     $url = '/admin.php?c='.$nav['c'].'&a='.$nav['a'];
     if($nav['f']=='index') {

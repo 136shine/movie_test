@@ -22,10 +22,11 @@ class UserModel extends Model {
         $res = $this->_db->where('username="'.$username.'"')->find();
         return $res;
     }
-    // public function getAdminByAdminId($adminId=0) {
-    //     $res = $this->_db->where('admin_id='.$adminId)->find();
-    //     return $res;
-    // }
+  
+    public function getUserById($userId=0) {
+        $res = $this->_db->where('user_id='.$userId)->find();
+        return $res;
+    }
 
     public function updateByAdminId($id, $data) {
 
@@ -37,15 +38,6 @@ class UserModel extends Model {
         }
         return  $this->_db->where('user_id='.$id)->save($data); // 根据条件更新记录
     }
-
-    
-
-    // public function getAdmins() {
-    //     $data = array(
-    //         'status' => array('neq',-1),
-    //     );
-    //     return $this->_db->where($data)->order('admin_id desc')->select();
-    // }
     // /**
     //  * 通过id更新的状态
     //  * @param $id
@@ -62,6 +54,29 @@ class UserModel extends Model {
         $data['status'] = $status;
         return  $this->_db->where('user_id='.$id)->save($data); // 根据条件更新记录
 
+    }
+
+
+    //获取列表
+    public function getList($data,$page,$pageSize=10) {
+        $conditions = $data;
+        $conditions['status'] = array('neq',-1);
+
+        $offset = ($page - 1) * $pageSize;
+        $list = $this->_db->where($conditions)
+            ->order('user_id desc')
+            ->limit($offset,$pageSize)
+            ->select();
+
+        return $list;
+    }
+
+    //获取总数
+    public function getCount($data = array()){
+        $conditions = $data;        
+        $conditions['status'] = array('neq',-1);
+
+        return $this->_db->where($conditions)->count();
     }
 
     // public function getLastLoginUsers() {

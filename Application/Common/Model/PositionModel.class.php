@@ -3,8 +3,8 @@ namespace Common\Model;
 use Think\Model;
 
 /**
- * 推荐位wmodel操作
- * @author  singwa
+ * 
+ * @author  ada
  */
 class PositionModel extends Model {
 	private $_db = '';

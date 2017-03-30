@@ -1,7 +1,6 @@
 *{
 	padding:0;
 	margin:0;
-	
 }
 li{
 	list-style:none;
@@ -469,31 +468,88 @@ body{
 
 
 /*影评 index*/
+.sider{
+	background-color: #fff;
+	margin-top: 20px;
+}
+.com_wrap{
+	background-color:rgb(245,245,245);
+}
 
+.top_com{
+	padding:0px;
+	margin:20px 0 30px;
+	width: 100%;
+	position: relative;
+}
+.top_com img{
+	display: block;
+	width: 100%;
+}
+.top_com p{
+	width: 100%;
+	height: 40px;
+	position: absolute;
+	bottom:0px;
+	left: 0px;
+	margin:0px;
+	line-height: 40px;
+	font-size: 14px;
+	padding-left: 20px;
+	background-color: rgba(0,0,0,.7);
+}
+.top_com p a{
+	display: inline-block;
+	color: #fff;
+	text-decoration: none;
+}
+.top_com p a:hover{
+	color:orange;
+}
+.top_com p span{
+	position: absolute;
+	right: 20px;
+	font-size: 18px;
+	color: #FCEA5E
+}
+.top_com p span img{
+	display: inline-block;
+	width: 30px;
+	margin-right:10px;
+}
 .fL{
 	float: left;
 }
 .fR{
 	float: right;
 }
-.com_wrap{
-	background-color:rgb(245,245,245);
-}
+
+
 .comment{
-	padding:20px 10px;
+	padding:0px 10px 20px;
 	background-color: #fff;
+	border-radius: 20px;
+}
+.com_tag{
+	display: block;
+	font-size:22px;
+	padding: 20px 0px 10px;
+	color:orange;
+	border-bottom: 1px solid #ccc;
+	margin-bottom: 20px;
 }
 .com_dl{
 	width: 100%;
-	border-bottom: 1px solid #ccc;
+	border-bottom: 1px solid rgba(235,235,235,.7);
 }
 .com_l{
 	width: 16%;
 	height: 100%;
 }
+
 .com_l a{
 	display: block;
-	width: 70%;
+	width: 60%;
 }
 .com_l a img{
 	display: block;
@@ -511,7 +567,115 @@ body{
 	width: 83%;
 	height: 100%;
 }
+.com_c .com_title{
+	color:#4694E7;
+	font-size:16px;
+}
+.com_c>p{
+	font-size:14px;
+}
 
+/*个人中心*/
+#personal-form{
+	margin-top: 160px;
+}
+.per-set{
+	display: block; 
+	text-align: center; 
+	font-size: 24px;
+	color: #000; 
+	font-weight: normal;
+	height: 80px; 
+	line-height: 80px; 
+	margin-top: 40px;
+}
+#personal-form .form-group{
+	margin-bottom: 30px;
+	height: 40px;
+	line-height: 40px;	
+}
+#personal-form .form-group label{
+	height: 40px;
+	padding-top:0px;
+	color:#a3a3a3;
+	font-size: 16px;
+	text-align: left;
+	font-weight: normal;
+}
+#personal-form .form-group input{
+	display: inline-block;
+	height: 40px;
+
+}
+#personal-form .avator{
+	height: 120px;
+}
+#personal-form .avator label{
+	margin-top:40px;
+}
+#file_upload-queue{
+	display: none;
+}
+.avator #upload_org_code_img{
+	float: left;
+	margin-left: 20px;
+	display: inline-block;
+	border-radius: 50%;
+}
+
+.avator #file_upload{
+	float: left;
+	margin:40px 0 0 40px;
+	background-color: #F9AE4C;
+	text-align: center;
+	color: #fff;
+	border-radius: 20px;
+
+}
+.sex{
+	text-align: center;
+}
+.sex input[type="radio"],.sex span{
+	float: left;
+	margin-top:0px;
+
+}
+.sex span{
+	display: inline-block;
+	height: 40px;
+	line-height: 40px;
+	margin: 0 30px 0 20px;
+	color: #000;
+}
+
+#personal-form .btn{
+	width: 200px;
+	background-color: #F9AE4C;
+	border-radius: 20px;
+	color: #000;
+	font-size: 16px;
+}
+
+/*comment detail*/
+.comment-detail{
+	padding:30px 10px 20px;
+	background-color: #fff;	
+	margin-top:30px;
+
+}
+.titleBox{
+	text-align: center;
+}
+.titleBox h1{
+	font-size: 22px;
+	margin-bottom: 20px;
+}
+.title-info{
+	margin:20px 0px;
+}
+p {
+	text-indent: 2em!important;
+}
 
 
 

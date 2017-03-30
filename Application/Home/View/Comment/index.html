@@ -1,31 +1,39 @@
 <include file="Index/header" />
 <div class="com_wrap clearfix">
 	<div class="container">
-	<div class="row">
-		<div class="comment col-md-9 col-sm-9 col-xs-9">
-			<volist name="result['listcom']" id="vo">
-				<dl class="com_dl clearfix">
-	                <dt class="com_l fL">
-	                    <a><img class="com_avator" src="/Public/images/com_avator.png" alt="影评人头像"></a>
-	                    <a class="com_name">{$vo.author}</a>
-	                </dt>                
-	                <dd class="com_c fL">
-	                    <p class="t"><a href="/index.php?c=comment&a=detail&id={$vo.id}" title="{$re.title}">{$vo.title}</a></p>
-	                    <p>...</p>
-	                </dd>
-	               
-	            </dl>
-	        </volist>
+		<div class="row">
+			<div class="col-md-9 col-sm-9 col-xs-9">
+				<div class="top_com">
+					<img src="/Public/images/top_comment.jpg" />
+					<p><a href="{}">《长城》：别让长城围住自己</a><span><img src="/Public/images/icon_prince.png">最佳影评</span></p>
+				</div>
+				<div class="comment">
+					<span class="com_tag"> >> 新片影评</span>
+					<volist name="result['listcom']" id="vo">
+						<dl class="com_dl clearfix">
+			                <dt class="com_l fL">
+			                    <a><img class="com_avator" src="/Public/images/com_avator.png" alt="影评人头像"></a>
+			                    <a class="com_name">{$vo.author}</a>
+			                </dt>                
+			                <dd class="com_c fL">
+			                    <p class="com_title"><a href="/index.php?c=comment&a=detail&id={$vo.id}" title="{$re.title}">{$vo.title}</a></p>
+			                    <p>{$vo.content|htmlspecialchars_decode|strip_tags|msubstr=0,150}...</p>
+			                </dd>
+			               
+			            </dl>
+			        </volist>
+				</div>
+				 <nav><ul>{$pageres}</ul></nav>
+			</div>
+			 <!--网站右侧信息-->
+	      	<div class="sider col-sm-3 col-md-3 col-xs-3">
+	        	<include file="Index/right" />
+	      	</div>
 		</div>
-	</div>
-</div>
-  <!--网站右侧信息-->
-  <div class="col-sm-3 col-md-3">
-    <include file="Index/right" />
-  </div>
+	</div>  
 </div>
 
+</body>
 <script type="text/javascript" src="/Public/js/jquery.js"></script>
 <script type="text/javascript" src="/Public/js/bootstrap.min.js"></script>
-</body>
 </html>

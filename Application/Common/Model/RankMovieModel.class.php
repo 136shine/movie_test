@@ -87,4 +87,37 @@ class RankMovieModel extends Model {
         return $this->_db->where('id='.$id)->save($data);
 
     }
+
+    //获取列表
+  	public function getList($data,$page,$pageSize=10) {
+        $conditions = $data;
+        //模糊查询
+        if(isset($data['movie_name']) && $data['movie_name']) {
+            $conditions['movie_name'] = array('like','%'.$data['movie_name'].'%');
+        }
+        $conditions['status'] = array('neq',-1);
+
+        $offset = ($page - 1) * $pageSize;
+        $list = $this->_db->where($conditions)
+            ->order('listorder desc ,movie_id desc')
+            ->limit($offset,$pageSize)
+            ->select();
+
+        return $list;
+
+    }
+
+    //获取总数
+    public function getCount($data = array()){
+        $conditions = $data; 
+        if(isset($data['movie_name']) && $data['movie_name']) {
+            $conditions['movie_name'] = array('like','%'.$data['movie_name'].'%');
+        }
+        if(isset($data['movie_type']) && $data['movie_type'])  {
+            $conditions['movie_type'] = $data['movie_type'];
+        }       
+        $conditions['status'] = array('neq',-1);
+
+        return $this->_db->where($conditions)->count();
+    }
 }

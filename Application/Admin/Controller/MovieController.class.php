@@ -12,16 +12,11 @@ use Think\Exception;
 class MovieController extends CommonController {
 
     public function index() {
-        $conds = array(); 
-        if($movieId) {
-            $conds['movie_id'] = $_GET['movie_id'];
-        }
-        if($_GET['movie_type']) {
-            $conds['movie_type'] = $_GET['movie_type'];
-        }
-
+        //分页
+        // $conds = array('status' => array('neq',-1));   
+        $conds['status'] = array('neq',-1);    
         $page = $_REQUEST['p'] ? $_REQUEST['p'] : 1;
-        $pageSize = 10;
+        $pageSize = 8;
 
         $Movie = D("Movie")->getMovieList($conds,$page,$pageSize);
         $count = D("Movie")->getMovieCount($conds);

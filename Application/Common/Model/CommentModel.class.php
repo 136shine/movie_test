@@ -36,7 +36,7 @@ class CommentModel extends Model {
     }
 
     //获取列表
-  public function getCommentList($data,$page,$pageSize=10) {
+  public function getList($data,$page,$pageSize=10) {
         $conditions = $data;
         //模糊查询
         if(isset($data['movie_name']) && $data['movie_name']) {
@@ -56,7 +56,7 @@ class CommentModel extends Model {
     }
 
     //获取影评总数
-    public function getCommentCount($data = array()){
+    public function getCount($data = array()){
         $conditions = $data;
         if(isset($data['movie_name']) && $data['movie_name']) {
             $conditions['movie_name'] = array('like','%'.$data['movie_name'].'%');

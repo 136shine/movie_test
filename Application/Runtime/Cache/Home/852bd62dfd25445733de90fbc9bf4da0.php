@@ -9,6 +9,8 @@
   <meta name="description" content="<?php echo ($config["description"]); ?>" />
   <link rel="stylesheet" href="/Public/css/bootstrap.min.css" type="text/css" />
   <link rel="stylesheet" href="/Public/css/home/main.css" type="text/css" />
+  <script type="text/javascript" src="/Public/js/jquery.js"></script>
+
 </head>
 <body>
 <header id="header">
@@ -19,9 +21,12 @@
           <img src="/Public/images/logo.png" alt="KM-logo">
         </a>
       </div>
-      <ul class="nav navbar-nav">
-        <li><a href="/" <?php if($result['catId'] == 0): ?>class="curr"<?php endif; ?>>首页</a></li>
-        <?php if(is_array($navs)): foreach($navs as $key=>$vo): ?><li><a href="/index.php?c=cat&id=<?php echo ($vo["menu_id"]); ?>" <?php if($vo['menu_id'] == $result['catId']): ?>class="curr"<?php endif; ?>><?php echo ($vo["name"]); ?></a></li><?php endforeach; endif; ?>
+      <ul class="nav navbar-nav nav-top">
+        <li><a href="/">首页</a></li>
+        <!-- <li><a href="/index.php?c=movie">电影推荐</a></li>
+        <li><a href="/index.php?c=movie">影视金曲</a></li>
+        <li><a href="/index.php?c=comment">影评</a></li> -->
+        <?php if(is_array($navs)): foreach($navs as $key=>$vo): ?><li><a href="/index.php?c=<?php echo ($vo["c"]); ?>"><?php echo ($vo["name"]); ?></a></li><?php endforeach; endif; ?>
       </ul>
       <ul class="nav navbar-right user-nav nav-com" <?php if($_SESSION['user'] == null): ?>style="display:none;"<?php endif; ?>>
         <li class="dropdown">
@@ -45,6 +50,20 @@
     </div>
   </div>
 </header>
+  <script type="text/javascript">
+    $(function(){
+      var url = window.location.href,i = 0;      
+      var urlName = url.split('c=')[1];
+      
+      switch(urlName){
+        case 'movie': i = 1;break;
+        case 'music': i = 2;break;
+        case 'comment': i = 3;break;
+        case '': i = 0;break;
+      }
+      $('.nav-top li').eq(i).children('a').addClass('curr').parent().siblings('li').children('a').removeClass('curr');
+    })
+  </script>
    <div class="container" style=" background-color: rgb(245,245,245);">
     <div class="row">
 

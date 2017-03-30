@@ -6,9 +6,19 @@ namespace Admin\Controller;
 use Think\Controller;
 class RankMovieController extends CommonController {
     public function index()
-    {
-        $data['status'] = array('neq',-1);
-        $rank_movie = D("RankMovie")->select($data);
+    {   
+        //分页
+        $conds['status'] = array('neq',-1);       
+        $page = $_REQUEST['p'] ? $_REQUEST['p'] : 1;
+        $pageSize = 6;
+
+        $rank_movie = D("RankMovie")->getList($conds,$page,$pageSize);
+        $count = D("RankMovie")->getCount($conds);
+
+        $res  =  new \Think\Page($count,$pageSize);
+        $pageres = $res->show();
+        $this->assign('pageres',$pageres);
+
         $this->assign('rank_movie',$rank_movie);
         $this->display();
     }

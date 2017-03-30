@@ -8,18 +8,18 @@
               <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
               <li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
               <li data-target="#carousel-example-generic" data-slide-to="2" class=""></li>
-              <li data-target="#carousel-example-generic" data-slide-to="3" class=""></li>
-              <li data-target="#carousel-example-generic" data-slide-to="4" class=""></li>
+              <!-- <li data-target="#carousel-example-generic" data-slide-to="3" class=""></li>
+              <li data-target="#carousel-example-generic" data-slide-to="4" class=""></li> -->
           </ol>
           <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
                 <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
                 <li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
                 <li data-target="#carousel-example-generic" data-slide-to="2" class=""></li>
-                <li data-target="#carousel-example-generic" data-slide-to="3" class=""></li>
-                <li data-target="#carousel-example-generic" data-slide-to="4" class=""></li>
+<!--                 <li data-target="#carousel-example-generic" data-slide-to="3" class=""></li>
+                <li data-target="#carousel-example-generic" data-slide-to="4" class=""></li> -->
             </ol>
-            <div class="carousel-inner" role="listbox">
+            <!-- <div class="carousel-inner" role="listbox">
                 <div class="item active">
                     <a target="_blank" href="http://www.xunyingwang.com/movie/204063.html"><img width="100%" src="http://ww1.sinaimg.cn/large/828dc694gy1fdtbu3yjm0j20s20ci7ka.jpg" alt="星球大战外传：侠盗一号迅雷下载"></a>
                     <div class="carousel-caption">
@@ -44,6 +44,17 @@
                     你好，疯子！迅雷下载
                     </div>
                 </div>
+            </div> -->
+            <div class="carousel-inner" role="listbox">
+              <volist name="result['topPic']" id="vo">
+                <div class="item">
+                    <a href="/index.php?c=movie_detail&id={$vo.movie_id}"><img width="100%" src="{$vo.big_pic}" alt="{$vo.movie_name}"></a>
+                    <div class="carousel-caption">
+                    {$vo.movie_name}
+                    </div>
+                </div> 
+              </volist>  
+               
             </div>
             <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
                 <span class="glyphicon glyphicon-chevron-left"></span>
@@ -101,4 +112,17 @@
 </body>
 <script type="text/javascript" src="/Public/js/jquery.js"></script>
 <script type="text/javascript" src="/Public/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+  //轮播显示
+  $(function(){
+    $('.carousel-indicators').find('li').each(function(ele){
+      if($(this).hasClass('active')){
+        $index = $(this).index();
+        $('.carousel-inner').find('.item').eq($index).addClass('active');
+      }
+    })
+
+ 
+  })
+</script>
 </html>

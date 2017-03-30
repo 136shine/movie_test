@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); session_start(); $config = D("Basic")->select(); $navs = D("Menu")->getBarMenus(); ?>
+<?php if (!defined('THINK_PATH')) exit(); session_start(); <!-- $config = D("Basic")->select(); --> $navs = D("Menu")->getBarMenus(); ?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -20,7 +20,10 @@
       </div>
       <ul class="nav navbar-nav">
         <li><a href="/" <?php if($result['catId'] == 0): ?>class="curr"<?php endif; ?>>首页</a></li>
-        <?php if(is_array($navs)): foreach($navs as $key=>$vo): ?><li><a href="/index.php?c=cat&id=<?php echo ($vo["menu_id"]); ?>" <?php if($vo['menu_id'] == $result['catId']): ?>class="curr"<?php endif; ?>><?php echo ($vo["name"]); ?></a></li><?php endforeach; endif; ?>
+        <li><a href="/index.php?c=movie&a=view" <?php if($result['catId'] == 0): ?>class="curr"<?php endif; ?>>电影推荐</a></li>
+        <li><a href="/index.php?c=movie&a=view" <?php if($result['catId'] == 0): ?>class="curr"<?php endif; ?>>影视金曲</a></li>
+        <li><a href="/index.php?c=comment" <?php if($result['catId'] == 0): ?>class="curr"<?php endif; ?>>影评</a></li>
+       <!--  <?php if(is_array($navs)): foreach($navs as $key=>$vo): ?><li><a href="/index.php?c=cat&id=<?php echo ($vo["menu_id"]); ?>" <?php if($vo['menu_id'] == $result['catId']): ?>class="curr"<?php endif; ?>><?php echo ($vo["name"]); ?></a></li><?php endforeach; endif; ?> -->
       </ul>
       <ul class="nav navbar-right user-nav nav-com" <?php if($_SESSION['user'] == null): ?>style="display:none;"<?php endif; ?>>
         <li class="dropdown">
@@ -47,21 +50,21 @@
 <div class="com_wrap clearfix">
 	<div class="container">
 	<div class="row">
-		<div class="comment col-md-9 col-sm-9 col-xs-9">
+		<div class="comment-detail col-md-9 col-sm-9 col-xs-9">
 			<section class="reviDetL leftWp fL">
 		<section class="location">
         	<!-- 当前位置：<a href="http://www.51oscar.com" title="首页" target="_blank"><img src="/Images/location_ind.png" alt="大众影评网" style="vertical-align:text-bottom;"></a> -->&nbsp;&nbsp;&gt;&gt;&nbsp;&nbsp;<a title="影评">影评</a>&nbsp;&nbsp;&gt;&gt;&nbsp;&nbsp;<?php echo ($listcom["title"]); ?>
 
         </section>
 		<section class="titleBox">
-        	<div class="cont">
-            	<h1><?php echo ($listcom["title"]); ?></h1>
-                <div class="titB clearfix">
-                	<span>作者&nbsp;&nbsp;<a><?php echo ($listcom["author"]); ?></a>&nbsp;&nbsp;评论&nbsp;&nbsp;<a><?php echo ($listcom["movie_name"]); ?></a>&nbsp;&nbsp;时间 &nbsp;&nbsp;<?php echo ($listcom["time"]); ?></span>
-                </div>
-            </div>   
-        </section>        
-		<section class="newCont">
+    	<div class="cont">
+        	<h1><?php echo ($listcom["title"]); ?></h1>
+            <div class="title-info clearfix">
+            	<span>作者&nbsp;&nbsp;<a><?php echo ($listcom["author"]); ?></a>&nbsp;&nbsp;评论&nbsp;&nbsp;<a><?php echo ($listcom["movie_name"]); ?></a>&nbsp;&nbsp;时间 &nbsp;&nbsp;<a><?php echo ($listcom["time"]); ?></a></span>
+            </div>
+        </div>   
+    </section>        
+		<section class="comCont">
 			<p><?php echo ($listcom["content"]); ?></p>
 		</section>
     </section>
@@ -91,5 +94,10 @@
 
 <script type="text/javascript" src="/Public/js/jquery.js"></script>
 <script type="text/javascript" src="/Public/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+  $(function(){
+    $('p').children('img').parent().css('text-align','center');
+  })
+</script>
 </body>
 </html>

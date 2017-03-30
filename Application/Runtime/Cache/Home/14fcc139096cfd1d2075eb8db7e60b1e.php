@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); $config = D("Basic")->select(); $navs = D("Menu")->getBarMenus(); ?>
+<?php if (!defined('THINK_PATH')) exit(); session_start(); $config = D("Basic")->select(); $navs = D("Menu")->getBarMenus(); ?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -8,6 +8,14 @@
   <meta name="description" content="<?php echo ($config["description"]); ?>" />
   <link rel="stylesheet" href="/Public/css/bootstrap.min.css" type="text/css" />
   <link rel="stylesheet" href="/Public/css/home/main.css" type="text/css" />
+  <script type="text/javascript" src="/Public/js/jquery.js"></script>
+  <script type="text/javascript">
+    $(function(){
+      $('.nav-top li').children('a').click(function(){
+        $(this).addClass('curr').parent().siblings('li').children('a').removeClass('curr');
+      })
+    })
+  </script>
 </head>
 <body>
 <header id="header">
@@ -15,14 +23,32 @@
     <div class="container">
       <div class="navbar-header">
         <a href="/">
-          <img src="/Public/images/" alt="">
+          <img src="/Public/images/logo.png" alt="KM-logo">
         </a>
       </div>
-      <ul class="nav navbar-nav">
+      <ul class="nav navbar-nav nav-top">
         <li><a href="/" <?php if($result['catId'] == 0): ?>class="curr"<?php endif; ?>>首页</a></li>
-        <?php if(is_array($navs)): foreach($navs as $key=>$vo): ?><li><a href="/index.php?c=cat&id=<?php echo ($vo["menu_id"]); ?>" <?php if($vo['menu_id'] == $result['catId']): ?>class="curr"<?php endif; ?>><?php echo ($vo["name"]); ?></a></li><?php endforeach; endif; ?>
+        <!-- <li><a href="/index.php?c=movie">电影推荐</a></li>
+        <li><a href="/index.php?c=movie">影视金曲</a></li>
+        <li><a href="/index.php?c=comment">影评</a></li> -->
+        <?php if(is_array($navs)): foreach($navs as $key=>$vo): ?><li><a href="/index.php?c=<?php echo ($vo["c"]); ?>" <?php if($vo['menu_id'] == $result['catId']): ?>class="curr"<?php endif; ?>><?php echo ($vo["name"]); ?></a></li><?php endforeach; endif; ?>
       </ul>
-      <div class="nav navbar-nav navbar-right" style="padding: 16px 0;">
+      <ul class="nav navbar-right user-nav nav-com" <?php if($_SESSION['user'] == null): ?>style="display:none;"<?php endif; ?>>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>  <?php if(isset($_SESSION['user'])||!$_SESSION['user']) echo $_SESSION['user']['username']; ?> <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="/index.php?c=user&a=personal"><i class="fa fa-fw fa-user"></i> 个人中心</a>
+            </li>
+            <li class="divider"></li>
+            <li>
+              <a href="/index.php?c=user&a=loginout"><i class="fa fa-fw fa-power-off"></i> 退出</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      
+      <div class="nav navbar-nav navbar-right nav-com" <?php if($_SESSION['user'] != null): ?>style="display:none;"<?php endif; ?>>
         <a href="/index.php?c=user"><button type="button" class="btn btn-default">注册</button></a>
         <a href="/index.php?c=user&a=login"><button type="button" class="btn btn-default">登录</button></a> 
       </div>
@@ -64,10 +90,6 @@
     <ul>
       <?php if(is_array($result['rankMovies'])): $k = 0; $__LIST__ = $result['rankMovies'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($k % 2 );++$k;?><li class="num<?php echo ($k); ?> curr">
         <a target="_blank" href="/index.php?c=detail&id=<?php echo ($vo["movie_id"]); ?>"><?php echo ($vo["movie_name"]); ?></a>
-        <?php if($k == 1): ?><div class="ms">
-            <span class="rank"><?php echo ($vo["rank"]); ?></span>
-            <!-- <span class="movie_name"><?php echo ($vo["movie_name"]); ?></span> -->
-          </div><?php endif; ?>
       </li><?php endforeach; endif; else: echo "" ;endif; ?>
     </ul>
   </div>

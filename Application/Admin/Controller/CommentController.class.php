@@ -5,14 +5,13 @@ use Think\Controller;
 class CommentController extends CommonController {
     public function index()
     {
-         
-        $data['status'] = array('neq',-1);
+        //分页
+        $conds['status'] = array('neq',-1);
         $page = $_REQUEST['p'] ? $_REQUEST['p'] : 1;
-        $pageSize = 5;
-        
+        $pageSize = 6;
 
-        $comment = D("Comment")->getCommentList($data,$page,$pageSize);
-        $count = D("Comment")->getCommentCount($data);
+        $comment = D("Comment")->getList($conds,$page,$pageSize);
+        $count = D("Comment")->getCount($conds);
         $res  =  new \Think\Page($count,$pageSize);
         $pageres = $res->show();
         $this->assign('pageres',$pageres);

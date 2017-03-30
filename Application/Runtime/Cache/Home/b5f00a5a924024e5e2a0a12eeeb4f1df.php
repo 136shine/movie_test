@@ -118,49 +118,6 @@
           					</div>
 						</div>
 					</div>
-
-					<!-- <div class="col-xs-12 comment mode">
-						<span class="tag">影片评论</span>
-           			 	<div class="row">
-							<div class="col-xs-12">
-								<div style="margin-top:10px;">
-									<hr class="dline">
-								    <table style="width:100%;overflow:auto;" id="comment1417" name="comment1417">
-								        <tbody>
-								            <tr>
-									            <td width="38px" valign="top" align="center">
-									                <a target="_blank" href="/u/178214"><img style="width:100%;border-radius:3px;" title="" src="/Public/images/user_avator.png"></a>
-									            </td>
-								            	<td width="10px"></td>
-								            	<td width="auto">
-									                <div class="reply-author">
-									                    <a target="_blank" href="/u/178214">严易易</a>
-									                    <em>2017-03-06 22:08:32</em>
-									                    <a href="javascript:;" class="pull-right text-muted reply-lc">#1</a>
-									                </div>
-								                	<div class="reply-content">
-								                		有一点点小慌，不敢看。哈哈
-									                	<div style="overflow:auto;text-align:right;font-size:13px;">
-											               	 <a href="javascript:;" onclick="zan(1417)">赞(0)</a>
-											                | <a href="javascript:;" onclick="cai(1417)">踩(0)</a>
-											                | <a href="javascript:;" onclick="replyto(1417,'严易易')">回复</a>
-									                	</div>
-								                	</div>
-								              	</td>
-								            </tr>
-								        </tbody>
-								    </table>
-									<div class="col-xs-12">
-							            <div class="panel panel-default list-head reply-box" id="reply-box">
-							            <div class="panel-heading title-breadcrumb"><div id="reply-to-box">回复：楼主</div></div>
-							            <div class="panel-body"><textarea id="replycontent" class="form-control" rows="8"></textarea></div>
-							            <div class="panel-footer"><button onclick="replySub(204990,'movie');" type="submit" class="btn btn-primary btn-block">回复</button></div>
-								        </div>
-								    </div>
-								</div>
-          					</div>
-						</div>
-					</div> -->
 				</div>
 
 				 <div class="col-sm-3 col-md-3">
