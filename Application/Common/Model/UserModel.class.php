@@ -79,6 +79,18 @@ class UserModel extends Model {
         return $this->_db->where($conditions)->count();
     }
 
+    public function getUserIn($userIds) {
+        if(!is_array($userIds)) {
+            throw_exception("参数不合法");
+        }
+
+        $data = array(
+            'id' => array('in',implode(',', $userIds)),
+        );
+       
+        return $this->_db->where($data)->select();
+    }
+
     // public function getLastLoginUsers() {
     //     $time = mktime(0,0,0,date("m"),date("d"),date("Y"));
     //     $data = array(

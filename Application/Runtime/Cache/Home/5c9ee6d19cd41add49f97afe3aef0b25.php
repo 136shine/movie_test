@@ -12,7 +12,7 @@
   <title>KM管理平台</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="/Public/css/bootstrap.min.css" rel="stylesheet">
+  <link type="text/css" href="/Public/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="/Public/css/sing/style.css">
   <link rel="stylesheet" type="text/css" href="/Public/css/sing/animate.css">
 

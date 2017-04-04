@@ -1,0 +1,109 @@
+<include file="Index/header" />
+<body>
+<div id="wrapper">
+
+  <include file="Index/nav"/>
+  <div id="page-wrapper">
+
+    <div class="container-fluid">
+      <!-- Page Heading -->
+      <div class="row">
+        <div class="col-lg-12">
+
+          <ol class="breadcrumb">
+            <li>
+              <i class="fa fa-dashboard"></i>  <a href="/admin.php?c=music">歌曲管理</a>
+            </li>
+            <li class="active">
+              <i class="fa fa-edit"></i> 歌曲添加
+            </li>
+          </ol>
+        </div>
+      </div>
+      <!-- /.row -->
+
+      <div class="row">
+        <div class="col-lg-6">
+
+         <form class="form-horizontal" id="singcms-form">
+            <div class="form-group">
+              <label for="inputname" class="col-sm-2 control-label">歌名:</label>
+              <div class="col-sm-5">
+                <input placeholder="请填写歌曲名称" type="text" name="music_name" class="form-control" id="inputname">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputname" class="col-sm-2 control-label">影视名称:</label>
+              <div class="col-sm-5">
+                <input placeholder="请填写影视名称" type="text" name="movie_name" class="form-control" id="inputname">
+              </div>
+            </div>
+                       
+            <div class="form-group">
+              <label for="inputname" class="col-sm-2 control-label">歌手:</label>
+              <div class="col-sm-5">
+                <input placeholder="请填写歌手" type="text" name="singer" class="form-control" id="inputname">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputname" class="col-sm-2 control-label">时长:</label>
+              <div class="col-sm-5">
+                <input placeholder="请填写时长" type="text" name="time_long" class="form-control" id="inputname">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputname" class="col-sm-2 control-label">封面:</label>
+              <div class="col-sm-5">
+                <input id="file_upload" type="file" multiple="true" >
+                <img id="upload_org_code_img" src="" width="150" height="150">
+                <input id="file_upload_image" name="pic" type="hidden" multiple="true" value="">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputname" class="col-sm-2 control-label">歌词:</label>
+              <div class="col-sm-5">
+                <textarea class="input js-editor" id="editor_content" name="content" rows="25" ></textarea>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <button type="button" class="btn btn-default" id="singcms-button-submit">提交</button>
+              </div>
+            </div>
+          </form>
+
+
+        </div>
+
+      </div>
+      <!-- /.row -->
+
+    </div>
+    <!-- /.container-fluid -->
+
+  </div>
+  <!-- /#page-wrapper -->
+
+</div>
+<script>
+  var SCOPE = {
+    'save_url' : '/admin.php?c=music&a=add',
+    'jump_url' : '/admin.php?c=music',
+    'ajax_upload_image_url' : '/admin.php?c=image&a=ajaxuploadimage',
+    'ajax_upload_swf' : '/Public/js/party/uploadify.swf',
+  };
+
+</script>
+<!-- /#wrapper -->
+<script src="/Public/js/admin/image.js"></script>
+<script>
+  // 6.2
+  KindEditor.ready(function(K) {
+    window.editor = K.create('#editor_content',{
+      uploadJson : '/admin.php?c=image&a=kindupload',
+      afterBlur : function(){this.sync();}, //
+    });
+  });
+</script>
+<include file="Index/footer" />

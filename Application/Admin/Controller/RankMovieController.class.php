@@ -98,4 +98,36 @@ class RankMovieController extends CommonController {
 
         return show(0, '没有提交的内容');
     }
+     public function batchDel() {
+        $jumpUrl = $_SERVER['HTTP_REFERER'];
+        $RankMovieId = $_POST;
+       
+        if(!$RankMovieId || !is_array($RankMovieId)) {
+            return show(0, '请选择推荐歌曲ID进行批量删除');
+        }
+       
+        try {
+                $RankMovie = D("RankMovie")->getRankMovieIn($RankMovieId);
+                if (!$RankMovie) {
+                    return show(0, '没有相关内容');
+                }
+                
+                foreach ($RankMovie as $new) {
+                    $data = array(
+                        'id' => $new['id'],
+                    );
+                    $id = $data['id']; 
+                    if (!$id) {
+                        return show(0, 'ID不存在');
+                    }
+                    $res = D("RankMovie")->updateStatusById($id, -1);
+                } 
+            }catch(Exception $e) {
+                return show(0, $e->getMessage());
+            }
+
+        return show(1, '删除成功',array('jump_url'=>$jumpUrl));
+
+
+    }
 }

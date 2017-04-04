@@ -75,4 +75,16 @@ class AdminModel extends Model {
         return $res['tp_count'];
     }
 
+    public function getAdminIn($adminIds) {
+        if(!is_array($adminIds)) {
+            throw_exception("参数不合法");
+        }
+
+        $data = array(
+            'id' => array('in',implode(',', $adminIds)),
+        );
+       
+        return $this->_db->where($data)->select();
+    }
+
 }

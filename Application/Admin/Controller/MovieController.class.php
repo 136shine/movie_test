@@ -130,6 +130,7 @@ class MovieController extends CommonController {
         }
 
     }
+  
     public function setStatus() {
         try {
             if ($_POST) {

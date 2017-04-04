@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>sing后台管理平台</title>
+    <title>KM后台管理平台</title>
     <!-- Bootstrap Core CSS -->
     <link href="/Public/css/bootstrap.min.css" rel="stylesheet">
 
@@ -30,6 +30,7 @@
     <script src="/Public/js/bootstrap.min.js"></script>
     <script src="/Public/js/dialog/layer.js"></script>
     <script src="/Public/js/dialog.js"></script>
+    <script src="/Public/js/kindeditor/kindeditor-all-min.js"></script>
     <script type="text/javascript" src="/Public/js/party/jquery.uploadify.js"></script>
 
 </head>
@@ -82,7 +83,6 @@
   </div>
   <!-- /.navbar-collapse -->
 </nav>
- <!--  <script src="/Public/js/kindeditor/kindeditor-all.js"></script> -->
   <div id="page-wrapper">
 
     <div class="container-fluid">
@@ -119,23 +119,7 @@
                 <input value="<?php echo ($movie["up_time"]); ?>" type="text" name="up_time" class="form-control" id="inputname">
               </div>
             </div>
-            <div class="form-group">
-              <label for="inputname" class="col-sm-2 control-label">缩图:</label>
-              <div class="col-sm-5">
-                <input id="file_upload" type="file" multiple="true" >
-                <img id="upload_org_code_img" src="<?php echo ($movie["pic"]); ?>" width="150" height="150">
-                <input id="file_upload_image" name="pic" type="hidden" multiple="true" value="<?php echo ($movie["pic"]); ?>">
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="inputname" class="col-sm-2 control-label">大图:</label>
-              <div class="col-sm-5">
-                <input id="img_upload" class="img_upload" type="file" multiple="true" >
-                <img id="upload_org_big_pic" src="<?php echo ($movie["big_pic"]); ?>" width="300" height="150">
-                <input id="file_upload_big_pic" name="big_pic" type="hidden" multiple="true" value="<?php echo ($movie["big_pic"]); ?>">
-              </div>
-            </div>
-           
+                       
             <div class="form-group">
               <label for="inputname" class="col-sm-2 control-label">类型:</label>
               <div class="col-sm-5">
@@ -152,12 +136,6 @@
             </div>
 
             <div class="form-group">
-              <label for="inputname" class="col-sm-2 control-label">描述:</label>
-              <div class="col-sm-5">
-                <textarea class="input js-editor" id="editor_singcms" name="describle" rows="25" ><?php echo ($movie["describle"]); ?></textarea>
-              </div>
-            </div>
-             <div class="form-group">
               <label for="inputname" class="col-sm-2 control-label">排名:</label>
               <div class="col-sm-5">
                 <input value="<?php echo ($movie["rank"]); ?>" type="text" name="rank" class="form-control" id="inputname">
@@ -181,9 +159,30 @@
                 <input value="<?php echo ($movie["director"]); ?>" type="text" name="director" class="form-control" id="inputname">
               </div>
             </div>
-
+            <div class="form-group">
+              <label for="inputname" class="col-sm-2 control-label">缩图:</label>
+              <div class="col-sm-5">
+                <input id="file_upload" type="file" multiple="true" >
+                <img id="upload_org_code_img" src="<?php echo ($movie["pic"]); ?>" width="150" height="150">
+                <input id="file_upload_image" name="pic" type="hidden" multiple="true" value="<?php echo ($movie["pic"]); ?>">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputname" class="col-sm-2 control-label">大图:</label>
+              <div class="col-sm-5">
+                <input id="img_upload" class="img_upload" type="file" multiple="true" >
+                <img id="upload_org_big_pic" src="<?php echo ($movie["big_pic"]); ?>" width="300" height="150">
+                <input id="file_upload_big_pic" name="big_pic" type="hidden" multiple="true" value="<?php echo ($movie["big_pic"]); ?>">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputname" class="col-sm-2 control-label">描述:</label>
+              <div class="col-sm-5">
+                <textarea class="input js-editor" id="editor_content" name="describle" rows="25" ><?php echo ($movie["describle"]); ?></textarea>
+              </div>
+            </div>
          
-                <input value="<?php echo ($movie["movie_id"]); ?>" type="hidden" name="movie_id" class="form-control">
+            <input value="<?php echo ($movie["movie_id"]); ?>" type="hidden" name="movie_id" class="form-control">
 
             <div class="form-group">
               <div class="col-sm-offset-2 col-sm-10">
@@ -216,20 +215,14 @@
 </script>
 <!-- /#wrapper -->
 <script src="/Public/js/admin/image.js"></script>
-<!-- <script>
+<script>
   // 6.2
   KindEditor.ready(function(K) {
-    window.editor = K.create('#editor_singcms',{
+    window.editor = K.create('#editor_content',{
       uploadJson : '/admin.php?c=image&a=kindupload',
       afterBlur : function(){this.sync();}, //
     });
   });
-</script> -->
-<script>
-  // var pic = "<?php echo ($movie["pic"]); ?>";
-  // if(pic) {
-  //   $("#upload_org_code_img").show();
-  // }
 </script>
 <script src="/Public/js/admin/common.js"></script>
 

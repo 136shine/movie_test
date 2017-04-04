@@ -33,6 +33,39 @@ class UserController extends CommonController {
         );
         return parent::setStatus($_POST,'User');
     }
+
+    public function batchDel() {
+        $jumpUrl = $_SERVER['HTTP_REFERER'];
+        $UserId = $_POST;
+       
+        if(!$UserId || !is_array($UserId)) {
+            return show(0, '请选择推荐歌曲ID进行批量删除');
+        }
+       
+        try {
+                $User = D("User")->getUserIn($UserId);
+                if (!$User) {
+                    return show(0, '没有相关内容');
+                }
+                
+                foreach ($User as $new) {
+                    $data = array(
+                        'id' => $new['id'],
+                    );
+                    $id = $data['id']; 
+                    if (!$id) {
+                        return show(0, 'ID不存在');
+                    }
+                    $res = D("User")->updateStatusById($id, -1);
+                } 
+            }catch(Exception $e) {
+                return show(0, $e->getMessage());
+            }
+
+        return show(1, '删除成功',array('jump_url'=>$jumpUrl));
+
+
+    }
  
 
 }

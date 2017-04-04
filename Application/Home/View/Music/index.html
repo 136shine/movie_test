@@ -1,0 +1,48 @@
+<include file="Index/header" />
+<section>
+  <div class="container" style="width:100%;margin: 0px;">
+    <div class="row">
+		<div class="col-sm-3 col-md-3">
+			<div class="plane">
+				<h2 class="mu_txt">音&nbsp;&nbsp;&nbsp;乐</h2>
+				<h2 class="mu_txt">心&nbsp;&nbsp;&nbsp;情</h2>
+				<h2 class="mu_txt">生&nbsp;&nbsp;&nbsp;活</h2>
+				<p>春风十里，暖阳，音乐文字旋律意境  和你...</p>
+			</div>
+	    </div>
+	    <div class="col-sm-9 col-md-9">
+	    	<h2 class="mu_tag">影视金曲</h2>
+	        <ul class="musicWrap">
+	        	<volist name="result['listMusic']" id="music">
+	        		<li>
+						
+						<a href="/index.php?c=music&a=detail&id={$music.id}" data-active="playDwn" data-index="0" class="pc_temp_songname" title="{$music.music_name}" hidefocus="true">{$music.music_name}</a>
+						<span class="music_singer">{$music.singer}</span>
+						<span class="music_mv">【 {$music.movie_name} 】</span>
+						<span class="music_time">{$music.time_long}</span>
+					</li>
+	        	</volist>
+	        	 <nav><ul style="margin-top: 20px; margin-bottom: 30px;" class="page_bottom">{$pageres}</ul></nav>
+	        </ul>	    	
+	    </div>
+
+ 	</div>
+  </div>
+</section>
+  
+   </div>
+    
+  </body>
+<script type="text/javascript" src="/Public/js/jquery.js"></script>
+<script type="text/javascript" src="/Public/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		var winH = $(window).height();
+		var winW = $(window).width();
+		$('.plane').height(winH);
+		if(winW<960){
+			$('.plane').hide();
+		}
+	})
+</script>
+</html>

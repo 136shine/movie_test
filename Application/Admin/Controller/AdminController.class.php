@@ -78,4 +78,37 @@ class AdminController extends CommonController {
         }
     }
 
+    public function batchDel() {
+        $jumpUrl = $_SERVER['HTTP_REFERER'];
+        $AdminId = $_POST;
+       
+        if(!$AdminId || !is_array($AdminId)) {
+            return show(0, '请选择推荐歌曲ID进行批量删除');
+        }
+       
+        try {
+                $Admin = D("Admin")->getAdminIn($AdminId);
+                if (!$Admin) {
+                    return show(0, '没有相关内容');
+                }
+                
+                foreach ($Admin as $new) {
+                    $data = array(
+                        'id' => $new['id'],
+                    );
+                    $id = $data['id']; 
+                    if (!$id) {
+                        return show(0, 'ID不存在');
+                    }
+                    $res = D("Admin")->updateStatusById($id, -1);
+                } 
+            }catch(Exception $e) {
+                return show(0, $e->getMessage());
+            }
+
+        return show(1, '删除成功',array('jump_url'=>$jumpUrl));
+
+
+    }
+
 }

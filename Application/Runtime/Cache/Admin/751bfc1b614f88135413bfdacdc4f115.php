@@ -171,12 +171,10 @@
                 </tbody>
               </table>
               <nav>
-
-              <ul >
-                <?php echo ($pageres); ?>
-              </ul>
-
-            </nav>
+                <ul >
+                  <?php echo ($pageres); ?>
+                </ul>
+              </nav>
               <div>
                 <button  id="button-listorder" type="button" class="btn btn-primary dropdown-toggle" ><span class="glyphicon glyphicon-resize-vertical" aria-hidden="true"></span>更新排序</button>
               </div>

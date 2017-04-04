@@ -1,5 +1,5 @@
 <?php
-namespace Admin\Controller;
+namespace Comm\Controller;
 use Think\Controller;
 
 class CommentController extends CommonController {
@@ -60,11 +60,11 @@ class CommentController extends CommonController {
         $commentId = $_GET['id'];//获取地址栏中带过来的id
         if(!$commentId) {
             // 执行跳转
-            $this->redirect('/admin.php?c=comment');
+            $this->redirect('/Comm.php?c=comment');
         }
         $com = D("Comment")->find($commentId);
         if(!$com) {
-            $this->redirect('/admin.php?c=comment');
+            $this->redirect('/Comm.php?c=comment');
         }
          
 
@@ -139,6 +139,39 @@ class CommentController extends CommonController {
             return show(0, $e->getMessage());
         }
         return show(0,'获取排序数据失败',array('jump_url' => $jumpUrl));
+    }
+
+    public function batchDel() {
+        $jumpUrl = $_SERVER['HTTP_REFERER'];
+        $CommId = $_POST;
+       
+        if(!$CommId || !is_array($CommId)) {
+            return show(0, '请选择推荐歌曲ID进行批量删除');
+        }
+       
+        try {
+                $Comm = D("Comment")->getCommIn($CommId);
+                if (!$Comm) {
+                    return show(0, '没有相关内容');
+                }
+                
+                foreach ($Comm as $new) {
+                    $data = array(
+                        'id' => $new['id'],
+                    );
+                    $id = $data['id']; 
+                    if (!$id) {
+                        return show(0, 'ID不存在');
+                    }
+                    $res = D("Comment")->updateStatusById($id, -1);
+                } 
+            }catch(Exception $e) {
+                return show(0, $e->getMessage());
+            }
+
+        return show(1, '删除成功',array('jump_url'=>$jumpUrl));
+
+
     }
 
    

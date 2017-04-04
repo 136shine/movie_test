@@ -23,16 +23,15 @@ class MovieDetailController extends CommonController {
         $movie['actors'] = $content['actors'];
 
 
-
-        //$this->add();
-
         $review =  D("Review")->select(array('movie_id'=>$id),10);
         $rankMovie = D("RankMovie")->select(array('status'=>1),10);
+        $rankCom = D("Comment")->select(array('status'=>1),10);
 
         $this->assign('result', array(
             'movie' => $movie,
             'review' => $review,
             'rankMovies' => $rankMovie,
+            'rankCom' => $rankCom,
         ));
 
         $this->display("Detail/movie");

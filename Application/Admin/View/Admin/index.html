@@ -48,7 +48,7 @@
                         <tbody>
                         <volist name="admins" id="vo">
                             <tr>
-                                
+                                <td><input type="checkbox" name="delCheck" value="{$vo.admin_id}"></td>
                                 <td>{$vo.admin_id}</td>
                                 <td>{$vo.username}</td>
                                 <td>{$vo.realname}</td>
@@ -61,6 +61,9 @@
                         </tbody>
                     </table>
                     </form>
+                    <div class="input-group">
+                        <button id="btn-datchDel" type="button" class="btn btn-primary">批量删除</button>
+                    </div>
                     
                 </div>
             </div>
@@ -81,6 +84,7 @@
         'add_url' : '/admin.php?c=admin&a=add',
         'edit_url' : '/admin.php?c=admin&a=edit',
         'set_status_url' : '/admin.php?c=admin&a=setStatus',
+        'batchDel_url' : '/admin.php?c=admin&a=batchDel',
         'index_url' : '/',
 
     }

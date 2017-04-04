@@ -8,6 +8,8 @@
   <meta name="description" content="<?php echo ($config["description"]); ?>" />
   <link rel="stylesheet" href="/Public/css/bootstrap.min.css" type="text/css" />
   <link rel="stylesheet" href="/Public/css/home/main.css" type="text/css" />
+  <script type="text/javascript" src="/Public/js/jquery.js"></script>
+
 </head>
 <body>
 <header id="header">
@@ -18,9 +20,12 @@
           <img src="/Public/images/logo.png" alt="KM-logo">
         </a>
       </div>
-      <ul class="nav navbar-nav">
-        <li><a href="/" <?php if($result['catId'] == 0): ?>class="curr"<?php endif; ?>>首页</a></li>
-        <?php if(is_array($navs)): foreach($navs as $key=>$vo): ?><li><a href="/index.php?c=cat&id=<?php echo ($vo["menu_id"]); ?>" <?php if($vo['menu_id'] == $result['catId']): ?>class="curr"<?php endif; ?>><?php echo ($vo["name"]); ?></a></li><?php endforeach; endif; ?>
+      <ul class="nav navbar-nav nav-top">
+        <li><a href="/">首页</a></li>
+        <!-- <li><a href="/index.php?c=movie">电影推荐</a></li>
+        <li><a href="/index.php?c=movie">影视金曲</a></li>
+        <li><a href="/index.php?c=comment">影评</a></li> -->
+        <?php if(is_array($navs)): foreach($navs as $key=>$vo): ?><li><a href="/index.php?c=<?php echo ($vo["c"]); ?>"><?php echo ($vo["name"]); ?></a></li><?php endforeach; endif; ?>
       </ul>
       <ul class="nav navbar-right user-nav nav-com" <?php if($_SESSION['user'] == null): ?>style="display:none;"<?php endif; ?>>
         <li class="dropdown">
@@ -44,25 +49,39 @@
     </div>
   </div>
 </header>
-<?php  $vo = $result['movie']; ?>
+  <script type="text/javascript">
+    $(function(){
+      var url = window.location.href,i = 0;      
+      var urlName = url.split('c=')[1];
+      
+      switch(urlName){
+        case 'movie': i = 1;break;
+        case 'music': i = 2;break;
+        case 'comment': i = 3;break;
+        case '': i = 0;break;
+      }
+      $('.nav-top li').eq(i).children('a').addClass('curr').parent().siblings('li').children('a').removeClass('curr');
+    })
+  </script>
+<?php  session_start(); $isLogin = $_SESSION['user']; $vo = $result['movie']; ?>
 	<section>
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-9 col-sm-9 col-md-9">
-					<div class="movie-detail">
+					<div class="movie-detail mode">
 						<h1><?php echo ($vo["movie_name"]); ?></h1>
 						<div class="row">
 							<div class="col-xs-4 movie-left">
 								<img src="<?php echo ($vo["pic"]); ?>">
 							</div>
 							<div class="col-xs-8 movie-right">
-								<span><strong>导演：</strong><?php echo ($vo["director"]); ?></span>
-								<span><strong>主演：</strong><?php echo ($vo["actors"]); ?></span>
-								<span><strong>类型：</strong><?php echo ($vo["movie_type"]); ?></span>
-								<span><strong>评分：</strong><?php echo ($vo["grade"]); ?></span>
-								<span><strong>排名：</strong><?php echo ($vo["rank"]); ?></span>
-								<span><strong>票房：</strong><?php echo ($vo["count"]); ?></span>
-								<span><strong>上映时间：</strong><?php echo ($vo["up_time"]); ?></span>
+								<li><strong>导演：</strong><span><?php echo ($vo["director"]); ?></span></li>
+								<li><strong style="float:left;">主演：</strong><span style="width:80%;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;"><?php echo ($vo["actors"]); ?></span></li>
+								<li><strong>类型：</strong><span><?php echo (getMovieType($vo["movie_type"])); ?></span></li>
+								<li><strong>评分：</strong><span><?php echo ($vo["grade"]); ?> 分</span></li>
+								<li><strong>排名：</strong><span><?php echo ($vo["rank"]); ?></span></li>
+								<li><strong>票房：</strong><span><?php echo ($vo["count"]); ?></span></li>
+								<li><strong>上映时间：</strong><span><?php echo ($vo["up_time"]); ?></span></li>
 								
 							</div>
 						</div>
@@ -76,10 +95,12 @@
 						<span class="tag">影片评论</span>
            			 	<div class="row">
 							<div class="col-xs-12">
-
-								<div style="margin-top:10px;">
+								<div style="margin:20px 0px;">
+									<div <?php if(($result['review'] != null)): ?>style="display:none;"<?php endif; ?> class="none">
+										暂无评论
+									</div>
 									<?php if(is_array($result['review'])): $k = 0; $__LIST__ = $result['review'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($k % 2 );++$k;?><hr class="dline">
-									    <table style="width:100%;overflow:auto;" id="comment1417" name="comment1417">
+									    <table id="commentTab" name="comment">
 									        <tbody>
 									            <tr>
 										            <td width="38px" valign="top" align="center">
@@ -107,20 +128,21 @@
 									           
 									        </tbody>
 									    </table><?php endforeach; endif; else: echo "" ;endif; ?>
-									<div class="col-xs-12">
-							            <div class="panel panel-default list-head reply-box" id="reply-box">
-							            <div class="panel-heading title-breadcrumb"><div id="reply-to-box">发表：</div></div>
-							            <div class="panel-body"><textarea id="replycontent" class="form-control" rows="8"></textarea></div>
-							            <div class="panel-footer"><a><button id="re_btn" type="submit" class="btn btn-primary btn-block">发表</button></a></div>
-								        </div>
-								    </div>
 								</div>
+								<div class="replyTab">
+						            <div class="panel panel-default list-head reply-box" id="reply-box">
+						            <div class="panel-heading title-breadcrumb"><div id="reply-to-box">发表：</div></div>
+						            <div class="panel-body"><textarea id="replycontent" class="form-control" rows="8"></textarea></div>
+						            <div class="panel-footer"><a><button id="re_btn" type="submit" class="btn btn-primary btn-block" onclick="replay(<?php echo $isLogin; ?>)">发表</button></a></div>
+							        </div>
+							    </div>
           					</div>
+          					
 						</div>
 					</div>
 				</div>
 
-				 <div class="col-sm-3 col-md-3">
+				 <div class="col-sm-3 col-md-3 recomment" style="padding:0 22px;">
 			          <div class="right-title">
     <h3>电影排行</h3>
     <span>TOP MOVIE</span>
@@ -137,6 +159,18 @@
     <a target="_blank" href="<?php echo ($vo["url"]); ?>"><img src="<?php echo ($vo["thumb"]); ?>" alt="<?php echo ($vo["name"]); ?>"></a>
   </div><?php endforeach; endif; else: echo "" ;endif; ?> -->
 
+			          <div class="rank-title">
+    <h3>影评推荐</h3>
+    <span>Movie Recomment</span>
+  </div>
+
+  <div class="rank-content">
+    <ul>
+      <?php if(is_array($result['rankCom'])): $k = 0; $__LIST__ = $result['rankCom'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($k % 2 );++$k;?><li style="margin-bottom: 10px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">
+        <a href="/index.php?c=comment&a=detail&id=<?php echo ($vo["id"]); ?>"><?php echo ($vo["title"]); ?></a>
+      </li><?php endforeach; endif; else: echo "" ;endif; ?>
+    </ul>
+  </div>
 			      </div>
 				<!-- end right-->
 			</div>
@@ -151,8 +185,15 @@
 <script type="text/javascript" src="/Public/js/dialog"></script>
 <script type="text/javascript" src="/Public/js/dialog.js"></script>
 <script type="text/javascript">
+	$(function(){
+		$('body').css('backgroundColor','#fff');
+	})
+	function replay(isLogin){
+		if(!isLogin){
+			$("#replycontent").val('');
+			return dialog.error('您还没有登录！请先登录再评论');
+		}
 
-	$("#re_btn").click(function(){
 		var postData = {};
 	    postData['content'] = $("#replycontent").val();
 	    var href = window.location.href;
@@ -172,7 +213,32 @@
 	            return dialog.error(result.message);
 	        }
 	    },"JSON");
-	});
+	}
+
+	// $("#re_btn").click(function(){
+	// 	if(!$isLogin){
+	// 		return dialog.error('您还没有登录！请先登录再评论');
+	// 	}
+	// 	var postData = {};
+	//     postData['content'] = $("#replycontent").val();
+	//     var href = window.location.href;
+	//     var id = href.split('&id=')[1];
+	//     postData['id'] = id;
+
+	//     // 将获取到的数据post给服务器
+	//     var url ='/index.php?c=movie_detail&a=add&id='+id;
+	   
+	//     $.post(url,postData,function(result){
+	//         if(result.status == 1) {
+	//             //成功
+	//             $("#replycontent").val('');
+	//             return dialog.success(result.message,'/index.php?c=movie_detail&a=view&id='+id);
+	//         }else if(result.status == 0) {
+	//             // 失败
+	//             return dialog.error(result.message);
+	//         }
+	//     },"JSON");
+	// });
 // $(function() {
 //     var options={"currentPage":1,"totalPages":1,"totalCount":5,"numberOfPages":10,"bootstrapMajorVersion":3,"size":"small","alignment":"right"};
 //     options['itemContainerClass'] = function (type, page, current) {

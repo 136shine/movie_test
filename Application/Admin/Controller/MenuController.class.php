@@ -129,6 +129,39 @@ class MenuController extends CommonController {
         return show(0,'排序数据失败',array('jump_url'=>$jumpUrl));
     }
 
+    public function batchDel() {
+        $jumpUrl = $_SERVER['HTTP_REFERER'];
+        $MenuId = $_POST;
+       
+        if(!$MenuId || !is_array($MenuId)) {
+            return show(0, '请选择推荐歌曲ID进行批量删除');
+        }
+       
+        try {
+                $menu = D("Menu")->getMenuIn($MenuId);
+                if (!$menu) {
+                    return show(0, '没有相关内容');
+                }
+                
+                foreach ($menu as $new) {
+                    $data = array(
+                        'id' => $new['id'],
+                    );
+                    $id = $data['id']; 
+                    if (!$id) {
+                        return show(0, 'ID不存在');
+                    }
+                    $res = D("Menu")->updateStatusById($id, -1);
+                } 
+            }catch(Exception $e) {
+                return show(0, $e->getMessage());
+            }
+
+        return show(1, '删除成功',array('jump_url'=>$jumpUrl));
+
+
+    }
+
 
 
 

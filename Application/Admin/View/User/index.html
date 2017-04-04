@@ -34,6 +34,7 @@
                     <table class="table table-bordered table-hover singcms-table">
                         <thead>
                         <tr>
+                            <th id="singcms-checkbox-all" width="10"><input type="checkbox"/>
                             <th>id</th>
                             <th>用户名</th>
                             <th>邮箱</th>
@@ -47,7 +48,7 @@
                         <tbody>
                         <volist name="users" id="vo">
                             <tr>
-                                
+                                <td><input type="checkbox" name="delCheck" value="{$vo.user_id}"></td>
                                 <td>{$vo.user_id}</td>
                                 <td>{$vo.username}</td>
                                 <td>{$vo.email}</td>
@@ -62,6 +63,9 @@
                         </tbody>
                     </table>
                     </form>
+                    <div class="input-group">
+                      <button id="btn-datchDel" type="button" class="btn btn-primary">批量删除</button>
+                    </div>
                     
                 </div>
             </div>
@@ -81,6 +85,7 @@
     var SCOPE = {
         'set_status_url' : '/admin.php?c=user&a=setStatus',
         'index_url' : '/',
+        'batchDel_url' : '/admin.php?c=user&a=batchDel',
 
     }
 </script>

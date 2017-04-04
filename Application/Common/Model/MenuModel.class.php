@@ -89,4 +89,16 @@ class MenuModel extends  Model {
             ->select();
         return $res;
     }
+    
+    public function getMenuIn($menuIds) {
+        if(!is_array($menuIds)) {
+            throw_exception("参数不合法");
+        }
+
+        $data = array(
+            'id' => array('in',implode(',', $menuIds)),
+        );
+       
+        return $this->_db->where($data)->select();
+    }
 }

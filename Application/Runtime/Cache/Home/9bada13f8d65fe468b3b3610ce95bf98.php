@@ -11,7 +11,7 @@
   <script type="text/javascript" src="/Public/js/jquery.js"></script>
 
 </head>
-<body>
+<body style="background-color: rgb(245,245,245);">
 <header id="header">
   <div class="navbar-inverse">
     <div class="container">
@@ -68,24 +68,25 @@
 		<div class="row">
 			<div class="col-md-9 col-sm-9 col-xs-9">
 				<div class="top_com">
-					<img src="/Public/images/top_comment.jpg" />
-					<p><a href="{}">《长城》：别让长城围住自己</a><span><img src="/Public/images/icon_prince.png">最佳影评</span></p>
+					<?php if(is_array($result['topCom'])): $i = 0; $__LIST__ = $result['topCom'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v): $mod = ($i % 2 );++$i;?><img src="<?php echo ($v["big_pic"]); ?>" />
+					<p><a href="/index.php?c=comment&a=detail&id=<?php echo ($v["id"]); ?>"><?php echo ($v["title"]); ?></a><span><img src="/Public/images/icon_prince.png">最佳影评</span></p><?php endforeach; endif; else: echo "" ;endif; ?>
 				</div>
 				<div class="comment">
 					<span class="com_tag"> >> 新片影评</span>
 					<?php if(is_array($result['listcom'])): $i = 0; $__LIST__ = $result['listcom'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><dl class="com_dl clearfix">
 			                <dt class="com_l fL">
-			                    <a><img class="com_avator" src="/Public/images/com_avator.png" alt="影评人头像"></a>
+			                    <a><img class="com_avator" <?php if(($vo["avator"] != '')): ?>src="<?php echo ($vo["avator"]); ?>"<?php else: ?>src="/Public/images/com_avator.png"<?php endif; ?> alt="影评人头像"></a>
 			                    <a class="com_name"><?php echo ($vo["author"]); ?></a>
 			                </dt>                
 			                <dd class="com_c fL">
 			                    <p class="com_title"><a href="/index.php?c=comment&a=detail&id=<?php echo ($vo["id"]); ?>" title="<?php echo ($re["title"]); ?>"><?php echo ($vo["title"]); ?></a></p>
-			                    <p><?php echo (msubstr(strip_tags(htmlspecialchars_decode($vo["content"])),0,150)); ?>...</p>
+			                    <p><?php echo (msubstr(strip_tags(htmlspecialchars_decode(trim($vo["content"]))),0,50)); ?></p>
+			                    
 			                </dd>
 			               
 			            </dl><?php endforeach; endif; else: echo "" ;endif; ?>
 				</div>
-				 <nav><ul><?php echo ($pageres); ?></ul></nav>
+				<nav><ul class="page_bottom"><?php echo ($pageres); ?></ul></nav>
 			</div>
 			 <!--网站右侧信息-->
 	      	<div class="sider col-sm-3 col-md-3 col-xs-3">

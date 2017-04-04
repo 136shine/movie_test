@@ -1,0 +1,14 @@
+  <div class="rank-title">
+    <h3>影评推荐</h3>
+    <span>Movie Recomment</span>
+  </div>
+
+  <div class="rank-content">
+    <ul>
+      <volist name="result['rankCom']" id="vo" key="k">
+      <li style="margin-bottom: 10px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">
+        <a href="/index.php?c=comment&a=detail&id={$vo.id}">{$vo.title}</a>
+      </li>
+      </volist>
+    </ul>
+  </div>

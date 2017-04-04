@@ -120,4 +120,16 @@ class RankMovieModel extends Model {
 
         return $this->_db->where($conditions)->count();
     }
+
+     public function getRankMovieIn($rankIds) {
+        if(!is_array($rankIds)) {
+            throw_exception("参数不合法");
+        }
+
+        $data = array(
+            'id' => array('in',implode(',', $rankIds)),
+        );
+       
+        return $this->_db->where($data)->select();
+    }
 }

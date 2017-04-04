@@ -136,7 +136,7 @@
               <table class="table table-bordered table-hover singcms-table">
                 <thead>
                 <tr>
-                  <!-- <th id="singcms-checkbox-all" width="10"><input type="checkbox"/></th> -->
+                  <th id="singcms-checkbox-all" width="10"><input type="checkbox"/></th>
                   <th width="14">排序</th><!--6.7-->
                   <th>id</th>
                   <th>电影名字</th>
@@ -149,8 +149,8 @@
                 </thead>
                 <tbody>
                 <?php if(is_array($comment)): $i = 0; $__LIST__ = $comment;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$comm): $mod = ($i % 2 );++$i;?><tr>
-                  <!--   <td><input type="checkbox" name="pushcheck" value="<?php echo ($comm["id"]); ?>"></td> -->
-                     <td><input size=4 type='text' name='listorder[<?php echo ($comm["id"]); ?>]' value="<?php echo ($comm["listorder"]); ?>"/></td>
+                    <td><input type="checkbox" name="delCheck" value="<?php echo ($comm["id"]); ?>"></td>
+                    <td><input size=4 type='text' name='listorder[<?php echo ($comm["id"]); ?>]' value="<?php echo ($comm["listorder"]); ?>"/></td>
                     <td><?php echo ($comm["id"]); ?></td>
                     <td><?php echo ($comm["movie_name"]); ?></td>
                     <td><?php echo ($comm["title"]); ?></td>
@@ -180,14 +180,8 @@
               </div>
             </form>
             <div class="input-group">
-            <!--   <select class="form-control" name="position_id" id="select-push">
-              <option value="0">请选择推荐位进行推送</option>
-              <?php if(is_array($positions)): foreach($positions as $key=>$position): ?><option value="<?php echo ($position["id"]); ?>"><?php echo ($position["name"]); ?></option><?php endforeach; endif; ?>
-            </select> -->
-             <!--  <button id="singcms-push" type="button" class="btn btn-primary">推送</button> -->
+              <button id="btn-datchDel" type="button" class="btn btn-primary">批量删除</button>
             </div>
-
-          </div>
         </div>
 
       </div>
@@ -210,7 +204,7 @@
     'set_status_url' : '/admin.php?c=comment&a=setStatus',
     'sing_comms_view_url' : '/index.php?c=view',
     'listorder_url' : '/admin.php?c=comment&a=listorder',
-    'push_url' : '/admin.php?c=comment&a=push',
+    'batchDel_url' : '/admin.php?c=comment&a=batchDel',
   }
 </script>
 <script src="/Public/js/admin/common.js"></script>

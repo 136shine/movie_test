@@ -159,3 +159,26 @@ $("#singcms-push").click(function(){
         }
     },"JSON");
 });
+
+/**
+ * 批量删除JS相关
+ */
+$("#btn-datchDel").click(function(){
+    postData = {};
+    $("input[name='delCheck']:checked").each(function(i){
+        postData[i+1] = $(this).val();
+    });
+
+    var url = SCOPE.batchDel_url;
+
+    $.post(url,postData,function(result){
+        if(result.status == 1) {
+            //console.log(result);
+            //成功
+            return dialog.success(result.message,result['data']['jump_url']);
+        }else if(result.status == 0) {
+            // 失败
+            return dialog.error(result.message);
+        }
+    },"JSON");
+});

@@ -64,12 +64,11 @@
       $('.nav-top li').eq(i).children('a').addClass('curr').parent().siblings('li').children('a').removeClass('curr');
     })
   </script>
-   <div class="container" style=" background-color: rgb(245,245,245);">
+   <div class="container">
     <div class="row">
-
-        <div class="col-sm-12 col-md-12">
+        <div class="col-sm-12 col-md-12 list_mode">
           <span class="tag_movie">最新推荐</span>
-            <div class="movie-list">
+            <div class="movie-list clearfix">
               <?php if(is_array($result['listNewMovies'])): $i = 0; $__LIST__ = $result['listNewMovies'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><div class="movie-item col-xs-1-5 col-sm-4 col-md-3 col-xs-6">
                   <div class="movie-pic"><a target="_blank" href="/index.php?c=movie_detail&id=<?php echo ($vo["movie_id"]); ?>" style="background:url(<?php echo ($vo["pic"]); ?>) no-repeat center; background-size: 100% 100%;" ><span class="grade"><?php echo ($vo["grade"]); ?></span></a></div>
                   <div class="ms">
@@ -78,9 +77,9 @@
                 </div><?php endforeach; endif; else: echo "" ;endif; ?>
             </div>
         </div>
-        <div class="col-sm-12 col-md-12">
+        <div class="col-sm-12 col-md-12 list_mode">
           <span class="tag_movie">最热推荐</span>
-            <div class="movie-list">
+            <div class="movie-list clearfix">
               <?php if(is_array($result['listHotMovies'])): $i = 0; $__LIST__ = $result['listHotMovies'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><div class="movie-item col-xs-1-5 col-sm-4 col-md-3 col-xs-6">
                   <div class="movie-pic"><a target="_blank" href="/index.php?c=movie_detail&id=<?php echo ($vo["movie_id"]); ?>" style="background:url(<?php echo ($vo["pic"]); ?>) no-repeat center; background-size: 100% 100%;" ><span class="grade"><?php echo ($vo["grade"]); ?></span></a></div>
                   <div class="ms">
@@ -88,12 +87,17 @@
                   </div>
                 </div><?php endforeach; endif; else: echo "" ;endif; ?>
             </div>
-        </div>
-       
+        </div>       
     </div>
+    <nav><ul style="margin-top: -8px; margin-bottom: 30px;" class="page_bottom"><?php echo ($pageres); ?></ul></nav>
    </div>
     
   </body>
 <script type="text/javascript" src="/Public/js/jquery.js"></script>
 <script type="text/javascript" src="/Public/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+  $(function(){
+    $('body').css('background-color','rgb(245,245,245)');
+  })
+</script>
 </html>

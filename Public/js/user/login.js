@@ -1,6 +1,6 @@
 /**
  * 前端注册登录业务类
- * @author singwa
+ * @author ada
  */
 
 

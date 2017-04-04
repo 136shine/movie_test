@@ -75,13 +75,59 @@ function getMovieTypeByKey($key) {
     $movietype = C("MOVIE_TYPE");
     return $movietype[$key] ? $movietype[$key] : '';
 }
+function getMovieType($key) {
+    $type = '';
+    switch($key){
+        case 1: $type = '动作';break;
+        case 2: $type = '喜剧';break;
+        case 3: $type = '悬疑';break;
+        case 4: $type = '科幻';break;
+        case 5: $type = '爱情';break;
+    }
+    return $type;
+}
 function isThumb($thumb) {
     if($thumb) {
         return '<span style="color:red">有</span>';
     }
     return '无';
 }
+function unhtml($content)                                        //定义自定义函数的名称
+ {
+    // $content=htmlspecialchars($content);                        //五个特殊字符转成html字符表示，显示效果仍不变
+    $content=str_replace("@","",$content);                        //替换文本中的换行符,(但是不知道替换什么符号为空)
+   return trim($content);                                        //删除文本中首尾的空格
+ } 
 
+
+    function cutstr_html($string,$length=0,$ellipsis='…'){
+          $string=strip_tags($string);
+          $string=preg_replace('/\n/is','',$string);
+          $string=preg_replace('/ |　/is','',$string);
+          $string=preg_replace('/&nbsp;/is','',$string);
+          preg_match_all("/[\x01-\x7f]|[\xc2-\xdf][\x80-\xbf]|\xe0[\xa0-\xbf][\x80-\xbf]|[\xe1-\xef][\x80-\xbf][\x80-\xbf]|\xf0[\x90-\xbf][\x80-\xbf][\x80-\xbf]|[\xf1-\xf7][\x80-\xbf][\x80-\xbf][\x80-\xbf]/",$string,$string);
+          if(is_array($string)&&!empty($string[0])){
+              if(is_numeric($length)&&$length){
+                  $string=join('',array_slice($string[0],0,$length)).$ellipsis;
+              }else{
+                  $string=implode('',$string[0]);
+              }
+          }else{
+              $string='';
+          }
+          return $string;
+    }
+
+    function cutstr ($data, $no, $le = '...') {
+    $data = strip_tags(htmlspecialchars_decode($data));
+    $data = str_replace(array("\r\n", "\n\n", "\r\r", "\n", "\r"), '', $data);
+    $datal = strlen($data);
+    $str = msubstr($data, 0, $no);
+    $datae = strlen($str);
+    if ($datal > $datae)
+        $str .= $le;
+    return $str;
+}
 /**
 +----------------------------------------------------------
  * 字符串截取，支持中文和其他编码
@@ -99,7 +145,8 @@ function isThumb($thumb) {
 +----------------------------------------------------------
  */
 function msubstr($str, $start=0, $length, $charset="utf-8", $suffix=true)
-{
+{   
+    // $str = trim($str);
     $len = substr($str);
     if(function_exists("mb_substr")){
         if($suffix)
@@ -119,8 +166,11 @@ function msubstr($str, $start=0, $length, $charset="utf-8", $suffix=true)
     $re['big5']   = "/[\x01-\x7f]|[\x81-\xfe]([\x40-\x7e]|\xa1-\xfe])/";
     preg_match_all($re[$charset], $str, $match);
     $slice = join("",array_slice($match[0], $start, $length));
+
     if($suffix) return $slice."…";
+
     return $slice;
+
 }
 
 

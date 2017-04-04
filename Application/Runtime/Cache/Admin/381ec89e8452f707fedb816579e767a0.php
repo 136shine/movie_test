@@ -122,6 +122,14 @@
               </div>
             </div>
             <div class="form-group">
+              <label for="inputname" class="col-sm-2 control-label">大图:</label>
+              <div class="col-sm-5">
+                <input id="img_upload" class="img_upload" type="file" multiple="true" >
+                <img id="upload_org_big_pic" src="<?php echo ($comm["big_pic"]); ?>" width="300" height="150">
+                <input id="file_upload_big_pic" name="big_pic" type="hidden" multiple="true" value="<?php echo ($comm["big_pic"]); ?>">
+              </div>
+            </div>
+            <div class="form-group">
               <label for="inputname" class="col-sm-2 control-label">标题:</label>
               <div class="col-sm-5">
                 <input type="text" name="title" class="form-control" id="inputname" value="<?php echo ($comm["title"]); ?>">

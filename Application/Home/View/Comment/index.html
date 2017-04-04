@@ -4,26 +4,29 @@
 		<div class="row">
 			<div class="col-md-9 col-sm-9 col-xs-9">
 				<div class="top_com">
-					<img src="/Public/images/top_comment.jpg" />
-					<p><a href="{}">《长城》：别让长城围住自己</a><span><img src="/Public/images/icon_prince.png">最佳影评</span></p>
+					<volist name="result['topCom']" id="v">
+					<img src="{$v.big_pic}" />
+					<p><a href="/index.php?c=comment&a=detail&id={$v.id}">{$v.title}</a><span><img src="/Public/images/icon_prince.png">最佳影评</span></p>
+					</volist>
 				</div>
 				<div class="comment">
 					<span class="com_tag"> >> 新片影评</span>
 					<volist name="result['listcom']" id="vo">
 						<dl class="com_dl clearfix">
 			                <dt class="com_l fL">
-			                    <a><img class="com_avator" src="/Public/images/com_avator.png" alt="影评人头像"></a>
+			                    <a><img class="com_avator" <if condition="($vo.avator neq '')">src="{$vo.avator}"<else />src="/Public/images/com_avator.png"</if> alt="影评人头像"></a>
 			                    <a class="com_name">{$vo.author}</a>
 			                </dt>                
 			                <dd class="com_c fL">
 			                    <p class="com_title"><a href="/index.php?c=comment&a=detail&id={$vo.id}" title="{$re.title}">{$vo.title}</a></p>
-			                    <p>{$vo.content|htmlspecialchars_decode|strip_tags|msubstr=0,150}...</p>
+			                    <p>{$vo.content|trim|htmlspecialchars_decode|strip_tags|msubstr=0,50}</p>
+			                    
 			                </dd>
 			               
 			            </dl>
 			        </volist>
 				</div>
-				 <nav><ul>{$pageres}</ul></nav>
+				<nav><ul class="page_bottom">{$pageres}</ul></nav>
 			</div>
 			 <!--网站右侧信息-->
 	      	<div class="sider col-sm-3 col-md-3 col-xs-3">

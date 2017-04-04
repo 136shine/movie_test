@@ -1,25 +1,27 @@
 <include file="Index/header" />
 <?php 
+	session_start();
+	$isLogin = $_SESSION['user'];
 	$vo = $result['movie'];
 ?>
 	<section>
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-9 col-sm-9 col-md-9">
-					<div class="movie-detail">
+					<div class="movie-detail mode">
 						<h1>{$vo.movie_name}</h1>
 						<div class="row">
 							<div class="col-xs-4 movie-left">
 								<img src="{$vo.pic}">
 							</div>
 							<div class="col-xs-8 movie-right">
-								<span><strong>导演：</strong>{$vo.director}</span>
-								<span><strong>主演：</strong>{$vo.actors}</span>
-								<span><strong>类型：</strong>{$vo.movie_type}</span>
-								<span><strong>评分：</strong>{$vo.grade}</span>
-								<span><strong>排名：</strong>{$vo.rank}</span>
-								<span><strong>票房：</strong>{$vo.count}</span>
-								<span><strong>上映时间：</strong>{$vo.up_time}</span>
+								<li><strong>导演：</strong><span>{$vo.director}</span></li>
+								<li><strong style="float:left;">主演：</strong><span style="width:80%;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">{$vo.actors}</span></li>
+								<li><strong>类型：</strong><span>{$vo.movie_type|getMovieType}</span></li>
+								<li><strong>评分：</strong><span>{$vo.grade} 分</span></li>
+								<li><strong>排名：</strong><span>{$vo.rank}</span></li>
+								<li><strong>票房：</strong><span>{$vo.count}</span></li>
+								<li><strong>上映时间：</strong><span>{$vo.up_time}</span></li>
 								
 							</div>
 						</div>
@@ -33,11 +35,13 @@
 						<span class="tag">影片评论</span>
            			 	<div class="row">
 							<div class="col-xs-12">
-
-								<div style="margin-top:10px;">
+								<div style="margin:20px 0px;">
+									<div <if condition="($result['review'] neq null)">style="display:none;"</if> class="none">
+										暂无评论
+									</div>
 									<volist name="result['review']" id="vo" key="k">
 										<hr class="dline">
-									    <table style="width:100%;overflow:auto;" id="comment1417" name="comment1417">
+									    <table id="commentTab" name="comment">
 									        <tbody>
 									            <tr>
 										            <td width="38px" valign="top" align="center">
@@ -66,21 +70,23 @@
 									        </tbody>
 									    </table>
 									</volist>
-									<div class="col-xs-12">
-							            <div class="panel panel-default list-head reply-box" id="reply-box">
-							            <div class="panel-heading title-breadcrumb"><div id="reply-to-box">发表：</div></div>
-							            <div class="panel-body"><textarea id="replycontent" class="form-control" rows="8"></textarea></div>
-							            <div class="panel-footer"><a><button id="re_btn" type="submit" class="btn btn-primary btn-block">发表</button></a></div>
-								        </div>
-								    </div>
 								</div>
+								<div class="replyTab">
+						            <div class="panel panel-default list-head reply-box" id="reply-box">
+						            <div class="panel-heading title-breadcrumb"><div id="reply-to-box">发表：</div></div>
+						            <div class="panel-body"><textarea id="replycontent" class="form-control" rows="8"></textarea></div>
+						            <div class="panel-footer"><a><button id="re_btn" type="submit" class="btn btn-primary btn-block" onclick="replay(<?php echo $isLogin; ?>)">发表</button></a></div>
+							        </div>
+							    </div>
           					</div>
+          					
 						</div>
 					</div>
 				</div>
 
-				 <div class="col-sm-3 col-md-3">
+				 <div class="col-sm-3 col-md-3 recomment" style="padding:0 22px;">
 			        <include file="Index/right" />
+			        <include file="Index/rank_comment" />
 			      </div>
 				<!-- end right-->
 			</div>
@@ -95,8 +101,15 @@
 <script type="text/javascript" src="/Public/js/dialog"></script>
 <script type="text/javascript" src="/Public/js/dialog.js"></script>
 <script type="text/javascript">
+	$(function(){
+		$('body').css('backgroundColor','#fff');
+	})
+	function replay(isLogin){
+		if(!isLogin){
+			$("#replycontent").val('');
+			return dialog.error('您还没有登录！请先登录再评论');
+		}
 
-	$("#re_btn").click(function(){
 		var postData = {};
 	    postData['content'] = $("#replycontent").val();
 	    var href = window.location.href;
@@ -116,7 +129,32 @@
 	            return dialog.error(result.message);
 	        }
 	    },"JSON");
-	});
+	}
+
+	// $("#re_btn").click(function(){
+	// 	if(!$isLogin){
+	// 		return dialog.error('您还没有登录！请先登录再评论');
+	// 	}
+	// 	var postData = {};
+	//     postData['content'] = $("#replycontent").val();
+	//     var href = window.location.href;
+	//     var id = href.split('&id=')[1];
+	//     postData['id'] = id;
+
+	//     // 将获取到的数据post给服务器
+	//     var url ='/index.php?c=movie_detail&a=add&id='+id;
+	   
+	//     $.post(url,postData,function(result){
+	//         if(result.status == 1) {
+	//             //成功
+	//             $("#replycontent").val('');
+	//             return dialog.success(result.message,'/index.php?c=movie_detail&a=view&id='+id);
+	//         }else if(result.status == 0) {
+	//             // 失败
+	//             return dialog.error(result.message);
+	//         }
+	//     },"JSON");
+	// });
 // $(function() {
 //     var options={"currentPage":1,"totalPages":1,"totalCount":5,"numberOfPages":10,"bootstrapMajorVersion":3,"size":"small","alignment":"right"};
 //     options['itemContainerClass'] = function (type, page, current) {

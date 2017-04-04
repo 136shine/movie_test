@@ -83,32 +83,7 @@
 <!--                 <li data-target="#carousel-example-generic" data-slide-to="3" class=""></li>
                 <li data-target="#carousel-example-generic" data-slide-to="4" class=""></li> -->
             </ol>
-            <!-- <div class="carousel-inner" role="listbox">
-                <div class="item active">
-                    <a target="_blank" href="http://www.xunyingwang.com/movie/204063.html"><img width="100%" src="http://ww1.sinaimg.cn/large/828dc694gy1fdtbu3yjm0j20s20ci7ka.jpg" alt="星球大战外传：侠盗一号迅雷下载"></a>
-                    <div class="carousel-caption">
-                    星球大战外传：侠盗一号迅雷下载
-                    </div>
-                </div>   
-                <div class="item">
-                    <a target="_blank" href="http://www.xunyingwang.com/movie/204877.html"><img width="100%" src="http://ww1.sinaimg.cn/large/828dc694gy1fdohk74si8j20s20ciwpo.jpg" alt="生化危机：终章迅雷下载"></a>
-                    <div class="carousel-caption">
-                    生化危机：终章迅雷下载
-                    </div>
-                </div>    
-                <div class="item">
-                    <a target="_blank" href="http://www.xunyingwang.com/movie/204858.html"><img width="100%" src="http://ww1.sinaimg.cn/large/828dc694gy1fdk44h42kmj20s20cidzi.jpg" alt="刺客信条迅雷下载"></a>
-                    <div class="carousel-caption">
-                    刺客信条迅雷下载
-                    </div>
-                </div>    
-                <div class="item">
-                    <a target="_blank" href="http://www.xunyingwang.com/movie/204990.html"><img width="100%" src="http://ww1.sinaimg.cn/large/828dc694gy1fdbwk1fpu3j20s20ci4qp.jpg" alt="你好，疯子！迅雷下载"></a>
-                    <div class="carousel-caption">
-                    你好，疯子！迅雷下载
-                    </div>
-                </div>
-            </div> -->
+           
             <div class="carousel-inner" role="listbox">
               <?php if(is_array($result['topPic'])): $i = 0; $__LIST__ = $result['topPic'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><div class="item">
                     <a href="/index.php?c=movie_detail&id=<?php echo ($vo["movie_id"]); ?>"><img width="100%" src="<?php echo ($vo["big_pic"]); ?>" alt="<?php echo ($vo["movie_name"]); ?>"></a>
@@ -128,33 +103,19 @@
             </a>
           </div>
         </div>
-
-
-
-        <!-- <div class="banner">
-          <div class="banner-left">
-            <ul>
-              <?php if(is_array($result['topPic'])): $i = 0; $__LIST__ = $result['topPic'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li style="list-style: none;">
-                  <a target="_blank" data-src="/index.php?c=detail&id=<?php echo ($vo["movie_id"]); ?>"><img width="1200" height="360" src="<?php echo ($vo["big_pic"]); ?>" alt="<?php echo ($vo["movie_name"]); ?>"></a>
-                </li><?php endforeach; endif; else: echo "" ;endif; ?>
-
-            </ul>
-          </div>
-        </div> -->
-       
       </div>
       
     </div>
     <div class="row">
-      <div class="col-sm-12 col-md-12 home_tag"><span>精彩推荐</span></div>
+      <!-- <div class="col-sm-9 col-md-9 home_tag"></div> -->
       <div class="col-sm-9 col-md-9">
+          <div class="home_tag"><div class="line" style="left:10px;"></div><span>精彩推荐</span><div class="line" style="right:10px;"></div></div>
           <div class="news-list">
             <?php if(is_array($result['listMovies'])): $i = 0; $__LIST__ = $result['listMovies'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><div class="wrap col-md-3 col-sm-4">
                 <div class="movie_pic"><a target="_blank" href="/index.php?c=movie_detail&id=<?php echo ($vo["movie_id"]); ?>" style="background:url(<?php echo ($vo["pic"]); ?>) no-repeat center; background-size: 100% 100%;" ><span class="grade"><?php echo ($vo["grade"]); ?></span></a></div>
                 <div class="ms">
-                  <span class="movie_name"><?php echo ($vo["movie_name"]); ?></span>
-                  
-                  <!-- <span class="type"><?php echo ($vo["movie_type"]); ?></span> -->
+                  <span class="movie_name"><?php echo ($vo["movie_name"]); ?></span>                  
+                  <!-- <span class="type"><?php echo (getMovieType($vo["movie_type"])); ?></span> -->
                   
                 </div>
               </div><?php endforeach; endif; else: echo "" ;endif; ?>
@@ -178,6 +139,18 @@
     <a target="_blank" href="<?php echo ($vo["url"]); ?>"><img src="<?php echo ($vo["thumb"]); ?>" alt="<?php echo ($vo["name"]); ?>"></a>
   </div><?php endforeach; endif; else: echo "" ;endif; ?> -->
 
+          <div class="rank-title">
+    <h3>影评推荐</h3>
+    <span>Movie Recomment</span>
+  </div>
+
+  <div class="rank-content">
+    <ul>
+      <?php if(is_array($result['rankCom'])): $k = 0; $__LIST__ = $result['rankCom'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($k % 2 );++$k;?><li style="margin-bottom: 10px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">
+        <a href="/index.php?c=comment&a=detail&id=<?php echo ($vo["id"]); ?>"><?php echo ($vo["title"]); ?></a>
+      </li><?php endforeach; endif; else: echo "" ;endif; ?>
+    </ul>
+  </div>
       </div>
     </div>
   </div>
@@ -188,6 +161,7 @@
 <script type="text/javascript">
   //轮播显示
   $(function(){
+    $('body').css('background-color', '#fff');
     $('.carousel-indicators').find('li').each(function(ele){
       if($(this).hasClass('active')){
         $index = $(this).index();
