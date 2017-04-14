@@ -1,7 +1,7 @@
 <?php
 namespace Home\Controller;
 use Think\Controller;
-class MovieDetailController extends CommonController {
+class ReviewController extends CommonController {
 
     public function index() {
         $id = intval($_GET['id']);

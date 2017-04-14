@@ -1,5 +1,5 @@
 <?php
-namespace Comm\Controller;
+namespace Admin\Controller;
 use Think\Controller;
 
 class CommentController extends CommonController {

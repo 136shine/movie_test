@@ -35,16 +35,7 @@ body{
 	padding: 20px 0;
 	overflow: hidden;
 }
-/* .banner-left {
-	float: left;
-	position: relative;
-	width:670px;
-}
-.banner-left img{
-	float: left;
-	width: 100%;
-	max-width: 670px;
-} */
+
 .banner-left {
 	position: relative;
 	width: 1200px;
@@ -108,7 +99,19 @@ body{
 	font-weight: normal;
 	text-align: center;
 }
-
+/*header*/
+a.btn{
+	color:#fff;
+}
+a.btn:hover{
+	color:#BBE0FC;
+}
+.nav-com a img{
+	display: inline-block;
+	width:40px;
+	border-radius: 50%;
+	margin-top: -12px;
+}
 
 /*分页*/
 .page_bottom{
@@ -140,21 +143,6 @@ body{
 	background: url(../../images/right.png)
 }
 
-/*.banner-right{
-	float: right;
-	width:150px;
-	height:113px;
-}
-.banner-right ul{
-	padding: 0;
-	list-style: none;
-}
-.banner-right li{
-	padding-bottom: 11px;
-}
-.banner-right li:last-child{
-	padding-bottom: 0;
-}*/
 .wrap{
 	position: relative;
 	height: 220px;
@@ -356,7 +344,7 @@ body{
 
 /*首页*/
 .nav-com{
-	margin-top: 12px;
+	margin-top: 15px;
 }
 .user-nav{
 	background-color: #262626;
@@ -669,7 +657,7 @@ body{
 }
 .sex input[type="radio"],.sex span{
 	float: left;
-	margin-top:0px;
+	margin-top:15px;
 
 }
 .sex span{
@@ -690,7 +678,7 @@ body{
 
 /*comment detail*/
 .comment-detail{
-	padding:30px 10px 20px;
+	padding:30px 20px 20px;
 	background-color: #fff;	
 	margin-top:30px;
 
@@ -705,8 +693,8 @@ body{
 .title-info{
 	margin:20px 0px;
 }
-.comCont p {
-	text-indent: 2em!important;
+.comCont>p{
+	text-indent: 2em;
 }
 
 
@@ -735,8 +723,11 @@ body{
 	font-family:Verdana, Geneva, sans-serif;
 }
 .musicWrap li:hover{
-	background-color: rgba(0,0,0,.02);
-	color:#FFAF79;
+	background-color: rgba(0,0,0,.03);
+	color:#FEB154;
+}
+.musicWrap li:hover a{
+	color:#FEB154;
 }
 .musicWrap li a{
 	display: inline-block;
@@ -797,21 +788,66 @@ body{
 	width: 250px;
 	height: 350px;
 	margin-top: 100px;
-	
 	overflow: hidden;
 	
 }
-.singer_img img{
+.singer_img .pic img{
 	display: block;
 	width: 100%;
 	border-radius: 50%;
 	padding-bottom: 20px;
 }
+.singer_img .active img{
+	animation: music_move infinite 30s;
+	-webkit-animation:music_move infinite 30s;
+}
+@keyframes music_move{
+	0%{
+		transform: rotate(0deg);
+		-webkit-transform: rotate(0deg);	/* Safari 和 Chrome */
+		-moz-transform: rotate(0deg);	/* Firefox */
+	}
+	100%{
+		transform: rotate(360deg);
+		-webkit-transform: rotate(360deg);	/* Safari 和 Chrome */
+		-moz-transform: rotate(360deg);	/* Firefox */
+	}
+	
+}
+@-webkit-keyframes music_move{
+	0%{
+		transform: rotate(0deg);
+		-webkit-transform: rotate(0deg);	/* Safari 和 Chrome */
+		-moz-transform: rotate(0deg);	/* Firefox */
+	}
+	100%{
+		transform: rotate(360deg);
+		-webkit-transform: rotate(360deg);	/* Safari 和 Chrome */
+		-moz-transform: rotate(360deg);	/* Firefox */
+	}
+}
+
+
+.singer_img .pic{
+	position: relative;
+}
+.singer_img .pic:after{
+	content: '';
+	display: block;
+	width: 70px;
+	height: 70px;
+	background-color: #fff;
+	position: absolute;
+	top:50%;
+	left:50%;
+	transform: translate(-50%,-50%);
+	border-radius: 50%;
+}
 .singer_img p{
 	text-align: center;
 	font-weight: 500;
 	font-size: 18px;
-	color:blue;
+	color:#d68173;
 }
 
 .lyrics{

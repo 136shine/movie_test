@@ -127,7 +127,7 @@
                     <table class="table table-bordered table-hover singcms-table">
                         <thead>
                         <tr>
-                           
+                            <th id="singcms-checkbox-all" width="10"><input type="checkbox"/></th>
                             <th width="14">排序</th><!--7-->
                             <th>id</th>
                             <th>名称</th>
@@ -139,7 +139,7 @@
                         </thead>
                         <tbody>
                             <?php if(is_array($rank_movie)): $i = 0; $__LIST__ = $rank_movie;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
-                             
+                                <td><input type="checkbox" name="delCheck" value="<?php echo ($vo["id"]); ?>"></td>
                                 <td><input size=4 type='text'  name='listorder[<?php echo ($vo["id"]); ?>]' value="<?php echo ($vo["listorder"]); ?>"/></td>
                                 <td><?php echo ($vo["id"]); ?></td>
                                 <td><?php echo ($vo["movie_name"]); ?></td>
@@ -167,6 +167,9 @@
                     <div>
                         <button  id="button-listorder" type="button" class="btn btn-primary dropdown-toggle" ><span class="glyphicon glyphicon-resize-vertical" aria-hidden="true"></span>更新排序</button>
                     </div>
+                    <div class="input-group">
+                      <button id="btn-datchDel" type="button" class="btn btn-primary">批量删除</button>
+                    </div>
                 </div>
             </div>
 
@@ -189,6 +192,7 @@
         'set_status_url' : '/admin.php?c=rank_movie&a=setStatus',
         'add_url' : '/admin.php?c=rank_movie&a=add',
         'listorder_url' : '/admin.php?c=rank_movie&a=listorder',
+        'batchDel_url' : '/admin.php?c=rank_movie&a=batchDel',
     }
 
 </script>

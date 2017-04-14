@@ -26,7 +26,7 @@ class UserController extends Controller {
             return show(0,'密码不能为空');
         }
 
-        $data = array('username' => $username, 'password' => $password);
+        $data = array('username' => $username, 'password' => $password,'pic' =>'/Public/images/user_avator.png',);
       
 
         $ret = D('User')->getAdminByUsername($username);
@@ -76,9 +76,9 @@ class UserController extends Controller {
     public function add(){
         if($_POST) {
            
-            // if(!isset($_POST['pic']) || !$_POST['pic']) {
-            //     return show(0,'头像不存在');
-            // }
+            if(!isset($_POST['pic']) || !$_POST['pic']) {
+                return show(0,'头像不存在');
+            }
             if(!isset($_POST['email']) || !$_POST['email']) {
                 return show(0,'邮箱不存在');
             }
@@ -87,9 +87,6 @@ class UserController extends Controller {
             }
             if(!isset($_POST['sex']) || !$_POST['sex']) {
                 return show(0,'性别不存在');
-            }
-            if($_POST['username']) {
-                return $this->save($_POST);
             }
             $userId = D("User")->insert($_POST);
 
@@ -102,31 +99,47 @@ class UserController extends Controller {
 
     public function personal() {
         $Id = $_SESSION['user']['user_id'];//获取
-        if(!$Id) {
-            // 执行跳转
-            $this->redirect('/index.php?c=user');
-        }
-        $user = D("User")->getUserById($Id);
-        if(!$user) {
-            $this->redirect('/index.php?c=user');
-        }
-        $this->assign('user',$user);
-        $this->display();
-    }
-
-    public function save($data) {
-        $Id = $_SESSION['user']['user_id'];
-
-        try {
-            $id = D("User")->updateByAdminId($Id,$data);
-            if($id === false) {
-                return show(0, '修改失败');
+        if($_POST) {//修改个人信息
+            if(!isset($_POST['pic']) || !$_POST['pic']) {
+                return show(0,'头像不存在');
             }
-            return show(1, '修改成功');
-        }catch(Exception $e) {
-            return show(0, $e->getMessage());
+            if(!isset($_POST['email']) || !$_POST['email']) {
+                return show(0,'邮箱不存在');
+            }
+            if(!isset($_POST['phone']) || !$_POST['phone']) {
+                return show(0,'电话不存在');
+            }
+            if(!isset($_POST['sex']) || !$_POST['sex']) {
+                return show(0,'性别不存在');
+            }
+
+            try {
+                $id = D("User")->updateByAdminId($Id,$_POST);
+                if($id === false) {
+                    return show(0, '修改失败');
+                }
+                return show(1, '修改成功');
+            }catch(Exception $e) {
+                return show(0, $e->getMessage());
+            }
+
+        }else{
+            
+            if(!$Id) {
+                // 执行跳转
+                $this->redirect('/index.php?c=user');
+            }
+            $user = D("User")->getUserById($Id);
+            if(!$user) {
+                $this->redirect('/index.php?c=user');
+            }
+            $this->assign('user',$user);
+            $this->display();
         }
 
+        
     }
+
+   
 
 }

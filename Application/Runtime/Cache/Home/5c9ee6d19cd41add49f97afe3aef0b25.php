@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-  <meta name="description" content="">
+  <!-- <meta name="description" content="">
   <meta name="author" content="">
-  <link rel="icon" href="">
+  <link rel="icon" href=""> -->
 
   <title>KM管理平台</title>
 
@@ -28,7 +28,7 @@
             <div>
                 <h1 class="logo-name">KM</h1>
             </div>
-            <h3>欢迎使用 KM</h3>
+            <h3>欢迎登录 KM</h3>
             <form class="m-t" role="form" enctype="multipart/form-data" method="post">
                 <div class="form-group">
                     <input type="text" class="form-control" name='username'placeholder="用户名" required="">

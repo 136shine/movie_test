@@ -34,7 +34,12 @@ class MovieDetailController extends CommonController {
             'rankCom' => $rankCom,
         ));
 
-        $this->display("Detail/movie");
+         //头部显示登录用户
+        if($_SESSION['user']){
+            $this->header();
+        }
+
+        $this->display("Movie/detail");
     }
 
     public function add()
@@ -42,24 +47,26 @@ class MovieDetailController extends CommonController {
         if($_POST){
            $data['movie_id'] = intval($_GET['id']);
            $data['content'] = $_POST['content'];
+           $data['avator'] = $_POST['avator'];
         }
         
         $data['time'] = Date('Y-m-d H:i:s');
 
         $data['username'] = $_SESSION['user']['username'];
         $data['user_id'] = $_SESSION['user']['user_id'];
-        
+       
+                
         $ret = D('Review')->insert($data);
         return show(1,'发表成功');
        
     }
 
+    //  发表评论
     public function  view() {
-        if(!getLoginUsername()) {
+        if(!$_SESSION['user']) {
             $this->error("您没有权限访问该页面");
+        }else{
+             $this->index();
         }
-
-        $this->index();
-
     }
 }

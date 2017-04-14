@@ -17,15 +17,15 @@ class MusicController extends CommonController {
         $pageres = $res->show();
         $this->assign('pageres',$pageres);
 
-        // $topCom = D("Music")->select(array('status'=>1,'big_pic'=>array('neq','')),1);
-        //print_r($topCom);exit;
         $rankMovie = D("RankMovie")->select(array('status'=>1),10);
 
   
-       
-       $this->assign('result', array(
-            // 'listcom' => $listcom,
-            // 'topCom' => $topCom,
+        //头部显示登录用户
+        if($_SESSION['user']){
+            $this->header();
+        }
+
+        $this->assign('result', array(
             'rankMovies' => $rankMovie,
             'listMusic' => $listMusic,
         ));
@@ -38,6 +38,7 @@ class MusicController extends CommonController {
         $listmu = D("Music")->find($id);
         $this->assign('listmu' , $listmu );
         
+        $this->header();
         $this->display(Music/detail);
     }
 }

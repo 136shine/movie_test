@@ -28,7 +28,7 @@
             <div>
                 <h1 class="logo-name">KM</h1>
             </div>
-            <h3>欢迎使用 KM</h3>
+            <h3>欢迎注册 KM</h3>
             <form class="m-t" role="form" enctype="multipart/form-data" method="post">
                 <div class="form-group">
                     <input type="text" class="form-control" name='username'placeholder="用户名" required="">

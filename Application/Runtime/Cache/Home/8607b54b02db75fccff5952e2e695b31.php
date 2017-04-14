@@ -21,15 +21,12 @@
         </a>
       </div>
       <ul class="nav navbar-nav nav-top">
-        <li><a href="/">首页</a></li>
-        <!-- <li><a href="/index.php?c=movie">电影推荐</a></li>
-        <li><a href="/index.php?c=movie">影视金曲</a></li>
-        <li><a href="/index.php?c=comment">影评</a></li> -->
-        <?php if(is_array($navs)): foreach($navs as $key=>$vo): ?><li><a href="/index.php?c=<?php echo ($vo["c"]); ?>"><?php echo ($vo["name"]); ?></a></li><?php endforeach; endif; ?>
+        <li><a class="curr" href="/">首页</a></li>
+        <?php if(is_array($navs)): foreach($navs as $key=>$vo): ?><li><a href="/index.php?c=<?php echo ($vo["c"]); ?>&a=index"><?php echo ($vo["name"]); ?></a></li><?php endforeach; endif; ?>
       </ul>
       <ul class="nav navbar-right user-nav nav-com" <?php if($_SESSION['user'] == null): ?>style="display:none;"<?php endif; ?>>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>  <?php if(isset($_SESSION['user'])||!$_SESSION['user']) echo $_SESSION['user']['username']; ?> <b class="caret"></b></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="<?php echo ($user['pic']); ?>"><i class="fa fa-user"></i>  <?php if(isset($_SESSION['user'])||!$_SESSION['user']) echo $_SESSION['user']['username']; ?><b class="caret"></b></a>
           <ul class="dropdown-menu">
             <li>
               <a href="/index.php?c=user&a=personal"><i class="fa fa-fw fa-user"></i> 个人中心</a>
@@ -43,8 +40,8 @@
       </ul>
       
       <div class="nav navbar-nav navbar-right nav-com" <?php if($_SESSION['user'] != null): ?>style="display:none;"<?php endif; ?>>
-        <a href="/index.php?c=user"><button type="button" class="btn btn-default">注册</button></a>
-        <a href="/index.php?c=user&a=login"><button type="button" class="btn btn-default">登录</button></a> 
+        <a class="btn btn_reg" href="/index.php?c=user"><span>注册</span></a>
+        <a class="btn btn_log" href="/index.php?c=user&a=login"><span>登录</span></a> 
       </div>
     </div>
   </div>
@@ -52,7 +49,7 @@
   <script type="text/javascript">
     $(function(){
       var url = window.location.href,i = 0;      
-      var urlName = url.split('c=')[1];
+      var urlName = url.split('c=')[1].split('&')[0];
       
       switch(urlName){
         case 'movie': i = 1;break;
@@ -77,28 +74,12 @@
 	    <div class="col-sm-9 col-md-9">
 	    	<div class="music_info clearfix">
 	    		<div class="singer_img">
-		    		<img src="<?php echo ($listmu["pic"]); ?>" alt="歌手">
+		    		<div class="pic"><img src="<?php echo ($listmu["pic"]); ?>" alt="歌手"></div>
 		    		<p>歌曲：<?php echo ($listmu["music_name"]); ?></p>
 		    		<p>歌手：<?php echo ($listmu["singer"]); ?></p>
+		    		<!-- <div class="in_after"></div> -->
 		    	</div>
 
-		    	<!-- <div class="songWordContent songWordContentM jspScrollable" style="height: 330px; overflow: hidden; padding: 0px; width: 460px;" tabindex="0">
-		    		<div class="jspContainer" style="width: 460px; height: 330px;">
-		    			<div class="jspPane" style="padding: 0px; top: 0px; width: 448px;">
-		    				<?php echo ($listmu["content"]); ?>
-		    			</div>
-		    			<div class="jspVerticalBar">
-		    				<div class="jspCap jspCapTop"></div>
-		    				<div class="jspTrack" style="height: 330px;">
-		    					<div class="jspDrag" style="height: 60px; top: 0px;">
-		    						<div class="jspDragTop"></div>
-		    						<div class="jspDragBottom"></div>
-		    					</div>
-		    				</div>
-		    				<div class="jspCap jspCapBottom"></div>
-		    			</div>
-		    		</div>
-		    	</div> -->
 		    	<div class="lyrics">
 		    		<!-- <p class=""><?php echo ($listmu["music_name"]); ?></p> -->
 		    		<p style="display: none;"><?php echo ($listmu["content"]); ?></p>
@@ -107,7 +88,7 @@
 	    	
 	    	<div class="play">
 				<audio id="myaudio" controls="controls">
-		            <source src="http://fs.web.kugou.com/468bb9a95133175acce9cb2c895540e6/58e341b8/G085/M07/07/18/NZQEAFh121aAELTiAD7hf0CT2eQ805.mp3">
+		            <source src="<?php echo ($listmu["url"]); ?>">
 		        </audio>
 		    </div>
 	
@@ -131,12 +112,14 @@
 		function play(){
 			var iTop = $('pre').offset().top;
 			$('pre').offset({'top':iTop-60});
+			$('.pic').addClass('active');
 		}
 		var timer = null;
 		var myaudio = document.getElementById('myaudio');
 		
 			myaudio.onpause = function(){
 				clearInterval(timer);
+				$('.pic').removeClass('active');
 			}
 			myaudio.onplay = function(){
 				timer = setInterval(play,4000);

@@ -21,15 +21,12 @@
         </a>
       </div>
       <ul class="nav navbar-nav nav-top">
-        <li><a href="/">首页</a></li>
-        <!-- <li><a href="/index.php?c=movie">电影推荐</a></li>
-        <li><a href="/index.php?c=movie">影视金曲</a></li>
-        <li><a href="/index.php?c=comment">影评</a></li> -->
-        <?php if(is_array($navs)): foreach($navs as $key=>$vo): ?><li><a href="/index.php?c=<?php echo ($vo["c"]); ?>"><?php echo ($vo["name"]); ?></a></li><?php endforeach; endif; ?>
+        <li><a class="curr" href="/">首页</a></li>
+        <?php if(is_array($navs)): foreach($navs as $key=>$vo): ?><li><a href="/index.php?c=<?php echo ($vo["c"]); ?>&a=index"><?php echo ($vo["name"]); ?></a></li><?php endforeach; endif; ?>
       </ul>
       <ul class="nav navbar-right user-nav nav-com" <?php if($_SESSION['user'] == null): ?>style="display:none;"<?php endif; ?>>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>  <?php if(isset($_SESSION['user'])||!$_SESSION['user']) echo $_SESSION['user']['username']; ?> <b class="caret"></b></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="<?php echo ($user['pic']); ?>"><i class="fa fa-user"></i>  <?php if(isset($_SESSION['user'])||!$_SESSION['user']) echo $_SESSION['user']['username']; ?><b class="caret"></b></a>
           <ul class="dropdown-menu">
             <li>
               <a href="/index.php?c=user&a=personal"><i class="fa fa-fw fa-user"></i> 个人中心</a>
@@ -43,8 +40,8 @@
       </ul>
       
       <div class="nav navbar-nav navbar-right nav-com" <?php if($_SESSION['user'] != null): ?>style="display:none;"<?php endif; ?>>
-        <a href="/index.php?c=user"><button type="button" class="btn btn-default">注册</button></a>
-        <a href="/index.php?c=user&a=login"><button type="button" class="btn btn-default">登录</button></a> 
+        <a class="btn btn_reg" href="/index.php?c=user"><span>注册</span></a>
+        <a class="btn btn_log" href="/index.php?c=user&a=login"><span>登录</span></a> 
       </div>
     </div>
   </div>
@@ -52,7 +49,7 @@
   <script type="text/javascript">
     $(function(){
       var url = window.location.href,i = 0;      
-      var urlName = url.split('c=')[1];
+      var urlName = url.split('c=')[1].split('&')[0];
       
       switch(urlName){
         case 'movie': i = 1;break;
@@ -71,7 +68,7 @@
 				<h2 class="mu_txt">音&nbsp;&nbsp;&nbsp;乐</h2>
 				<h2 class="mu_txt">心&nbsp;&nbsp;&nbsp;情</h2>
 				<h2 class="mu_txt">生&nbsp;&nbsp;&nbsp;活</h2>
-				<p>春风十里，暖阳，音乐文字旋律意境  和你...</p>
+				<p>春风 · 十里    阳光 · 尚好 音乐、文字、旋律、意境  还有，远方...</p>
 			</div>
 	    </div>
 	    <div class="col-sm-9 col-md-9">
@@ -79,8 +76,8 @@
 	        <ul class="musicWrap">
 	        	<?php if(is_array($result['listMusic'])): $i = 0; $__LIST__ = $result['listMusic'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$music): $mod = ($i % 2 );++$i;?><li>
 						
-						<a href="/index.php?c=music&a=detail&id=<?php echo ($music["id"]); ?>" data-active="playDwn" data-index="0" class="pc_temp_songname" title="<?php echo ($music["music_name"]); ?>" hidefocus="true"><?php echo ($music["music_name"]); ?></a>
-						<span class="music_singer"><?php echo ($music["singer"]); ?></span>
+						<a href="/index.php?c=music&a=detail&id=<?php echo ($music["id"]); ?>" data-active="playDwn" data-index="0" class="pc_temp_songname" title="<?php echo ($music["music_name"]); ?>" hidefocus="true"><img src="\Public\images\icon_music.png">&nbsp;&nbsp;<?php echo ($music["music_name"]); ?></a>
+						<span class="music_singer"><img src="\Public\images\icon_singer.png">&nbsp;&nbsp;&nbsp;<?php echo ($music["singer"]); ?></span>
 						<span class="music_mv">【 <?php echo ($music["movie_name"]); ?> 】</span>
 						<span class="music_time"><?php echo ($music["time_long"]); ?></span>
 					</li><?php endforeach; endif; else: echo "" ;endif; ?>

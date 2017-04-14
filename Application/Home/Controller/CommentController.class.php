@@ -18,23 +18,35 @@ class CommentController extends CommonController {
         $this->assign('pageres',$pageres);
 
         $topCom = D("Comment")->select(array('status'=>1,'big_pic'=>array('neq','')),1);
-        //print_r($topCom);exit;
+        
         $rankMovie = D("RankMovie")->select(array('status'=>1),10);
   
        
-       $this->assign('result', array(
+        $this->assign('result', array(
             'listcom' => $listcom,
             'topCom' => $topCom,
             'rankMovies' => $rankMovie,
         ));
+         //头部显示登录用户
+        if($_SESSION['user']){
+            $this->header();
+        }
         
         $this->display();
     }
     public function detail(){
         $id = intval($_GET['id']);
+        $rankCom = D("Comment")->select(array('status'=>1),10);
         
-        $listcom = D("Comment")->find($id);
-        $this->assign('listcom' , $listcom );
+        $com = D("Comment")->find($id);
+        $this->assign('result', array(
+            'com' => $com,
+            'rankCom' => $rankCom,
+        ));
+         //头部显示登录用户
+        if($_SESSION['user']){
+            $this->header();
+        }
         
         $this->display();
     }

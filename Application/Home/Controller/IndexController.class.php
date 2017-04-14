@@ -10,48 +10,18 @@ class IndexController extends CommonController {
         $listMovies = D("Movie")->select(array('status'=>1,'pic'=>array('neq','')),'movie_id asc',30);
         $rankMovie = D("RankMovie")->select(array('status'=>1),10);
         $rankCom = D("Comment")->select(array('status'=>1),10);
-
-
-       $this->assign('result', array(
+       
+        $this->assign('result', array(
             'topPic' => $topRecomment,
             'listMovies' => $listMovies,
             'rankMovies' => $rankMovie,
             'rankCom' => $rankCom,
+
         ));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-        //获取排行
-        // $rankNews = $this->getRank();
-        // // 获取首页大图数据
-        // // $topPicNews = D("PositionContent")->select(array('status'=>1,'position_id'=>2),1);
-        // // 首页3小图推荐
-        // $topSmailNews = D("PositionContent")->select(array('status'=>1,'position_id'=>3),3);
-
-        // $listNews = D("News")->select(array('status'=>1,'thumb'=>array('neq','')),30);
-
-        // $advNews = D("PositionContent")->select(array('status'=>1,'position_id'=>5),2);
-        // $this->assign('result', array(
-        //     'topPicNews' => $topPicNews,
-        //     'topSmailNews' => $topSmailNews,
-        //     'listNews' => $listNews,
-        //     'advNews' => $advNews,
-        //     'rankNews' => $rankNews,
-        //     'catId' => 0,
-
-        //));
+        //头部显示登录用户
+        if($_SESSION['user']){
+            $this->header();
+        }
         /**
          * 生成页面静态化
          */

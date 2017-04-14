@@ -7,7 +7,7 @@
 				<h2 class="mu_txt">音&nbsp;&nbsp;&nbsp;乐</h2>
 				<h2 class="mu_txt">心&nbsp;&nbsp;&nbsp;情</h2>
 				<h2 class="mu_txt">生&nbsp;&nbsp;&nbsp;活</h2>
-				<p>春风十里，暖阳，音乐文字旋律意境  和你...</p>
+				<p>春风 · 十里    阳光 · 尚好 音乐、文字、旋律、意境  还有，远方...</p>
 			</div>
 	    </div>
 	    <div class="col-sm-9 col-md-9">
@@ -16,8 +16,8 @@
 	        	<volist name="result['listMusic']" id="music">
 	        		<li>
 						
-						<a href="/index.php?c=music&a=detail&id={$music.id}" data-active="playDwn" data-index="0" class="pc_temp_songname" title="{$music.music_name}" hidefocus="true">{$music.music_name}</a>
-						<span class="music_singer">{$music.singer}</span>
+						<a href="/index.php?c=music&a=detail&id={$music.id}" data-active="playDwn" data-index="0" class="pc_temp_songname" title="{$music.music_name}" hidefocus="true"><img src="\Public\images\icon_music.png">&nbsp;&nbsp;{$music.music_name}</a>
+						<span class="music_singer"><img src="\Public\images\icon_singer.png">&nbsp;&nbsp;&nbsp;{$music.singer}</span>
 						<span class="music_mv">【 {$music.movie_name} 】</span>
 						<span class="music_time">{$music.time_long}</span>
 					</li>

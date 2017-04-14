@@ -1,0 +1,180 @@
+<include file="Index/header" />
+<?php 
+	session_start();
+	$isLogin = $_SESSION['user'];
+	$vo = $result['movie'];
+?>
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-9 col-sm-9 col-md-9">
+					<div class="movie-detail mode">
+						<h1>{$vo.movie_name}</h1>
+						<div class="row">
+							<div class="col-xs-4 movie-left">
+								<img src="{$vo.pic}">
+							</div>
+							<div class="col-xs-8 movie-right">
+								<li><strong>导演：</strong><span>{$vo.director}</span></li>
+								<li><strong style="float:left;">主演：</strong><span style="width:80%;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">{$vo.actors}</span></li>
+								<li><strong>类型：</strong><span>{$vo.movie_type|getMovieType}</span></li>
+								<li><strong>评分：</strong><span>{$vo.grade} 分</span></li>
+								<li><strong>排名：</strong><span>{$vo.rank}</span></li>
+								<li><strong>票房：</strong><span>{$vo.count}</span></li>
+								<li><strong>上映时间：</strong><span>{$vo.up_time}</span></li>
+								
+							</div>
+						</div>
+						
+					</div>
+					<div class="col-xs-12 desc mode">
+						<span class="tag">影片介绍</span>
+						<p>{$vo.describle}</p>
+					</div>
+					<div class="col-xs-12 comment mode">
+						<span class="tag">影片评论</span>
+           			 	<div class="row">
+							<div class="col-xs-12">
+								<div style="margin:20px 0px;">
+									<div <if condition="($result['review'] neq null)">style="display:none;"</if> class="none">
+										暂无评论
+									</div>
+									<volist name="result['review']" id="vo" key="k">
+										<hr class="dline">
+									    <table id="commentTab" name="comment">
+									        <tbody>
+									            <tr>
+										            <td width="38px" valign="top" align="center">
+										                <a><img style="width:100%;border-radius:50%;" title="" src="{$vo.avator}"></a>
+										            </td>
+									            	<td width="10px"></td>
+									            	<td width="auto">
+										                <div class="reply-author">
+										                    <a>{$vo.username}</a>
+										                    <div class="reply-right" style="float: right;">
+										                    	<em style="margin-right: 16px;">{$vo.time}</em>
+										                    	<a>#{$k}</a>
+										                    </div>
+										                </div>
+									                	<div class="reply-content">
+									                		{$vo.content}
+										                	<!-- <div style="overflow:auto;text-align:right;font-size:13px;">
+												               	 <a href="javascript:;" onclick="zan(1417)">赞(0)</a>
+												                | <a href="javascript:;" onclick="cai(1417)">踩(0)</a>
+												                | <a href="javascript:;" onclick="replyto(1417,'严易易')">回复</a>
+										                	</div> -->
+									                	</div>
+									              	</td>
+									            </tr>
+									           
+									        </tbody>
+									    </table>
+									</volist>
+								</div>
+								<div class="replyTab">
+						            <div class="panel panel-default list-head reply-box" id="reply-box">
+						            <div class="panel-heading title-breadcrumb"><div id="reply-to-box">发表：</div></div>
+						            <div class="panel-body"><textarea id="replycontent" class="form-control" rows="8"></textarea></div>
+						            <div class="panel-footer"><a><button id="re_btn" type="submit" class="btn btn-primary btn-block" onclick="replay(<?php echo $isLogin; ?>)">发表</button></a></div>
+							        </div>
+							    </div>
+          					</div>
+          					
+						</div>
+					</div>
+				</div>
+
+				 <div class="col-sm-3 col-md-3 recomment" style="padding:0 22px;">
+			        <include file="Index/right" />
+			        <include file="Index/rank_comment" />
+			      </div>
+				<!-- end right-->
+			</div>
+		</div>
+	</section>
+</body>
+
+<script type="text/javascript" src="/Public/js/jquery.js"></script>
+<script type="text/javascript" src="/Public/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/Public/js/admin/common.js"></script>
+<script type="text/javascript" src="/Public/js/dialog/layer.js"></script>
+<script type="text/javascript" src="/Public/js/dialog"></script>
+<script type="text/javascript" src="/Public/js/dialog.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('body').css('backgroundColor','#fff');
+	})
+	function replay(isLogin){
+		if(!isLogin){
+			$("#replycontent").val('');
+			return dialog.error('您还没有登录！请先登录再评论');
+		}
+
+		var postData = {};
+	    postData['content'] = $("#replycontent").val();
+	    var href = window.location.href;
+	    var id = href.split('&id=')[1];
+	    var avator = $('.dropdown-toggle img').attr('src');
+	    console.log(avator);
+	    postData['id'] = id;
+	    postData['avator'] = avator;
+
+	    // 将获取到的数据post给服务器
+	    var url ='/index.php?c=movie_detail&a=add&id='+id;
+	   
+	    $.post(url,postData,function(result){
+	        if(result.status == 1) {
+	            //成功
+	            $("#replycontent").val('');
+	            return dialog.success(result.message,'/index.php?c=movie_detail&a=view&id='+id);
+	        }else if(result.status == 0) {
+	            // 失败
+	            return dialog.error(result.message);
+	        }
+	    },"JSON");
+	}
+
+	// $("#re_btn").click(function(){
+	// 	if(!$isLogin){
+	// 		return dialog.error('您还没有登录！请先登录再评论');
+	// 	}
+	// 	var postData = {};
+	//     postData['content'] = $("#replycontent").val();
+	//     var href = window.location.href;
+	//     var id = href.split('&id=')[1];
+	//     postData['id'] = id;
+
+	//     // 将获取到的数据post给服务器
+	//     var url ='/index.php?c=movie_detail&a=add&id='+id;
+	   
+	//     $.post(url,postData,function(result){
+	//         if(result.status == 1) {
+	//             //成功
+	//             $("#replycontent").val('');
+	//             return dialog.success(result.message,'/index.php?c=movie_detail&a=view&id='+id);
+	//         }else if(result.status == 0) {
+	//             // 失败
+	//             return dialog.error(result.message);
+	//         }
+	//     },"JSON");
+	// });
+// $(function() {
+//     var options={"currentPage":1,"totalPages":1,"totalCount":5,"numberOfPages":10,"bootstrapMajorVersion":3,"size":"small","alignment":"right"};
+//     options['itemContainerClass'] = function (type, page, current) {
+//         return (page === current) ? "active" : "pointer-cursor";
+//     }
+//     options['pageUrl'] = function(type, page, current){
+//         return "javascript:;";
+//     }
+//     options['onPageClicked'] = function(e,originalEvent,type,page){
+//         originalEvent.preventDefault();
+//         originalEvent.stopPropagation();
+//         $.get('/comment/commentList/movie/204990/'+page,function(data,status){
+//                 $('.comment').html(data);
+//             }
+//         );
+//     };
+//     $('#pager').bootstrapPaginator(options);
+// });
+</script>
+</html>

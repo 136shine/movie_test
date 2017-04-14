@@ -11,7 +11,7 @@
   <script type="text/javascript" src="/Public/js/jquery.js"></script>
 
 </head>
-<body style="background-color: #fff;">
+<body>
 <header id="header">
   <div class="navbar-inverse">
     <div class="container">
@@ -21,14 +21,11 @@
         </a>
       </div>
       <ul class="nav navbar-nav nav-top">
-        <li><a href="/">首页</a></li>
-        <!-- <li><a href="/index.php?c=movie">电影推荐</a></li>
-        <li><a href="/index.php?c=movie">影视金曲</a></li>
-        <li><a href="/index.php?c=comment">影评</a></li> -->
-        <li><a href="/index.php?c=movie">电影推荐</a></li><li><a href="/index.php?c=music">影视金曲</a></li><li><a href="/index.php?c=comment">影评</a></li>      </ul>
+        <li><a class="curr" href="/">首页</a></li>
+        <li><a href="/index.php?c=movie&a=index">电影推荐</a></li><li><a href="/index.php?c=music&a=index">影视金曲</a></li><li><a href="/index.php?c=comment&a=index">影评</a></li>      </ul>
       <ul class="nav navbar-right user-nav nav-com" style="display:none;">
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>   <b class="caret"></b></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src=""><i class="fa fa-user"></i>  <b class="caret"></b></a>
           <ul class="dropdown-menu">
             <li>
               <a href="/index.php?c=user&a=personal"><i class="fa fa-fw fa-user"></i> 个人中心</a>
@@ -42,8 +39,8 @@
       </ul>
       
       <div class="nav navbar-nav navbar-right nav-com" >
-        <a href="/index.php?c=user"><button type="button" class="btn btn-default">注册</button></a>
-        <a href="/index.php?c=user&a=login"><button type="button" class="btn btn-default">登录</button></a> 
+        <a class="btn btn_reg" href="/index.php?c=user"><span>注册</span></a>
+        <a class="btn btn_log" href="/index.php?c=user&a=login"><span>登录</span></a> 
       </div>
     </div>
   </div>
@@ -51,7 +48,7 @@
   <script type="text/javascript">
     $(function(){
       var url = window.location.href,i = 0;      
-      var urlName = url.split('c=')[1];
+      var urlName = url.split('c=')[1].split('&')[0];
       
       switch(urlName){
         case 'movie': i = 1;break;
@@ -82,32 +79,7 @@
 <!--                 <li data-target="#carousel-example-generic" data-slide-to="3" class=""></li>
                 <li data-target="#carousel-example-generic" data-slide-to="4" class=""></li> -->
             </ol>
-            <!-- <div class="carousel-inner" role="listbox">
-                <div class="item active">
-                    <a target="_blank" href="http://www.xunyingwang.com/movie/204063.html"><img width="100%" src="http://ww1.sinaimg.cn/large/828dc694gy1fdtbu3yjm0j20s20ci7ka.jpg" alt="星球大战外传：侠盗一号迅雷下载"></a>
-                    <div class="carousel-caption">
-                    星球大战外传：侠盗一号迅雷下载
-                    </div>
-                </div>   
-                <div class="item">
-                    <a target="_blank" href="http://www.xunyingwang.com/movie/204877.html"><img width="100%" src="http://ww1.sinaimg.cn/large/828dc694gy1fdohk74si8j20s20ciwpo.jpg" alt="生化危机：终章迅雷下载"></a>
-                    <div class="carousel-caption">
-                    生化危机：终章迅雷下载
-                    </div>
-                </div>    
-                <div class="item">
-                    <a target="_blank" href="http://www.xunyingwang.com/movie/204858.html"><img width="100%" src="http://ww1.sinaimg.cn/large/828dc694gy1fdk44h42kmj20s20cidzi.jpg" alt="刺客信条迅雷下载"></a>
-                    <div class="carousel-caption">
-                    刺客信条迅雷下载
-                    </div>
-                </div>    
-                <div class="item">
-                    <a target="_blank" href="http://www.xunyingwang.com/movie/204990.html"><img width="100%" src="http://ww1.sinaimg.cn/large/828dc694gy1fdbwk1fpu3j20s20ci4qp.jpg" alt="你好，疯子！迅雷下载"></a>
-                    <div class="carousel-caption">
-                    你好，疯子！迅雷下载
-                    </div>
-                </div>
-            </div> -->
+           
             <div class="carousel-inner" role="listbox">
               <div class="item">
                     <a href="/index.php?c=movie_detail&id=49"><img width="100%" src="http://movie_km.dev/upload/2017/03/29/58db6a57708f1.jpg" alt="星球大战外传：侠盗一号"></a>
@@ -134,211 +106,172 @@
             </a>
           </div>
         </div>
-
-
-
-        <!-- <div class="banner">
-          <div class="banner-left">
-            <ul>
-              <li style="list-style: none;">
-                  <a target="_blank" data-src="/index.php?c=detail&id=49"><img width="1200" height="360" src="http://movie_km.dev/upload/2017/03/29/58db6a57708f1.jpg" alt="星球大战外传：侠盗一号"></a>
-                </li><li style="list-style: none;">
-                  <a target="_blank" data-src="/index.php?c=detail&id=50"><img width="1200" height="360" src="http://movie_km.dev/upload/2017/03/29/58db6bbc2e680.jpg" alt="生化危机：终章"></a>
-                </li><li style="list-style: none;">
-                  <a target="_blank" data-src="/index.php?c=detail&id=51"><img width="1200" height="360" src="http://movie_km.dev/upload/2017/03/29/58db6c9452950.jpg" alt="刺客信条"></a>
-                </li>
-            </ul>
-          </div>
-        </div> -->
-       
       </div>
       
     </div>
     <div class="row">
-      <div class="col-sm-12 col-md-12 home_tag"><span>精彩推荐</span></div>
+      <!-- <div class="col-sm-9 col-md-9 home_tag"></div> -->
       <div class="col-sm-9 col-md-9">
+          <div class="home_tag"><div class="line" style="left:10px;"></div><span>精彩推荐</span><div class="line" style="right:10px;"></div></div>
           <div class="news-list">
             <div class="wrap col-md-3 col-sm-4">
                 <div class="movie_pic"><a target="_blank" href="/index.php?c=movie_detail&id=49" style="background:url(http://movie_km.dev/upload/2017/03/29/58db6a4ab3ffc.jpg) no-repeat center; background-size: 100% 100%;" ><span class="grade">7.3</span></a></div>
                 <div class="ms">
-                  <span class="movie_name">星球大战外传：侠盗一号</span>
-                  
-                  <!-- <span class="type">4</span> -->
+                  <span class="movie_name">星球大战外传：侠盗一号</span>                  
+                  <!-- <span class="type">科幻</span> -->
                   
                 </div>
               </div><div class="wrap col-md-3 col-sm-4">
                 <div class="movie_pic"><a target="_blank" href="/index.php?c=movie_detail&id=50" style="background:url(http://movie_km.dev/upload/2017/03/29/58db6bb0a8137.jpg) no-repeat center; background-size: 100% 100%;" ><span class="grade">6.7</span></a></div>
                 <div class="ms">
-                  <span class="movie_name">生化危机：终章</span>
-                  
-                  <!-- <span class="type">1</span> -->
+                  <span class="movie_name">生化危机：终章</span>                  
+                  <!-- <span class="type">动作</span> -->
                   
                 </div>
               </div><div class="wrap col-md-3 col-sm-4">
                 <div class="movie_pic"><a target="_blank" href="/index.php?c=movie_detail&id=51" style="background:url(http://movie_km.dev/upload/2017/03/29/58db6c8c8451d.jpg) no-repeat center; background-size: 100% 100%;" ><span class="grade">5.5</span></a></div>
                 <div class="ms">
-                  <span class="movie_name">刺客信条</span>
-                  
-                  <!-- <span class="type">1</span> -->
+                  <span class="movie_name">刺客信条</span>                  
+                  <!-- <span class="type">动作</span> -->
                   
                 </div>
               </div><div class="wrap col-md-3 col-sm-4">
                 <div class="movie_pic"><a target="_blank" href="/index.php?c=movie_detail&id=6874166" style="background:url(https://img3.doubanio.com/view/movie_poster_cover/lpst/public/p2448526930.jpg) no-repeat center; background-size: 100% 100%;" ><span class="grade">6.5</span></a></div>
                 <div class="ms">
-                  <span class="movie_name">悍女</span>
-                  
+                  <span class="movie_name">悍女</span>                  
                   <!-- <span class="type"></span> -->
                   
                 </div>
               </div><div class="wrap col-md-3 col-sm-4">
                 <div class="movie_pic"><a target="_blank" href="/index.php?c=movie_detail&id=25832821" style="background:url(https://img3.doubanio.com/view/movie_poster_cover/lpst/public/p2316162241.jpg) no-repeat center; background-size: 100% 100%;" ><span class="grade">7.0</span></a></div>
                 <div class="ms">
-                  <span class="movie_name">巴尼·汤姆森传奇</span>
-                  
+                  <span class="movie_name">巴尼·汤姆森传奇</span>                  
                   <!-- <span class="type"></span> -->
                   
                 </div>
               </div><div class="wrap col-md-3 col-sm-4">
                 <div class="movie_pic"><a target="_blank" href="/index.php?c=movie_detail&id=25912128" style="background:url(https://img1.doubanio.com/view/movie_poster_cover/lpst/public/p2263835058.jpg) no-repeat center; background-size: 100% 100%;" ><span class="grade">6.3</span></a></div>
                 <div class="ms">
-                  <span class="movie_name">封面有男天</span>
-                  
+                  <span class="movie_name">封面有男天</span>                  
                   <!-- <span class="type"></span> -->
                   
                 </div>
               </div><div class="wrap col-md-3 col-sm-4">
                 <div class="movie_pic"><a target="_blank" href="/index.php?c=movie_detail&id=26360518" style="background:url(https://img3.doubanio.com/view/movie_poster_cover/lpst/public/p2363284681.jpg) no-repeat center; background-size: 100% 100%;" ><span class="grade">7.6</span></a></div>
                 <div class="ms">
-                  <span class="movie_name">二次旅程</span>
-                  
+                  <span class="movie_name">二次旅程</span>                  
                   <!-- <span class="type"></span> -->
                   
                 </div>
               </div><div class="wrap col-md-3 col-sm-4">
                 <div class="movie_pic"><a target="_blank" href="/index.php?c=movie_detail&id=26429841" style="background:url(https://img1.doubanio.com/view/movie_poster_cover/lpst/public/p2377586169.jpg) no-repeat center; background-size: 100% 100%;" ><span class="grade">7.8</span></a></div>
                 <div class="ms">
-                  <span class="movie_name">圣之青春</span>
-                  
+                  <span class="movie_name">圣之青春</span>                  
                   <!-- <span class="type"></span> -->
                   
                 </div>
               </div><div class="wrap col-md-3 col-sm-4">
                 <div class="movie_pic"><a target="_blank" href="/index.php?c=movie_detail&id=26580232" style="background:url(https://img1.doubanio.com/view/movie_poster_cover/lpst/public/p2404978988.jpg) no-repeat center; background-size: 100% 100%;" ><span class="grade">8.6</span></a></div>
                 <div class="ms">
-                  <span class="movie_name">看不见的客人</span>
-                  
+                  <span class="movie_name">看不见的客人</span>                  
                   <!-- <span class="type"></span> -->
                   
                 </div>
               </div><div class="wrap col-md-3 col-sm-4">
                 <div class="movie_pic"><a target="_blank" href="/index.php?c=movie_detail&id=26586432" style="background:url(https://img3.doubanio.com/view/movie_poster_cover/lpst/public/p2369390663.jpg) no-repeat center; background-size: 100% 100%;" ><span class="grade">8.0</span></a></div>
                 <div class="ms">
-                  <span class="movie_name">契克</span>
-                  
+                  <span class="movie_name">契克</span>                  
                   <!-- <span class="type"></span> -->
                   
                 </div>
               </div><div class="wrap col-md-3 col-sm-4">
                 <div class="movie_pic"><a target="_blank" href="/index.php?c=movie_detail&id=26601271" style="background:url(https://img1.doubanio.com/view/movie_poster_cover/lpst/public/p2330649118.jpg) no-repeat center; background-size: 100% 100%;" ><span class="grade">6.1</span></a></div>
                 <div class="ms">
-                  <span class="movie_name">永不退缩3</span>
-                  
+                  <span class="movie_name">永不退缩3</span>                  
                   <!-- <span class="type"></span> -->
                   
                 </div>
               </div><div class="wrap col-md-3 col-sm-4">
                 <div class="movie_pic"><a target="_blank" href="/index.php?c=movie_detail&id=26610877" style="background:url(https://img3.doubanio.com/view/movie_poster_cover/lpst/public/p2366699070.jpg) no-repeat center; background-size: 100% 100%;" ><span class="grade">6.2</span></a></div>
                 <div class="ms">
-                  <span class="movie_name">最坏的一天</span>
-                  
+                  <span class="movie_name">最坏的一天</span>                  
                   <!-- <span class="type"></span> -->
                   
                 </div>
               </div><div class="wrap col-md-3 col-sm-4">
                 <div class="movie_pic"><a target="_blank" href="/index.php?c=movie_detail&id=26628352" style="background:url(https://img3.doubanio.com/view/movie_poster_cover/lpst/public/p2358538173.jpg) no-repeat center; background-size: 100% 100%;" ><span class="grade">6.7</span></a></div>
                 <div class="ms">
-                  <span class="movie_name">苦中带甜的滋味</span>
-                  
+                  <span class="movie_name">苦中带甜的滋味</span>                  
                   <!-- <span class="type"></span> -->
                   
                 </div>
               </div><div class="wrap col-md-3 col-sm-4">
                 <div class="movie_pic"><a target="_blank" href="/index.php?c=movie_detail&id=26654300" style="background:url(https://img3.doubanio.com/view/movie_poster_cover/lpst/public/p2392621450.jpg) no-repeat center; background-size: 100% 100%;" ><span class="grade">5.6</span></a></div>
                 <div class="ms">
-                  <span class="movie_name">少女</span>
-                  
+                  <span class="movie_name">少女</span>                  
                   <!-- <span class="type"></span> -->
                   
                 </div>
               </div><div class="wrap col-md-3 col-sm-4">
                 <div class="movie_pic"><a target="_blank" href="/index.php?c=movie_detail&id=26715549" style="background:url(https://img3.doubanio.com/view/movie_poster_cover/lpst/public/p2411571793.jpg) no-repeat center; background-size: 100% 100%;" ><span class="grade">6.8</span></a></div>
                 <div class="ms">
-                  <span class="movie_name">单身骑士</span>
-                  
+                  <span class="movie_name">单身骑士</span>                  
                   <!-- <span class="type"></span> -->
                   
                 </div>
               </div><div class="wrap col-md-3 col-sm-4">
                 <div class="movie_pic"><a target="_blank" href="/index.php?c=movie_detail&id=26731589" style="background:url(https://img3.doubanio.com/view/movie_poster_cover/lpst/public/p2390189660.jpg) no-repeat center; background-size: 100% 100%;" ><span class="grade">5.9</span></a></div>
                 <div class="ms">
-                  <span class="movie_name">办公室圣诞派对</span>
-                  
+                  <span class="movie_name">办公室圣诞派对</span>                  
                   <!-- <span class="type"></span> -->
                   
                 </div>
               </div><div class="wrap col-md-3 col-sm-4">
                 <div class="movie_pic"><a target="_blank" href="/index.php?c=movie_detail&id=26766397" style="background:url(https://img5.doubanio.com/view/movie_poster_cover/lpst/public/p2423179296.jpg) no-repeat center; background-size: 100% 100%;" ><span class="grade">5.1</span></a></div>
                 <div class="ms">
-                  <span class="movie_name">萤火奇兵</span>
-                  
+                  <span class="movie_name">萤火奇兵</span>                  
                   <!-- <span class="type"></span> -->
                   
                 </div>
               </div><div class="wrap col-md-3 col-sm-4">
                 <div class="movie_pic"><a target="_blank" href="/index.php?c=movie_detail&id=26767339" style="background:url(https://img1.doubanio.com/view/movie_poster_cover/lpst/public/p2329945298.jpg) no-repeat center; background-size: 100% 100%;" ><span class="grade">5.1</span></a></div>
                 <div class="ms">
-                  <span class="movie_name">惊魂太空舱</span>
-                  
+                  <span class="movie_name">惊魂太空舱</span>                  
                   <!-- <span class="type"></span> -->
                   
                 </div>
               </div><div class="wrap col-md-3 col-sm-4">
                 <div class="movie_pic"><a target="_blank" href="/index.php?c=movie_detail&id=26788944" style="background:url(https://img3.doubanio.com/view/movie_poster_cover/lpst/public/p2449387990.jpg) no-repeat center; background-size: 100% 100%;" ><span class="grade">7.8</span></a></div>
                 <div class="ms">
-                  <span class="movie_name">暗金丑岛君：完结篇</span>
-                  
+                  <span class="movie_name">暗金丑岛君：完结篇</span>                  
                   <!-- <span class="type"></span> -->
                   
                 </div>
               </div><div class="wrap col-md-3 col-sm-4">
                 <div class="movie_pic"><a target="_blank" href="/index.php?c=movie_detail&id=26815983" style="background:url(https://img5.doubanio.com/view/movie_poster_cover/lpst/public/p2382431336.jpg) no-repeat center; background-size: 100% 100%;" ><span class="grade">6.0</span></a></div>
                 <div class="ms">
-                  <span class="movie_name">她唇之下</span>
-                  
+                  <span class="movie_name">她唇之下</span>                  
                   <!-- <span class="type"></span> -->
                   
                 </div>
               </div><div class="wrap col-md-3 col-sm-4">
                 <div class="movie_pic"><a target="_blank" href="/index.php?c=movie_detail&id=26838641" style="background:url(https://img3.doubanio.com/view/movie_poster_cover/lpst/public/p2367707611.jpg) no-repeat center; background-size: 100% 100%;" ><span class="grade">5.1</span></a></div>
                 <div class="ms">
-                  <span class="movie_name">别敲两次门</span>
-                  
+                  <span class="movie_name">别敲两次门</span>                  
                   <!-- <span class="type"></span> -->
                   
                 </div>
               </div><div class="wrap col-md-3 col-sm-4">
                 <div class="movie_pic"><a target="_blank" href="/index.php?c=movie_detail&id=26853690" style="background:url(https://img3.doubanio.com/view/movie_poster_cover/lpst/public/p2387545773.jpg) no-repeat center; background-size: 100% 100%;" ><span class="grade">5.3</span></a></div>
                 <div class="ms">
-                  <span class="movie_name">人类削减计划</span>
-                  
+                  <span class="movie_name">人类削减计划</span>                  
                   <!-- <span class="type"></span> -->
                   
                 </div>
               </div><div class="wrap col-md-3 col-sm-4">
                 <div class="movie_pic"><a target="_blank" href="/index.php?c=movie_detail&id=26903992" style="background:url(https://img5.doubanio.com/view/movie_poster_cover/lpst/public/p2434618486.jpg) no-repeat center; background-size: 100% 100%;" ><span class="grade">5.9</span></a></div>
                 <div class="ms">
-                  <span class="movie_name">鬼话怪谈·祥云寺</span>
-                  
+                  <span class="movie_name">鬼话怪谈·祥云寺</span>                  
                   <!-- <span class="type"></span> -->
                   
                 </div>
@@ -354,29 +287,58 @@
   <div class="right-content">
     <ul>
       <li class="num1 curr">
-        <a target="_blank" href="/index.php?c=detail&id=44">一只狗的使命</a>
+        <a target="_blank" href="/index.php?c=detail&id=26903992">鬼话怪谈·祥云寺</a>
       </li><li class="num2 curr">
-        <a target="_blank" href="/index.php?c=detail&id=48">你的名字</a>
+        <a target="_blank" href="/index.php?c=detail&id=26853690">人类削减计划</a>
       </li><li class="num3 curr">
-        <a target="_blank" href="/index.php?c=detail&id=47">爱乐之城</a>
+        <a target="_blank" href="/index.php?c=detail&id=44">一只狗的使命</a>
       </li><li class="num4 curr">
-        <a target="_blank" href="/index.php?c=detail&id=43">美女与野兽</a>
-      </li><li class="num5 curr">
-        <a target="_blank" href="/index.php?c=detail&id=44">一只狗的使命</a>
-      </li><li class="num6 curr">
         <a target="_blank" href="/index.php?c=detail&id=48">你的名字</a>
-      </li><li class="num7 curr">
+      </li><li class="num5 curr">
         <a target="_blank" href="/index.php?c=detail&id=47">爱乐之城</a>
-      </li><li class="num8 curr">
-        <a target="_blank" href="/index.php?c=detail&id=45">金刚：骷髅岛 </a>
-      </li><li class="num9 curr">
+      </li><li class="num6 curr">
         <a target="_blank" href="/index.php?c=detail&id=43">美女与野兽</a>
-      </li><li class="num10 curr">
+      </li><li class="num7 curr">
         <a target="_blank" href="/index.php?c=detail&id=44">一只狗的使命</a>
+      </li><li class="num8 curr">
+        <a target="_blank" href="/index.php?c=detail&id=48">你的名字</a>
+      </li><li class="num9 curr">
+        <a target="_blank" href="/index.php?c=detail&id=47">爱乐之城</a>
+      </li><li class="num10 curr">
+        <a target="_blank" href="/index.php?c=detail&id=45">金刚：骷髅岛 </a>
       </li>    </ul>
   </div>
   <!--  -->
 
+          <div class="rank-title">
+    <h3>影评推荐</h3>
+    <span>Movie Recomment</span>
+  </div>
+
+  <div class="rank-content">
+    <ul>
+      <li style="margin-bottom: 10px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">
+        <a href="/index.php?c=comment&a=detail&id=708">《一条狗的使命 》影评：电影《一条狗的使命》：爱与被爱的使命</a>
+      </li><li style="margin-bottom: 10px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">
+        <a href="/index.php?c=comment&a=detail&id=706">《乘风破浪 》影评：看韩寒如何乘风破浪，连闯三重门。</a>
+      </li><li style="margin-bottom: 10px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">
+        <a href="/index.php?c=comment&a=detail&id=707">《金刚狼3：殊死一战 》影评：带着杀戮活下去很难</a>
+      </li><li style="margin-bottom: 10px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">
+        <a href="/index.php?c=comment&a=detail&id=711">《乘风破浪 》影评：握手言和的岁月</a>
+      </li><li style="margin-bottom: 10px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">
+        <a href="/index.php?c=comment&a=detail&id=710">《西游伏妖篇 》影评：被特效撑起的震撼</a>
+      </li><li style="margin-bottom: 10px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">
+        <a href="/index.php?c=comment&a=detail&id=716">萤火虫之光照耀下的哀伤 </a>
+      </li><li style="margin-bottom: 10px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">
+        <a href="/index.php?c=comment&a=detail&id=712">《西游伏妖篇 》影评：妩媚的世界需要一个妩媚的唐僧</a>
+      </li><li style="margin-bottom: 10px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">
+        <a href="/index.php?c=comment&a=detail&id=715">《长城 》影评：别让长城围住自己</a>
+      </li><li style="margin-bottom: 10px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">
+        <a href="/index.php?c=comment&a=detail&id=713">《铁道飞虎》影评：老本还能啃多久</a>
+      </li><li style="margin-bottom: 10px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">
+        <a href="/index.php?c=comment&a=detail&id=714">《摆渡人 》影评：男神演技下线是什么体验</a>
+      </li>    </ul>
+  </div>
       </div>
     </div>
   </div>
@@ -387,6 +349,7 @@
 <script type="text/javascript">
   //轮播显示
   $(function(){
+    $('body').css('background-color', '#fff');
     $('.carousel-indicators').find('li').each(function(ele){
       if($(this).hasClass('active')){
         $index = $(this).index();

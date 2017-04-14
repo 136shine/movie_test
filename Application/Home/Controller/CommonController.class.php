@@ -7,18 +7,17 @@ class CommonController extends Controller {
         parent::__construct();
     }
 
-    /**
-     * @return 获取排行的数据
-     */
-    public function getRank() {
-        $conds['status'] = 1;
-        $news = D("News")->getRank($conds,10);
-        return $news;
-    }
-
     public function error($message = '') {
         $message = $message ? $message : '系统发生错误';
         $this->assign('message',$message);
         $this->display("Index/error");
+    }
+    public function header($value='')
+    {
+        
+        $userId = $_SESSION['user']['user_id'];
+        $user = D('User')->getUserById($userId);
+        $this->assign('user',$user);
+       
     }
 }

@@ -22,6 +22,10 @@ class MovieController extends CommonController {
             'listNewMovies' => $listNewMovies,
             'listHotMovies' => $listHotMovies,
         ));
+        //头部显示登录用户
+        if($_SESSION['user']){
+            $this->header();
+        }
         
         $this->display();
     }
