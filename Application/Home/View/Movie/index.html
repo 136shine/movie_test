@@ -1,6 +1,30 @@
  <include file="Index/header" />
-   <div class="container">
+  
+  <div class="container">
     <div class="row">
+      <div class="search col-sm-6 col-md-6 col-sm-push-3 col-md-push-3">
+          <form id="search-form" method="post" autocomplete="off">
+              <input name="keyword" value="" placeholder="输入想看的电影或关键字...">
+              <input id="submit" type="submit" value="ฅ">
+          </form>
+      </div>
+    </div>
+     <div class="search_res">
+        <div class="movie-list clearfix">
+              <volist name="searchRes" id="vo">
+                <div class="movie-item col-xs-1-5 col-sm-4 col-md-3 col-xs-6">
+                  <div class="movie-pic"><a target="_blank" href="/index.php?c=movie_detail&id={$vo.movie_id}" style="background:url({$vo.pic}) no-repeat center; background-size: 100% 100%;" ><span class="grade">{$vo.grade}</span></a></div>
+                  <div class="ms">
+                    <span class="movie_name">{$vo.movie_name}</span>
+                  </div>
+                </div>
+              </volist>
+              <nav><ul style="margin-top: -8px; margin-bottom: 30px;" class="page_bottom">{$page}</ul></nav>
+        </div>
+        <div class="lineS" <if condition="$searchRes eq null">style="display:none;"</if>></div>
+      </div>
+
+    <div class="row" id="movie-re">
         <div class="col-sm-12 col-md-12 list_mode">
           <span class="tag_movie">最新推荐</span>
             <div class="movie-list clearfix">
@@ -29,7 +53,7 @@
         </div>       
     </div>
     <nav><ul style="margin-top: -8px; margin-bottom: 30px;" class="page_bottom">{$pageres}</ul></nav>
-   </div>
+  </div>
     
   </body>
 <script type="text/javascript" src="/Public/js/jquery.js"></script>
@@ -37,6 +61,31 @@
 <script type="text/javascript">
   $(function(){
     $('body').css('background-color','rgb(245,245,245)');
+
+     /**
+     * 提交form表单操作
+     */
+    $("#submit").click(function(){
+        var data = $("#search-form").serializeArray();
+        postData = {};
+        $(data).each(function(i){
+           postData[this.name] = this.value;
+        });
+        // 将获取到的数据post给服务器
+       
+        //jump_url = SCOPE.jump_url;
+        $.post('/index.php?c=movie&a=index',postData,function(result){
+            if(result.status == 1) {
+              console.log(result.status);
+                $('#movie-re').hide();
+                //成功
+                return;
+            }else if(result.status == 0) {
+                // 失败
+                return;
+            }
+        },"JSON");
+    });
   })
 </script>
 </html>

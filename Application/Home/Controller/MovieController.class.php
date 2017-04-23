@@ -26,7 +26,23 @@ class MovieController extends CommonController {
         if($_SESSION['user']){
             $this->header();
         }
-        
+        if ($_POST['keyword']) {
+            // dump($page);exit;
+            $data['movie_name'] = $_POST['keyword'];
+           // $data['movie_type'] = $_POST['keyword'];
+            $SearchMovies = D("Movie")->getMovieList($data,$page,$pageSize);
+
+            $count2 = D("Movie")->getMovieCount($data);
+            // dump($data);
+            //  dump($count);
+
+            $res2  =  new \Think\Page($count2,$pageSize);
+            $page2 = $res2->show();
+
+            $this->assign('page2',$page2);
+            $this->assign('searchRes',$SearchMovies);
+            //dump($SearchMovies);exit;
+        }
         $this->display();
     }
 }
