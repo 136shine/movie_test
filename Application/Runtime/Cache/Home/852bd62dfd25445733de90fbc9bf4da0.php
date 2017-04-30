@@ -53,9 +53,9 @@
       var urlName = url.split('c=')[1].split('&')[0];
       
       switch(urlName){
-        case 'movie': i = 1;break;
-        case 'music': i = 2;break;
-        case 'comment': i = 3;break;
+        case 'movie': case 'movie_detail':case 'Movie': i = 1;break;
+        case 'music': case 'Music':i = 2;break;
+        case 'comment':case 'Comment': i = 3;break;
         case '': i = 0;break;
       }
       $('.nav-top li').eq(i).children('a').addClass('curr').parent().siblings('li').children('a').removeClass('curr');
@@ -64,14 +64,14 @@
   
   <div class="container">
     <div class="row">
-      <div class="search col-sm-6 col-md-6 col-sm-push-3 col-md-push-3">
+      <div class="search col-sm-6 col-md-6 col-sm-pull-3 col-md-push-3">
           <form id="search-form" method="post" autocomplete="off">
               <input name="keyword" value="" placeholder="输入想看的电影或关键字...">
               <input id="submit" type="submit" value="ฅ">
           </form>
       </div>
     </div>
-     <div class="search_res">
+    <div class="search_res">
         <div class="movie-list clearfix">
               <?php if(is_array($searchRes)): $i = 0; $__LIST__ = $searchRes;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><div class="movie-item col-xs-1-5 col-sm-4 col-md-3 col-xs-6">
                   <div class="movie-pic"><a target="_blank" href="/index.php?c=movie_detail&id=<?php echo ($vo["movie_id"]); ?>" style="background:url(<?php echo ($vo["pic"]); ?>) no-repeat center; background-size: 100% 100%;" ><span class="grade"><?php echo ($vo["grade"]); ?></span></a></div>
@@ -79,9 +79,10 @@
                     <span class="movie_name"><?php echo ($vo["movie_name"]); ?></span>
                   </div>
                 </div><?php endforeach; endif; else: echo "" ;endif; ?>
+              <nav><ul style="margin-top: -8px; margin-bottom: 30px;" class="page_bottom"><?php echo ($page); ?></ul></nav>
         </div>
         <div class="lineS" <?php if($searchRes == null): ?>style="display:none;"<?php endif; ?>></div>
-      </div>
+    </div>
 
     <div class="row" id="movie-re">
         <div class="col-sm-12 col-md-12 list_mode">

@@ -23,6 +23,7 @@
     <!-- Custom Fonts -->
     <link href="/Public/css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="/Public/css/sing/common.css" />
+    <link rel="stylesheet" type="text/css" href="/Public/css/admin/main.css">
     <link rel="stylesheet" href="/Public/css/party/bootstrap-switch.css" />
     <link rel="stylesheet" type="text/css" href="/Public/css/party/uploadify.css">
 
@@ -51,7 +52,7 @@
   <!-- Brand and toggle get grouped for better mobile display -->
   <div class="navbar-header">
     
-    <a class="navbar-brand" >singcms内容管理平台</a>
+    <a class="navbar-brand" >酷影电影推荐管理平台</a>
   </div>
   <!-- Top Menu Items -->
   <ul class="nav navbar-right top-nav">
@@ -114,6 +115,7 @@
                     <table class="table table-bordered table-hover singcms-table">
                         <thead>
                         <tr>
+                            <th id="singcms-checkbox-all" width="10"><input type="checkbox"/>
                             <th>id</th>
                             <th>用户名</th>
                             <th>邮箱</th>
@@ -126,7 +128,7 @@
                         </thead>
                         <tbody>
                         <?php if(is_array($users)): $i = 0; $__LIST__ = $users;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
-                                
+                                <td><input type="checkbox" name="delCheck" value="<?php echo ($vo["user_id"]); ?>"></td>
                                 <td><?php echo ($vo["user_id"]); ?></td>
                                 <td><?php echo ($vo["username"]); ?></td>
                                 <td><?php echo ($vo["email"]); ?></td>
@@ -140,6 +142,9 @@
                         </tbody>
                     </table>
                     </form>
+                    <div class="input-group">
+                      <button id="btn-datchDel" type="button" class="btn btn-primary">批量删除</button>
+                    </div>
                     
                 </div>
             </div>
@@ -159,6 +164,7 @@
     var SCOPE = {
         'set_status_url' : '/admin.php?c=user&a=setStatus',
         'index_url' : '/',
+        'batchDel_url' : '/admin.php?c=user&a=batchDel',
 
     }
 </script>

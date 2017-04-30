@@ -21,12 +21,13 @@ class ReviewController extends CommonController {
         $movie['rank'] = $content['rank'];
         $movie['director'] = $content['director'];
         $movie['actors'] = $content['actors'];
+        
 
         $this->assign('result', array(
             'movie' => $movie,
         ));
 
-        $this->display("Detail/movie");
+        $this->display("Movie/detail");
     }
 
     public function  view() {

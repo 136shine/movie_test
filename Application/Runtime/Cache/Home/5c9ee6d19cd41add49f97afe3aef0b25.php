@@ -34,11 +34,12 @@
                     <input type="text" class="form-control" name='username'placeholder="用户名" required="">
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" name="password"placeholder="密码" required="">
+                    <input type="password" class="form-control" name="password" placeholder="密码" required="">
                 </div>
-                <button type="button" class="btn btn-primary full-width" onclick="login.check()">登录</button>
+                <button type="button" class="btn btn-primary full-width" onclick="login.check()">登&nbsp;&nbsp;&nbsp;录</button>
             </form>
        </div>
+      <div style="margin-top: 24px;text-align: right; font-size: 14px;">没有账号，请先&nbsp;&nbsp;<a href="/index.php?c=user">注册</a></div>
     </div>
 
 <script src="/Public/js/jquery.js"></script>

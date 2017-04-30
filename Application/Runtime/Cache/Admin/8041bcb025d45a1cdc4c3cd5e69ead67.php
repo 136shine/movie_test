@@ -22,6 +22,7 @@
     <!-- Custom Fonts -->
     <link href="/Public/css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="/Public/css/sing/common.css" />
+    <link rel="stylesheet" type="text/css" href="/Public/css/admin/main.css">
     <link rel="stylesheet" href="/Public/css/party/bootstrap-switch.css" />
     <link rel="stylesheet" type="text/css" href="/Public/css/party/uploadify.css">
 
@@ -49,7 +50,7 @@
   <!-- Brand and toggle get grouped for better mobile display -->
   <div class="navbar-header">
     
-    <a class="navbar-brand" >singcms内容管理平台</a>
+    <a class="navbar-brand" >酷影电影推荐管理平台</a>
   </div>
   <!-- Top Menu Items -->
   <ul class="nav navbar-right top-nav">
@@ -100,7 +101,7 @@
             </div>
         </div>
         <!-- /.row -->
-        <div >
+        <div>
             <button  id="button-add" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>添加 </button>
         </div>
 
@@ -143,7 +144,7 @@
                                 <td><input size=4 type='text'  name='listorder[<?php echo ($vo["id"]); ?>]' value="<?php echo ($vo["listorder"]); ?>"/></td>
                                 <td><?php echo ($vo["id"]); ?></td>
                                 <td><?php echo ($vo["movie_name"]); ?></td>
-                                <td><?php echo (date("Y-m-d H:i",$vo["push_time"])); ?></td>
+                                <td><?php echo ($vo["push_time"]); ?></td>
                                 <td><?php echo (isThumb($vo["pic"])); ?></td>
                                 <td>
                                     <span  attr-status="<?php if($vo['status'] == 1): ?>0<?php else: ?>1<?php endif; ?>"  attr-id="<?php echo ($vo["id"]); ?>" class="sing_cursor singcms-on-off" id="singcms-on-off" ><?php echo (status($vo["status"])); ?></span>
@@ -164,11 +165,11 @@
                       </ul>
                     </nav>
                     </from>
-                    <div>
-                        <button  id="button-listorder" type="button" class="btn btn-primary dropdown-toggle" ><span class="glyphicon glyphicon-resize-vertical" aria-hidden="true"></span>更新排序</button>
-                    </div>
+                    
                     <div class="input-group">
+                       <button  id="button-listorder" type="button" class="btn btn-primary dropdown-toggle" ><span class="glyphicon glyphicon-resize-vertical" aria-hidden="true"></span>更新排序</button>
                       <button id="btn-datchDel" type="button" class="btn btn-primary">批量删除</button>
+                      
                     </div>
                 </div>
             </div>

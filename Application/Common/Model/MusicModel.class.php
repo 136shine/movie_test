@@ -35,7 +35,7 @@ class MusicModel extends Model
         return $this->_db->add($data);
     }
 
-    //获取电影列表
+    //获取列表
   public function getList($data,$page,$pageSize=10,$rankType='listorder desc ,id desc') {
         $conditions = $data;
         //模糊查询
@@ -43,7 +43,7 @@ class MusicModel extends Model
             $conditions['movie_name'] = array('like','%'.$data['movie_name'].'%');
         }
         if(isset($data['music_name']) && $data['music_name'])  {
-            $conditions['music_name'] = intval($data['music_name']);
+            $conditions['music_name'] = array('like','%'.$data['music_name'].'%');
         }
         $conditions['status'] = array('neq',-1);
 
@@ -57,14 +57,14 @@ class MusicModel extends Model
 
     }
 
-    //获取电影总数
+    //获取总数
     public function getCount($data = array()){
         $conditions = $data;
         if(isset($data['movie_name']) && $data['movie_name']) {
             $conditions['movie_name'] = array('like','%'.$data['movie_name'].'%');
         }
         if(isset($data['music_name']) && $data['music_name'])  {
-            $conditions['music_name'] = intval($data['music_name']);
+           $conditions['music_name'] = array('like','%'.$data['music_name'].'%');
         }
         $conditions['status'] = array('neq',-1);
 

@@ -22,6 +22,7 @@
     <!-- Custom Fonts -->
     <link href="/Public/css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="/Public/css/sing/common.css" />
+    <link rel="stylesheet" type="text/css" href="/Public/css/admin/main.css">
     <link rel="stylesheet" href="/Public/css/party/bootstrap-switch.css" />
     <link rel="stylesheet" type="text/css" href="/Public/css/party/uploadify.css">
 
@@ -49,7 +50,7 @@
   <!-- Brand and toggle get grouped for better mobile display -->
   <div class="navbar-header">
     
-    <a class="navbar-brand" >singcms内容管理平台</a>
+    <a class="navbar-brand" >酷影电影推荐管理平台</a>
   </div>
   <!-- Top Menu Items -->
   <ul class="nav navbar-right top-nav">
@@ -102,7 +103,7 @@
         </div>
       </div>
       <!-- /.row -->
-      <div >
+      <div>
         <button  id="button-add" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>添加 </button>
       </div>
       <div class="row">
@@ -163,7 +164,7 @@
                       <a href="javascript:void(0)" id="singcms-delete"  attr-id="<?php echo ($movie["movie_id"]); ?>"  attr-message="删除">
                         <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
                       </a>
-                      <a target="_blank" href="/index.php?c=detail&a=view&id=<?php echo ($movie["movie_id"]); ?>" class="sing_cursor glyphicon glyphicon-eye-open" aria-hidden="true"  ></a>
+                      <!-- <a target="_blank" href="/index.php?c=detail&a=view&id=<?php echo ($movie["movie_id"]); ?>" class="sing_cursor glyphicon glyphicon-eye-open" aria-hidden="true"  ></a> -->
 
                     </td>
                   </tr><?php endforeach; endif; else: echo "" ;endif; ?>
@@ -175,15 +176,10 @@
                   <?php echo ($pageres); ?>
                 </ul>
               </nav>
-              <div>
-                <button  id="button-listorder" type="button" class="btn btn-primary dropdown-toggle" ><span class="glyphicon glyphicon-resize-vertical" aria-hidden="true"></span>更新排序</button>
-              </div>
+             
             </form>
             <div class="input-group">
-            <!--   <select class="form-control" name="position_id" id="select-push">
-              <option value="0">请选择推荐位进行推送</option>
-              <?php if(is_array($positions)): foreach($positions as $key=>$position): ?><option value="<?php echo ($position["id"]); ?>"><?php echo ($position["name"]); ?></option><?php endforeach; endif; ?>
-            </select> -->
+             <button id="button-listorder" type="button" class="btn btn-primary dropdown-toggle" ><span class="glyphicon glyphicon-resize-vertical" aria-hidden="true"></span>更新排序</button>
               <button id="singcms-push" type="button" class="btn btn-primary">推送</button>
             </div>
 

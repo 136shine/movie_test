@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>sing后台管理平台</title>
+    <title>KM后台管理平台</title>
     <!-- Bootstrap Core CSS -->
     <link href="/Public/css/bootstrap.min.css" rel="stylesheet">
 
@@ -30,6 +30,7 @@
     <script src="/Public/js/bootstrap.min.js"></script>
     <script src="/Public/js/dialog/layer.js"></script>
     <script src="/Public/js/dialog.js"></script>
+    <script src="/Public/js/kindeditor/kindeditor-all-min.js"></script>
     <script type="text/javascript" src="/Public/js/party/jquery.uploadify.js"></script>
 
 </head>
@@ -48,7 +49,7 @@
   <!-- Brand and toggle get grouped for better mobile display -->
   <div class="navbar-header">
     
-    <a class="navbar-brand" >singcms内容管理平台</a>
+    <a class="navbar-brand" >酷影电影推荐管理平台</a>
   </div>
   <!-- Top Menu Items -->
   <ul class="nav navbar-right top-nav">
@@ -130,9 +131,9 @@
 			  </div>
 			</div>
 			<div class="form-group">
-              <label for="inputname" class="col-sm-2 control-label">推荐排名:</label>
+              <label for="inputname" class="col-sm-2 control-label">推荐评分:</label>
               <div class="col-sm-5">
-                <input type="text" name="rank" value="<?php echo ($vo["rank"]); ?>" class="form-control" id="inputname" placeholder="请填写排名">
+                <input type="text" name="grade" value="<?php echo ($vo["grade"]); ?>" class="form-control" id="inputname" placeholder="请填写评分">
               </div>
             </div>
 			<div class="form-group">
@@ -176,10 +177,7 @@
 	'ajax_upload_image_url' : '/admin.php?c=image&a=ajaxuploadimage',
 	'ajax_upload_swf' : '/Public/js/party/uploadify.swf'
   };
- //  var thumb = "<?php echo ($vo["thumb"]); ?>";
- //  if(thumb) {
-	// $("#upload_org_code_img").show();
- //  }
+
 </script>
 <!-- /#wrapper -->
 <script type="text/javascript" src="/Public/js/admin/form.js"></script>

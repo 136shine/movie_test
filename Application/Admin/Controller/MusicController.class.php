@@ -13,7 +13,7 @@ class MusicController extends CommonController
 	{
 		$conds['status'] = array('neq',-1);
     	$page = $_REQUEST['p'] ? $_REQUEST['p'] : 1;
-        $pageSize = 10;
+        $pageSize = 8;
 
         $music = D("Music")->getList($conds,$page,$pageSize);
         $count = D("Music")->getCount($conds);
@@ -24,8 +24,6 @@ class MusicController extends CommonController
         $this->assign('pageres',$pageres);
 
         $this->assign('result', array(
-            // 'listNewmusics' => $listNewmusics,
-            // 'listHotmusics' => $listHotmusics,
             'music' => $music,
         ));
         

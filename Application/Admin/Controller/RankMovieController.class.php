@@ -1,7 +1,4 @@
 <?php
-/**
- * 
- */
 namespace Admin\Controller;
 use Think\Controller;
 class RankMovieController extends CommonController {

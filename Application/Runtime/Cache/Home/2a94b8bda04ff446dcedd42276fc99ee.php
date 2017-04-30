@@ -52,9 +52,9 @@
       var urlName = url.split('c=')[1].split('&')[0];
       
       switch(urlName){
-        case 'movie': i = 1;break;
-        case 'music': i = 2;break;
-        case 'comment': i = 3;break;
+        case 'movie': case 'movie_detail':case 'Movie': i = 1;break;
+        case 'music': case 'Music':i = 3;break;
+        case 'comment':case 'Comment': i = 2;break;
         case '': i = 0;break;
       }
       $('.nav-top li').eq(i).children('a').addClass('curr').parent().siblings('li').children('a').removeClass('curr');
@@ -121,7 +121,7 @@
       <!--网站右侧信息-->
       <div class="col-sm-3 col-md-3">
           <div class="right-title">
-    <h3>电影排行</h3>
+    <h3>电影推荐排行</h3>
     <span>TOP MOVIE</span>
   </div>
 
@@ -132,9 +132,7 @@
       </li><?php endforeach; endif; else: echo "" ;endif; ?>
     </ul>
   </div>
-  <!-- <?php if(is_array($result['advNews'])): $k = 0; $__LIST__ = $result['advNews'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($k % 2 );++$k;?><div class="right-hot">
-    <a target="_blank" href="<?php echo ($vo["url"]); ?>"><img src="<?php echo ($vo["thumb"]); ?>" alt="<?php echo ($vo["name"]); ?>"></a>
-  </div><?php endforeach; endif; else: echo "" ;endif; ?> -->
+
 
           <div class="rank-title">
     <h3>影评推荐</h3>

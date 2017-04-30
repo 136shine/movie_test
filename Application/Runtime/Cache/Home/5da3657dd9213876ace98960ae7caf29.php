@@ -52,9 +52,9 @@
       var urlName = url.split('c=')[1].split('&')[0];
       
       switch(urlName){
-        case 'movie': i = 1;break;
-        case 'music': i = 2;break;
-        case 'comment': i = 3;break;
+        case 'movie': case 'movie_detail':case 'Movie': i = 1;break;
+        case 'music': case 'Music':i = 3;break;
+        case 'comment':case 'Comment': i = 2;break;
         case '': i = 0;break;
       }
       $('.nav-top li').eq(i).children('a').addClass('curr').parent().siblings('li').children('a').removeClass('curr');
@@ -72,7 +72,29 @@
 			</div>
 	    </div>
 	    <div class="col-sm-9 col-md-9">
-	    	<h2 class="mu_tag">影视金曲</h2>
+	    	<div class="music_top clearfix">
+	    		<h2 class="mu_tag" style="float: left;">影视金曲</h2>
+	    		<div class="search" style="width: 400px; float: left;margin-left: 280px; top:20px;">
+		          <form id="search-form" method="post" autocomplete="off">
+		              <input name="keyword" value="" placeholder="输入想听的歌曲或相关电影关键字...">
+		              <input id="submit" type="submit" value="ฅ">
+		          </form>
+		      	</div>
+	    	</div>
+	    	<!-- <div class="search_res">
+		        <div class="movie-list clearfix">
+		              <?php if(is_array($searchRes)): $i = 0; $__LIST__ = $searchRes;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$music): $mod = ($i % 2 );++$i;?><li>
+							<a href="/index.php?c=music&a=detail&id=<?php echo ($music["id"]); ?>" data-active="playDwn" data-index="0" class="pc_temp_songname" title="<?php echo ($music["music_name"]); ?>" hidefocus="true"><img src="\Public\images\icon_music.png">&nbsp;&nbsp;<?php echo ($music["music_name"]); ?></a>
+							<span class="music_singer"><img src="\Public\images\icon_singer.png">&nbsp;&nbsp;&nbsp;<?php echo ($music["singer"]); ?></span>
+							<span class="music_mv">【 <?php echo ($music["movie_name"]); ?> 】</span>
+							<span class="music_time"><?php echo ($music["time_long"]); ?></span>
+						</li><?php endforeach; endif; else: echo "" ;endif; ?>
+		              <nav><ul style="margin-top: -8px; margin-bottom: 30px;" class="page_bottom"><?php echo ($page); ?></ul></nav>
+		        </div>
+		        <div class="lineS" <?php if($searchRes == null): ?>style="display:none;"<?php endif; ?>>
+		        </div>
+    		</div> -->
+	    	
 	        <ul class="musicWrap">
 	        	<?php if(is_array($result['listMusic'])): $i = 0; $__LIST__ = $result['listMusic'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$music): $mod = ($i % 2 );++$i;?><li>
 						
@@ -102,6 +124,31 @@
 		if(winW<960){
 			$('.plane').hide();
 		}
+
+	/**
+     * 提交form表单操作
+     */
+    $("#submit").click(function(){
+        var data = $("#search-form").serializeArray();
+        postData = {};
+        $(data).each(function(i){
+           postData[this.name] = this.value;
+        });
+        // 将获取到的数据post给服务器
+       
+        //jump_url = SCOPE.jump_url;
+        $.post('/index.php?c=music&a=index',postData,function(result){
+            if(result.status == 1) {
+              //console.log(result.status);
+                $('.musicWrap').hide();
+                //成功
+                return;
+            }else if(result.status == 0) {
+                // 失败
+                return;
+            }
+        },"JSON");
+    });
 	})
 </script>
 </html>

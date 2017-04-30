@@ -23,6 +23,7 @@
     <!-- Custom Fonts -->
     <link href="/Public/css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="/Public/css/sing/common.css" />
+    <link rel="stylesheet" type="text/css" href="/Public/css/admin/main.css">
     <link rel="stylesheet" href="/Public/css/party/bootstrap-switch.css" />
     <link rel="stylesheet" type="text/css" href="/Public/css/party/uploadify.css">
 
@@ -51,7 +52,7 @@
   <!-- Brand and toggle get grouped for better mobile display -->
   <div class="navbar-header">
     
-    <a class="navbar-brand" >singcms内容管理平台</a>
+    <a class="navbar-brand" >酷影电影推荐管理平台</a>
   </div>
   <!-- Top Menu Items -->
   <ul class="nav navbar-right top-nav">
@@ -106,8 +107,10 @@
         </div>
         <!-- /.row -->
         <div class="row">
-            <form action="/admin.php" method="get">
-
+            <div>
+              <button  id="button-add" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>添加 </button>
+            </div>
+            <form action="/admin.php" method="get" style="width: 600px; margin-left: 30px;">
                 <div class="input-group">
                     <span class="input-group-addon">类型</span>
                     <select class="form-control" name="type">
@@ -117,18 +120,14 @@
                         <option value="0" <?php if($type == 0): ?>selected="selected"<?php endif; ?>>前端导航</option>
                     <lect>
                 </div>
-
                 <input type="hidden" name="c" value="menu"/>
                 <input type="hidden" name="a" value="index"/>
                 <span class="input-group-btn">
                   <button id="sub_data" type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-search"></i><tton>
                 </span>
-
             </form>
         </div>
-        <div>
-          <button  id="button-add" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>添加 </button>
-        </div>
+     
         <div class="row">
             <div class="col-lg-6">
                 <h3></h3>
@@ -137,6 +136,7 @@
                     <table class="table table-bordered table-hover singcms-table">
                         <thead>
                         <tr>
+                            <th id="singcms-checkbox-all" width="10"><input type="checkbox"/></th>
                             <th width="14">排序</th>
                             <th>id</th>
                             <th>菜单名</th>
@@ -148,6 +148,7 @@
                         </thead>
                         <tbody>
                         <?php if(is_array($menus)): $i = 0; $__LIST__ = $menus;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$menu): $mod = ($i % 2 );++$i;?><tr>
+                                <td><input type="checkbox" name="delCheck" value="<?php echo ($menu["menu_id"]); ?>"></td>
                                 <td><input size="4" type="text" name="listorder[<?php echo ($menu["menu_id"]); ?>]" value="<?php echo ($menu["listorder"]); ?>"/></td>
                                 <td><?php echo ($menu["menu_id"]); ?></td>
                                 <td><?php echo ($menu["name"]); ?></td>
@@ -166,7 +167,10 @@
                         </ul>
                     </nav>
                     <div>
-                        <button  id="button-listorder" type="button" class="btn btn-primary dropdown-toggle" ><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>更新排序 </button>
+                        <button  id="button-listorder" type="button" class="btn btn-primary dropdown-toggle" ><span class="glyphicon glyphicon-resize-vertical" aria-hidden="true"></span>更新排序 </button>
+                    </div>
+                    <div class="input-group">
+                      <button id="btn-datchDel" type="button" class="btn btn-primary">批量删除</button>
                     </div>
                 </div>
             </div>
@@ -192,6 +196,7 @@
         'edit_url' : '/admin.php?c=menu&a=edit',
         'set_status_url' : '/admin.php?c=menu&a=setStatus',
         'listorder_url' : '/admin.php?c=menu&a=listorder',
+        'batchDel_url' : '/admin.php?c=menu&a=batchDel',
 
     }
 </script>

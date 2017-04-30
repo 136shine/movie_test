@@ -52,9 +52,9 @@
       var urlName = url.split('c=')[1].split('&')[0];
       
       switch(urlName){
-        case 'movie': i = 1;break;
-        case 'music': i = 2;break;
-        case 'comment': i = 3;break;
+        case 'movie': case 'movie_detail':case 'Movie': i = 1;break;
+        case 'music': case 'Music':i = 2;break;
+        case 'comment':case 'Comment': i = 3;break;
         case '': i = 0;break;
       }
       $('.nav-top li').eq(i).children('a').addClass('curr').parent().siblings('li').children('a').removeClass('curr');
@@ -92,56 +92,57 @@
 						<span class="tag">影片评论</span>
            			 	<div class="row">
 							<div class="col-xs-12">
-								<div style="margin:20px 0px;">
-									<div <?php if(($result['review'] != null)): ?>style="display:none;"<?php endif; ?> class="none">
-										暂无评论
+								<!-- <form> -->
+									<div style="margin:20px 0px;">
+										<div <?php if(($result['review'] != null)): ?>style="display:none;"<?php endif; ?> class="none">
+											暂无评论
+										</div>
+										<?php if(is_array($result['review'])): $k = 0; $__LIST__ = $result['review'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($k % 2 );++$k;?><hr class="dline">
+										    <table id="commentTab" name="comment">
+										        <tbody>
+										            <tr>
+											            <td width="38px" valign="top" align="center">
+											                <a><img style="width:100%;border-radius:50%;" title="" src="<?php echo ($vo["avator"]); ?>"></a>
+											            </td>
+										            	<td width="10px"></td>
+										            	<td width="auto">
+											                <div class="reply-author">
+											                    <a><?php echo ($vo["username"]); ?></a>
+											                    <div class="reply-right" style="float: right;">
+											                    	<em style="margin-right: 16px;"><?php echo ($vo["time"]); ?></em>
+											                    	<a>#<?php echo ($k); ?></a>
+											                    </div>
+											                </div>
+										                	<div class="reply-content">
+										                		<?php echo ($vo["content"]); ?>
+											                	<!-- <div style="overflow:auto;text-align:right;font-size:13px;">
+													               	 <a href="javascript:;" onclick="zan(1417)">赞(0)</a>
+													                | <a href="javascript:;" onclick="cai(1417)">踩(0)</a>
+													                | <a href="javascript:;" onclick="replyto(1417,'严易易')">回复</a>
+											                	</div> -->
+										                	</div>
+										              	</td>
+										            </tr>
+										        </tbody>
+										    </table><?php endforeach; endif; else: echo "" ;endif; ?>
 									</div>
-									<?php if(is_array($result['review'])): $k = 0; $__LIST__ = $result['review'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($k % 2 );++$k;?><hr class="dline">
-									    <table id="commentTab" name="comment">
-									        <tbody>
-									            <tr>
-										            <td width="38px" valign="top" align="center">
-										                <a><img style="width:100%;border-radius:50%;" title="" src="<?php echo ($vo["avator"]); ?>"></a>
-										            </td>
-									            	<td width="10px"></td>
-									            	<td width="auto">
-										                <div class="reply-author">
-										                    <a><?php echo ($vo["username"]); ?></a>
-										                    <div class="reply-right" style="float: right;">
-										                    	<em style="margin-right: 16px;"><?php echo ($vo["time"]); ?></em>
-										                    	<a>#<?php echo ($k); ?></a>
-										                    </div>
-										                </div>
-									                	<div class="reply-content">
-									                		<?php echo ($vo["content"]); ?>
-										                	<!-- <div style="overflow:auto;text-align:right;font-size:13px;">
-												               	 <a href="javascript:;" onclick="zan(1417)">赞(0)</a>
-												                | <a href="javascript:;" onclick="cai(1417)">踩(0)</a>
-												                | <a href="javascript:;" onclick="replyto(1417,'严易易')">回复</a>
-										                	</div> -->
-									                	</div>
-									              	</td>
-									            </tr>
-									           
-									        </tbody>
-									    </table><?php endforeach; endif; else: echo "" ;endif; ?>
-								</div>
-								<div class="replyTab">
-						            <div class="panel panel-default list-head reply-box" id="reply-box">
-						            <div class="panel-heading title-breadcrumb"><div id="reply-to-box">发表：</div></div>
-						            <div class="panel-body"><textarea id="replycontent" class="form-control" rows="8"></textarea></div>
-						            <div class="panel-footer"><a><button id="re_btn" type="submit" class="btn btn-primary btn-block" onclick="replay(<?php echo $isLogin; ?>)">发表</button></a></div>
-							        </div>
-							    </div>
+									<div class="replyTab">
+							            <div class="panel panel-default list-head reply-box" id="reply-box">
+							            <div class="panel-heading title-breadcrumb"><div id="reply-to-box">发表：</div></div>
+							            <div class="panel-body"><textarea id="replycontent" class="form-control" rows="8"></textarea></div>
+							            <div class="panel-footer"><a><button id="re_btn" type="submit" class="btn btn-primary btn-block" onclick="replay(<?php echo $isLogin; ?>)">发表</button></a></div>
+								        </div>
+								    </div>
+								    <div><span>友情提示：</span>登录之后，才能评论</div>
+								<!-- </form> -->
           					</div>
-          					
 						</div>
 					</div>
 				</div>
 
 				 <div class="col-sm-3 col-md-3 recomment" style="padding:0 22px;">
 			          <div class="right-title">
-    <h3>电影排行</h3>
+    <h3>电影推荐排行</h3>
     <span>TOP MOVIE</span>
   </div>
 
@@ -152,9 +153,7 @@
       </li><?php endforeach; endif; else: echo "" ;endif; ?>
     </ul>
   </div>
-  <!-- <?php if(is_array($result['advNews'])): $k = 0; $__LIST__ = $result['advNews'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($k % 2 );++$k;?><div class="right-hot">
-    <a target="_blank" href="<?php echo ($vo["url"]); ?>"><img src="<?php echo ($vo["thumb"]); ?>" alt="<?php echo ($vo["name"]); ?>"></a>
-  </div><?php endforeach; endif; else: echo "" ;endif; ?> -->
+
 
 			          <div class="rank-title">
     <h3>影评推荐</h3>
@@ -179,7 +178,6 @@
 <script type="text/javascript" src="/Public/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/Public/js/admin/common.js"></script>
 <script type="text/javascript" src="/Public/js/dialog/layer.js"></script>
-<script type="text/javascript" src="/Public/js/dialog"></script>
 <script type="text/javascript" src="/Public/js/dialog.js"></script>
 <script type="text/javascript">
 	$(function(){
@@ -214,48 +212,5 @@
 	        }
 	    },"JSON");
 	}
-
-	// $("#re_btn").click(function(){
-	// 	if(!$isLogin){
-	// 		return dialog.error('您还没有登录！请先登录再评论');
-	// 	}
-	// 	var postData = {};
-	//     postData['content'] = $("#replycontent").val();
-	//     var href = window.location.href;
-	//     var id = href.split('&id=')[1];
-	//     postData['id'] = id;
-
-	//     // 将获取到的数据post给服务器
-	//     var url ='/index.php?c=movie_detail&a=add&id='+id;
-	   
-	//     $.post(url,postData,function(result){
-	//         if(result.status == 1) {
-	//             //成功
-	//             $("#replycontent").val('');
-	//             return dialog.success(result.message,'/index.php?c=movie_detail&a=view&id='+id);
-	//         }else if(result.status == 0) {
-	//             // 失败
-	//             return dialog.error(result.message);
-	//         }
-	//     },"JSON");
-	// });
-// $(function() {
-//     var options={"currentPage":1,"totalPages":1,"totalCount":5,"numberOfPages":10,"bootstrapMajorVersion":3,"size":"small","alignment":"right"};
-//     options['itemContainerClass'] = function (type, page, current) {
-//         return (page === current) ? "active" : "pointer-cursor";
-//     }
-//     options['pageUrl'] = function(type, page, current){
-//         return "javascript:;";
-//     }
-//     options['onPageClicked'] = function(e,originalEvent,type,page){
-//         originalEvent.preventDefault();
-//         originalEvent.stopPropagation();
-//         $.get('/comment/commentList/movie/204990/'+page,function(data,status){
-//                 $('.comment').html(data);
-//             }
-//         );
-//     };
-//     $('#pager').bootstrapPaginator(options);
-// });
 </script>
 </html>

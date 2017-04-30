@@ -2,14 +2,14 @@
   
   <div class="container">
     <div class="row">
-      <div class="search col-sm-6 col-md-6 col-sm-push-3 col-md-push-3">
+      <div class="search col-sm-6 col-md-6 col-sm-pull-3 col-md-push-3">
           <form id="search-form" method="post" autocomplete="off">
               <input name="keyword" value="" placeholder="输入想看的电影或关键字...">
               <input id="submit" type="submit" value="ฅ">
           </form>
       </div>
     </div>
-     <div class="search_res">
+    <div class="search_res">
         <div class="movie-list clearfix">
               <volist name="searchRes" id="vo">
                 <div class="movie-item col-xs-1-5 col-sm-4 col-md-3 col-xs-6">
@@ -22,7 +22,7 @@
               <nav><ul style="margin-top: -8px; margin-bottom: 30px;" class="page_bottom">{$page}</ul></nav>
         </div>
         <div class="lineS" <if condition="$searchRes eq null">style="display:none;"</if>></div>
-      </div>
+    </div>
 
     <div class="row" id="movie-re">
         <div class="col-sm-12 col-md-12 list_mode">

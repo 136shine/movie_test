@@ -49,13 +49,12 @@ class MovieDetailController extends CommonController {
            $data['content'] = $_POST['content'];
            $data['avator'] = $_POST['avator'];
         }
-        
-        $data['time'] = Date('Y-m-d H:i:s');
+        $res = D('movie')->find($data['movie_id']);
+        $data['movie_name'] = $res['movie_name'];
 
+        $data['time'] = Date('Y-m-d H:i:s');
         $data['username'] = $_SESSION['user']['username'];
-        $data['user_id'] = $_SESSION['user']['user_id'];
-       
-                
+        // $data['user_id'] = $_SESSION['user']['user_id'];
         $ret = D('Review')->insert($data);
         return show(1,'发表成功');
        

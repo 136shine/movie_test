@@ -36,11 +36,13 @@
                 <div class="form-group">
                     <input type="password" class="form-control" name="password"placeholder="密码" required="">
                 </div>
-                <button type="button" class="btn btn-primary full-width" onclick="register.check()">注册</button>
+                <button type="button" class="btn btn-primary full-width" onclick="register.check()">注&nbsp;&nbsp;&nbsp;册</button>
             </form>
-       </div>
-    </div>
 
+       </div>
+    <div style="margin-top: 24px;text-align: right; font-size: 14px;">已有账号，直接&nbsp;&nbsp;<a href="/index.php?c=user&a=login">登录</a></div>
+    </div>
+    
 <script src="/Public/js/jquery.js"></script>
 <script src="/Public/js/dialog/layer.js"></script>
 <script src="/Public/js/dialog.js"></script>

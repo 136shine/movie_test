@@ -22,6 +22,7 @@
     <!-- Custom Fonts -->
     <link href="/Public/css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="/Public/css/sing/common.css" />
+    <link rel="stylesheet" type="text/css" href="/Public/css/admin/main.css">
     <link rel="stylesheet" href="/Public/css/party/bootstrap-switch.css" />
     <link rel="stylesheet" type="text/css" href="/Public/css/party/uploadify.css">
 
@@ -50,7 +51,7 @@
   <!-- Brand and toggle get grouped for better mobile display -->
   <div class="navbar-header">
     
-    <a class="navbar-brand" >singcms内容管理平台</a>
+    <a class="navbar-brand" >酷影电影推荐管理平台</a>
   </div>
   <!-- Top Menu Items -->
   <ul class="nav navbar-right top-nav">
@@ -93,14 +94,17 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">
-                    您好<?php echo getLoginUsername()?>!欢迎使用KM 酷影 管理平台
+                    您好<?php echo getLoginUsername()?>! 欢迎使用KM 酷影 管理平台
                 </h1>
-                <ol class="breadcrumb">
-                    <li class="active">
-                        <i class="fa fa-dashboard"></i> 平台整理指标
-                    </li>
-                </ol>
             </div>
+        </div>
+        <div class="row" style="height: 500px;">
+            <div class="col-md-12 col-sm-12" style="text-align: center;">
+                <h2>Welcome to Website of Cool Movie</h2>
+                <p style="width: 600px;margin:20px auto 0;font-size: 16px;color: #090909;">酷影电影推荐平台主要是一个电影推荐平台，用户可以浏览电影相关信息、并可以进行评论、还可以阅读电影的影评，同时可以聆听影视中的相关歌曲，为您带来全面服务、全新感受。</p>
+                <div style="width: 260px;height: 200px;margin:60px auto 0;"><img style="display:inline-block; width: 100%;" src="/Public/images/timg.jpg"></div>
+            </div>
+            
         </div>
 
 

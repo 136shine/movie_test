@@ -3,8 +3,8 @@ namespace Common\Model;
 use Think\Model;
 
 /**
- * 文章内容model操作
- * @author  singwa
+ * 评论model操作
+ * @author  ada
  */
 class ReviewModel extends Model {
     private $_db = '';
@@ -40,7 +40,7 @@ class ReviewModel extends Model {
 
         $offset = ($page - 1) * $pageSize;
         $list = $this->_db->where($conditions)
-            ->order('listorder desc ,id desc')
+            ->order('id asc')
             ->limit($offset,$pageSize)
             ->select();
 
@@ -96,7 +96,7 @@ class ReviewModel extends Model {
         return $this->_db->where('id='.$id)->save($data);
     }
 
-    public function getMovieByCommIdIn($commIds) {
+    public function getReviewIn($commIds) {
         if(!is_array($commIds)) {
             throw_exception("参数不合法");
         }

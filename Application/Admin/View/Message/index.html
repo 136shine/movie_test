@@ -13,16 +13,16 @@
 
           <ol class="breadcrumb">
             <li>
-              <i class="fa fa-dashboard"></i>  <a href="/admin.php?c=comment">影评管理</a>
+              <i class="fa fa-dashboard"></i>  <a href="/admin.php?c=message">电影管理</a>
             </li>
             <li class="active">
-              <i class="fa fa-table"></i>影评列表
+              <i class="fa fa-table"></i>电影列表
             </li>
           </ol>
         </div>
       </div>
       <!-- /.row -->
-      <div >
+      <div>
         <button  id="button-add" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>添加 </button>
       </div>
       <div class="row">
@@ -38,7 +38,7 @@
               </select>
             </div>
           </div>
-          <input type="hidden" name="c" value="comment"/>
+          <input type="hidden" name="c" value="message"/>
           <input type="hidden" name="a" value="index"/>
           <div class="col-md-3">
             <div class="input-group">
@@ -59,33 +59,32 @@
                 <thead>
                 <tr>
                   <th id="singcms-checkbox-all" width="10"><input type="checkbox"/></th>
-                  <th width="14">排序</th><!--6.7-->
+                  <!-- <th width="14">排序</th> --><!--6.7-->
                   <th>id</th>
-                  <th>电影名字</th>
-                  <th>标题</th>
-                  <th>作者</th>
-                  <th>发表时间</th>
+                  <th>电影名</th>
+                  <th>用户名</th>
+                  <th>用户头像</th>
+                  <th>内容</th>
+                  <th>上映时间</th>
                   <th>状态</th>
                   <th>操作</th>
                 </tr>
                 </thead>
                 <tbody>
-                <volist name="comment" id="comm">
+                <volist name="message" id="message">
                   <tr>
-                    <td><input type="checkbox" name="delCheck" value="{$comm.id}"></td>
-                    <td><input size=4 type='text' name='listorder[{$comm.id}]' value="{$comm.listorder}"/></td>
-                    <td>{$comm.id}</td>
-                    <td>{$comm.movie_name}</td>
-                    <td>{$comm.title}</td>
-                    <td>{$comm.author}</td>
-                    <td>{$comm.time}</td>
-                    <td><span  attr-status="<if condition="$comm['status'] eq 1">0<else/>1</if>"  attr-id="{$comm.id}" class="sing_cursor singcms-on-off" id="singcms-on-off" >{$comm.status|status}</span></td>
-                    <td><span class="sing_cursor glyphicon glyphicon-edit" aria-hidden="true" id="singcms-edit" attr-id="{$comm.id}" ></span>
-                      <a href="javascript:void(0)" id="singcms-delete"  attr-id="{$comm.id}"  attr-message="删除">
+                    <td><input type="checkbox" name="delCheck" value="{$message.id}"></td>
+                    <td>{$message.id}</td>
+                    <td>{$message.movie_name}</td>
+                    <td>{$message.username}</td>
+                    <td>{$message.avator|isThumb}</td>
+                    <td>{$message.content}</td>
+                    <td>{$message.time}</td>
+                    <td><span  attr-status="<if condition="$message['status'] eq 1">0<else/>1</if>"  attr-id="{$message.id}" class="sing_cursor singcms-on-off" id="singcms-on-off" >{$message.status|status}</span></td>
+                    <td>
+                      <a href="javascript:void(0)" id="singcms-delete"  attr-id="{$message.id}"  attr-message="删除">
                         <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
                       </a>
-                      <!-- <a target="_blank" href="/index.php?c=detail&a=view&id={$comm.id}" class="sing_cursor glyphicon glyphicon-eye-open" aria-hidden="true"  ></a> -->
-
                     </td>
                   </tr>
                 </volist>
@@ -93,26 +92,21 @@
                 </tbody>
               </table>
               <nav>
-
-              <ul >
-                {$pageres}
-              </ul>
-
-            </nav>
-              <div>
-                <button  id="button-listorder" type="button" class="btn btn-primary dropdown-toggle" ><span class="glyphicon glyphicon-resize-vertical" aria-hidden="true"></span>更新排序</button>
-              </div>
+                <ul >
+                  {$pageres}
+                </ul>
+              </nav>
+             
             </form>
             <div class="input-group">
               <button id="btn-datchDel" type="button" class="btn btn-primary">批量删除</button>
             </div>
+
+          </div>
         </div>
 
       </div>
       <!-- /.row -->
-
-
-
     </div>
     <!-- /.container-fluid -->
 
@@ -123,12 +117,9 @@
 <!-- /#wrapper -->
 <script>
   var SCOPE = {
-    'edit_url' : '/admin.php?c=comment&a=edit',
-    'add_url' : '/admin.php?c=comment&a=add',
-    'set_status_url' : '/admin.php?c=comment&a=setStatus',
-    'sing_comms_view_url' : '/index.php?c=view',
-    'listorder_url' : '/admin.php?c=comment&a=listorder',
-    'batchDel_url' : '/admin.php?c=comment&a=batchDel',
+    'set_status_url' : '/admin.php?c=message&a=setStatus',
+    'sing_messages_view_url' : '/index.php?c=view',
+    'batchDel_url' : '/admin.php?c=message&a=batchDel',
   }
 </script>
 <include file="Index/footer" />

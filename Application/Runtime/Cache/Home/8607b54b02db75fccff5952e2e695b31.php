@@ -52,9 +52,9 @@
       var urlName = url.split('c=')[1].split('&')[0];
       
       switch(urlName){
-        case 'movie': i = 1;break;
-        case 'music': i = 2;break;
-        case 'comment': i = 3;break;
+        case 'movie': case 'movie_detail':case 'Movie': i = 1;break;
+        case 'music': case 'Music':i = 3;break;
+        case 'comment':case 'Comment': i = 2;break;
         case '': i = 0;break;
       }
       $('.nav-top li').eq(i).children('a').addClass('curr').parent().siblings('li').children('a').removeClass('curr');
@@ -77,20 +77,24 @@
 		    		<div class="pic"><img src="<?php echo ($listmu["pic"]); ?>" alt="歌手"></div>
 		    		<p>歌曲：<?php echo ($listmu["music_name"]); ?></p>
 		    		<p>歌手：<?php echo ($listmu["singer"]); ?></p>
+
+		    		<div class="play">
+						<audio id="myaudio" controls="controls">
+				            <source src="<?php echo ($listmu["url"]); ?>">
+				        </audio>
+				    </div>
 		    		<!-- <div class="in_after"></div> -->
 		    	</div>
 
 		    	<div class="lyrics">
 		    		<!-- <p class=""><?php echo ($listmu["music_name"]); ?></p> -->
 		    		<p style="display: none;"><?php echo ($listmu["content"]); ?></p>
+					
 		    	</div>
+
 	    	</div>
 	    	
-	    	<div class="play">
-				<audio id="myaudio" controls="controls">
-		            <source src="<?php echo ($listmu["url"]); ?>">
-		        </audio>
-		    </div>
+	    	
 	
 	    </div>
  	</div>
@@ -107,26 +111,48 @@
 		var str = $('.lyrics p').text();
 		var s=str.replace(/\[.*\]/g,"\n");
 
-		$('.lyrics').html("<div class='lyrics_wrap'><pre>"+s+"</pre></div>");
+		$('.lyrics').html("<div class='lyrics_wrap'><pre>"+s+"</pre></div><a class='con_open' style='display: block;text-align:left;text-indent:50px; color:blue; cursor:pointer;'>展开 <img src='/Public/images/arrow_down.png' /></a>");
 
 		function play(){
-			var iTop = $('pre').offset().top;
-			$('pre').offset({'top':iTop-60});
+			// var iTop = $('pre').offset().top;
+			// $('pre').offset({'top':iTop-60});
 			$('.pic').addClass('active');
 		}
 		var timer = null;
 		var myaudio = document.getElementById('myaudio');
 		
 			myaudio.onpause = function(){
-				clearInterval(timer);
+				// clearInterval(timer);
 				$('.pic').removeClass('active');
 			}
 			myaudio.onplay = function(){
-				timer = setInterval(play,4000);
+				play();
+				// timer = setInterval(play,6000);
 			}
-		
 
+		var iTop = $('pre').offset().top;
+		var iNow = 0;
 
+			$('.con_open').click(function(){
+				if (iNow === 0) {
+					iNow++;
+					var preH = $('pre').height();
+					$('.lyrics_wrap').css({'overflow':'visible','height':(preH+30)+'px'});
+					$(this).attr('class','con_close');
+					$(this).html("收起 <img src='/Public/images/arrow_up.png' />");
+				}else{
+					iNow--; 
+					console.log("asd"+iNow);
+					
+					$('.lyrics_wrap').css({'overflow':'hidden','height':'400px'});
+					
+					$(this).html("展开 <img src='/Public/images/arrow_down.png' />");
+				}
+			});
+
+			
+				
+			
 	})
 </script>
 </html>

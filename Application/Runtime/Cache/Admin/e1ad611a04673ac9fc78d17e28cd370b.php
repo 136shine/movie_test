@@ -94,7 +94,7 @@
 
           <ol class="breadcrumb">
             <li>
-              <i class="fa fa-dashboard"></i>  <a href="/admin.php?c=music">电影管理</a>
+              <i class="fa fa-dashboard"></i>  <a href="/admin.php?c=message">电影管理</a>
             </li>
             <li class="active">
               <i class="fa fa-table"></i>电影列表
@@ -103,7 +103,7 @@
         </div>
       </div>
       <!-- /.row -->
-      <div >
+      <div>
         <button  id="button-add" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>添加 </button>
       </div>
       <div class="row">
@@ -117,7 +117,7 @@
               </select>
             </div>
           </div>
-          <input type="hidden" name="c" value="music"/>
+          <input type="hidden" name="c" value="message"/>
           <input type="hidden" name="a" value="index"/>
           <div class="col-md-3">
             <div class="input-group">
@@ -138,34 +138,31 @@
                 <thead>
                 <tr>
                   <th id="singcms-checkbox-all" width="10"><input type="checkbox"/></th>
-                  <th width="14">排序</th><!--6.7-->
+                  <!-- <th width="14">排序</th> --><!--6.7-->
                   <th>id</th>
-                  <th>歌名</th>
-                  <th>影视名</th>
-                  <th>歌手</th>
-                  <th>封面图</th>
-                  <th>时长</th>
+                  <th>电影名</th>
+                  <th>用户名</th>
+                  <th>用户头像</th>
+                  <th>内容</th>
+                  <th>上映时间</th>
                   <th>状态</th>
                   <th>操作</th>
                 </tr>
                 </thead>
                 <tbody>
-                <?php if(is_array($result['music'])): $i = 0; $__LIST__ = $result['music'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$music): $mod = ($i % 2 );++$i;?><tr>
-                    <td><input type="checkbox" name="delCheck" value="<?php echo ($music["id"]); ?>"></td>
-                     <td><input size=4 type='text' name='listorder[<?php echo ($music["id"]); ?>]' value="<?php echo ($music["listorder"]); ?>"/></td>
-                    <td><?php echo ($music["id"]); ?></td>
-                    <td><?php echo ($music["music_name"]); ?></td>
-                    <td><?php echo ($music["movie_name"]); ?></td>
-                    <td><?php echo ($music["singer"]); ?></td>
-                    <td><?php echo (isThumb($music["pic"])); ?></td>
-                    <td><?php echo ($music["time_long"]); ?></td>
-                    <td><span  attr-status="<?php if($music['status'] == 1): ?>0<?php else: ?>1<?php endif; ?>"  attr-id="<?php echo ($music["id"]); ?>" class="sing_cursor singcms-on-off" id="singcms-on-off" ><?php echo (status($music["status"])); ?></span></td>
-                    <td><span class="sing_cursor glyphicon glyphicon-edit" aria-hidden="true" id="singcms-edit" attr-id="<?php echo ($music["id"]); ?>" ></span>
-                      <a href="javascript:void(0)" id="singcms-delete" attr-id="<?php echo ($music["id"]); ?>" attr-message="删除">
+                <?php if(is_array($message)): $i = 0; $__LIST__ = $message;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$message): $mod = ($i % 2 );++$i;?><tr>
+                    <td><input type="checkbox" name="delCheck" value="<?php echo ($message["id"]); ?>"></td>
+                    <td><?php echo ($message["id"]); ?></td>
+                    <td><?php echo ($message["movie_name"]); ?></td>
+                    <td><?php echo ($message["username"]); ?></td>
+                    <td><?php echo (isThumb($message["avator"])); ?></td>
+                    <td><?php echo ($message["content"]); ?></td>
+                    <td><?php echo ($message["time"]); ?></td>
+                    <td><span  attr-status="<?php if($message['status'] == 1): ?>0<?php else: ?>1<?php endif; ?>"  attr-id="<?php echo ($message["id"]); ?>" class="sing_cursor singcms-on-off" id="singcms-on-off" ><?php echo (status($message["status"])); ?></span></td>
+                    <td>
+                      <a href="javascript:void(0)" id="singcms-delete"  attr-id="<?php echo ($message["id"]); ?>"  attr-message="删除">
                         <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
                       </a>
-                      <!-- <a target="_blank" href="/index.php?c=detail&a=view&id=<?php echo ($music["id"]); ?>" class="sing_cursor glyphicon glyphicon-eye-open" aria-hidden="true"  ></a> -->
-
                     </td>
                   </tr><?php endforeach; endif; else: echo "" ;endif; ?>
 
@@ -176,10 +173,9 @@
                   <?php echo ($pageres); ?>
                 </ul>
               </nav>
-              
+             
             </form>
             <div class="input-group">
-              <button  id="button-listorder" type="button" class="btn btn-primary dropdown-toggle" ><span class="glyphicon glyphicon-resize-vertical" aria-hidden="true"></span>更新排序</button>
               <button id="btn-datchDel" type="button" class="btn btn-primary">批量删除</button>
             </div>
 
@@ -188,9 +184,6 @@
 
       </div>
       <!-- /.row -->
-
-
-
     </div>
     <!-- /.container-fluid -->
 
@@ -201,12 +194,9 @@
 <!-- /#wrapper -->
 <script>
   var SCOPE = {
-    'edit_url' : '/admin.php?c=music&a=edit',
-    'add_url' : '/admin.php?c=music&a=add',
-    'set_status_url' : '/admin.php?c=music&a=setStatus',
-    'sing_musics_view_url' : '/index.php?c=view',
-    'listorder_url' : '/admin.php?c=music&a=listorder',
-    'batchDel_url' : '/admin.php?c=music&a=batchDel',
+    'set_status_url' : '/admin.php?c=message&a=setStatus',
+    'sing_messages_view_url' : '/index.php?c=view',
+    'batchDel_url' : '/admin.php?c=message&a=batchDel',
   }
 </script>
 <script src="/Public/js/admin/common.js"></script>

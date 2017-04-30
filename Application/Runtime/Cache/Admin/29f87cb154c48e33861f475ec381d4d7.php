@@ -22,6 +22,7 @@
     <!-- Custom Fonts -->
     <link href="/Public/css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="/Public/css/sing/common.css" />
+    <link rel="stylesheet" type="text/css" href="/Public/css/admin/main.css">
     <link rel="stylesheet" href="/Public/css/party/bootstrap-switch.css" />
     <link rel="stylesheet" type="text/css" href="/Public/css/party/uploadify.css">
 
@@ -49,7 +50,7 @@
   <!-- Brand and toggle get grouped for better mobile display -->
   <div class="navbar-header">
     
-    <a class="navbar-brand" >singcms内容管理平台</a>
+    <a class="navbar-brand" >酷影电影推荐管理平台</a>
   </div>
   <!-- Top Menu Items -->
   <ul class="nav navbar-right top-nav">
@@ -120,6 +121,14 @@
                 <input id="file_upload" type="file" multiple="true" >
                 <img style="display: none" id="upload_org_code_img" src="" width="150" height="150">
                 <input id="file_upload_image" name="pic" type="hidden" multiple="true" value="">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputname" class="col-sm-2 control-label">大图:</label>
+              <div class="col-sm-5">
+                <input id="img_upload" type="file" multiple="true" >
+                <img style="display: none" id="upload_org_big_pic" src="" width="300" height="150">
+                <input id="file_upload_big_pic" name="big_pic" type="hidden" multiple="true" value="">
               </div>
             </div>
             

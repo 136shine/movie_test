@@ -6,28 +6,31 @@ use Think\Exception;
 class MusicController extends CommonController {
     public function index(){
 
-         //分页
-        $conds['status'] = array('neq',-1);
-        $page = $_REQUEST['p'] ? $_REQUEST['p'] : 1;
-        $pageSize = 10;
-
-        $listMusic = D("Music")->getList($conds,$page,$pageSize);
-        $count = D("Music")->getCount($conds);
-        $res  =  new \Think\Page($count,$pageSize);
-        $pageres = $res->show();
-        $this->assign('pageres',$pageres);
-
-        $rankMovie = D("RankMovie")->select(array('status'=>1),10);
-
-  
         //头部显示登录用户
         if($_SESSION['user']){
             $this->header();
         }
 
+        if ($_POST['keyword']) {
+            $data['status'] = array('neq',-1);
+            $data['music_name'] = $_POST['keyword'];
+        }else{
+            $data['status'] = array('neq',-1);
+        }
+
+        //分页
+        $page = $_REQUEST['p'] ? $_REQUEST['p'] : 1;
+        $pageSize = 10;
+
+        $listMusic = D("Music")->getList($data,$page,$pageSize);
+
+        $count = D("Music")->getCount($data);
+
+        $res  =  new \Think\Page($count,$pageSize);
+        $pageres = $res->show();
+        $this->assign('pageres',$pageres);
         $this->assign('result', array(
-            'rankMovies' => $rankMovie,
-            'listMusic' => $listMusic,
+                'listMusic' => $listMusic,
         ));
         
         $this->display();
@@ -38,7 +41,10 @@ class MusicController extends CommonController {
         $listmu = D("Music")->find($id);
         $this->assign('listmu' , $listmu );
         
-        $this->header();
+        //头部显示登录用户
+        if($_SESSION['user']){
+            $this->header();
+        }
         $this->display(Music/detail);
     }
 }
