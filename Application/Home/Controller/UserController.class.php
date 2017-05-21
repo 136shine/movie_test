@@ -85,14 +85,15 @@ class UserController extends Controller {
             if(!isset($_POST['phone']) || !$_POST['phone']) {
                 return show(0,'电话不存在');
             }
-            if(!isset($_POST['sex']) || !$_POST['sex']) {
-                return show(0,'性别不存在');
-            }
-            $userId = D("User")->insert($_POST);
+            // if(!isset($_POST['sex']) || !$_POST['sex']) {
+            //     return show(0,'性别不存在');
+            // }
 
+            $userId = D("User")->insert($_POST);
             
         }else {
-
+            // $movie_type= C("MOVIE_TYPE");
+            // $this->assign('movie_type', $movie_type);
             $this->display();
         }
     }

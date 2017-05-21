@@ -15,7 +15,7 @@ console.log(movie1);
 var conn = movie1.connect();
 
 
-var baseUrl = 'https://movie.douban.com/j/search_subjects?type=movie&tag=%E6%9C%80%E6%96%B0&page_limit=20&page_start=0';  //迅雷首页链接
+var baseUrl = 'https://movie.douban.com/j/search_subjects?type=movie&tag=%E8%B1%86%E7%93%A3%E9%AB%98%E5%88%86&sort=recommend&page_limit=20&page_start=0';  //迅雷首页链接
 var arrNew=[]; 
 var arrUrl = [];
 var errLength=[]; 

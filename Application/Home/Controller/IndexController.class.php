@@ -5,10 +5,19 @@ use Think\Exception;
 
 class IndexController extends CommonController {
     public function index($type=''){
+        $userId = $_SESSION['user']['user_id'];
+        if($userId){
+            $ret = D('User')->getUserById($userId);
+            $listMovies = D("Movie")->select(array('status'=>1,'pic'=>array('neq',''),'movie_type'=>$ret['movie_type']),'grade desc',20);
+        }else{
+             $listMovies = D("Movie")->select(array('status'=>1,'pic'=>array('neq','')),'grade desc',24);
+        }
+        
+        
 
         $topRecomment = D('Movie')->select(array('status'=>1,'big_pic'=>array('neq','')),'listorder desc',3);
-        $listMovies = D("Movie")->select(array('status'=>1,'pic'=>array('neq','')),'movie_id asc',30);
-        $rankMovie = D("RankMovie")->select(array('status'=>1),10);
+       
+        $rankMovie = D("RankMovie")->select(array('status'=>1),'grade desc',10);
         $rankCom = D("Comment")->select(array('status'=>1),10);
        
         $this->assign('result', array(

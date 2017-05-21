@@ -142,17 +142,11 @@
 					$(this).html("收起 <img src='/Public/images/arrow_up.png' />");
 				}else{
 					iNow--; 
-					console.log("asd"+iNow);
-					
 					$('.lyrics_wrap').css({'overflow':'hidden','height':'400px'});
 					
 					$(this).html("展开 <img src='/Public/images/arrow_down.png' />");
 				}
 			});
-
-			
-				
-			
 	})
 </script>
 </html>

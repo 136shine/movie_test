@@ -24,7 +24,31 @@ class MovieDetailController extends CommonController {
 
 
         $review =  D("Review")->select(array('movie_id'=>$id),10);
-        $rankMovie = D("RankMovie")->select(array('status'=>1),10);
+
+        $userId = $_SESSION['user']['user_id'];
+        if($userId){
+            //获取地址栏传入的id同类型的电影
+            $typeId = D('Movie')->select(array('movie_type'=>$movie['movie_type']));
+            $countId = count($typeId);
+
+            //获取地址栏传入的id同类型的电影的ID集合
+            $ids = array();  
+            $ids = array_map('array_shift', $typeId);
+
+            //批量更新电影的listorder
+            for ($i=0; $i < 6; $i++) { 
+                $listorder = rand(1,20);
+                $listId = rand(1,$countId);
+                var_dump($listId);
+                var_dump(intval($ids[$listId]));
+                $resu = M('Movie')->where('movie_id='.$ids[$listId])->setField('listorder',$listorder);
+            }
+            //地址栏传入的id同类型且评分高电影随机推荐
+            $rankMovie = D("Movie")->select(array('status'=>1,'movie_type'=>$movie['movie_type']),'grade desc,listorder desc',6);
+        }else{
+            $rankMovie = D("RankMovie")->select(array('status'=>1),10);
+        }
+       
         $rankCom = D("Comment")->select(array('status'=>1),10);
 
         $this->assign('result', array(

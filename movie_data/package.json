@@ -1,0 +1,21 @@
+{
+  "name": "movie_data",
+  "version": "1.0.0",
+  "description": "get movie data",
+  "main": "index.js",
+  "dependencies": {
+    "async": "^2.4.0",
+    "cheerio": "^0.22.0",
+    "eventproxy": "^0.3.5",
+    "express": "^4.15.3",
+    "mysql": "^2.13.0",
+    "superagent": "^3.5.2",
+    "superagent-charset": "^1.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ada",
+  "license": "ISC"
+}

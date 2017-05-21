@@ -83,6 +83,8 @@ function getMovieType($key) {
         case 3: $type = '悬疑';break;
         case 4: $type = '科幻';break;
         case 5: $type = '爱情';break;
+        case 6: $type = '恐怖';break;
+        case 7: $type = '其他';break;
     }
     return $type;
 }

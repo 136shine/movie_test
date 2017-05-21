@@ -52,9 +52,9 @@
       var urlName = url.split('c=')[1].split('&')[0];
       
       switch(urlName){
-        case 'movie': i = 1;break;
-        case 'music': i = 2;break;
-        case 'comment': i = 3;break;
+        case 'movie': case 'movie_detail':case 'Movie': i = 1;break;
+        case 'music': case 'Music':i = 3;break;
+        case 'comment':case 'Comment': i = 2;break;
         case '': i = 0;break;
       }
       $('.nav-top li').eq(i).children('a').addClass('curr').parent().siblings('li').children('a').removeClass('curr');
@@ -102,6 +102,21 @@
               <label for="inputname" class="col-sm-2 col-sm-offset-2 control-label">手机号</label>
               <div class="col-sm-6">
                 <input type="text" name="phone" class="form-control" id="inputname" value="<?php echo ($user["phone"]); ?>">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="inputname" class="col-sm-2 col-sm-offset-2 control-label">喜欢的电影类型</label>     
+              <div class="col-sm-6">
+                 <select class="form-control" name="movie_type">
+                  <option value="">--请选择类型--</option>    
+                  <option value="1">动作</option>
+                  <option value="2">喜剧</option>
+                  <option value="3">悬疑</option>
+                  <option value="4">科幻</option>
+                  <option value="5">爱情</option>
+                  <option value="6">恐怖</option>
+                </select>
               </div>
             </div>
 

@@ -53,8 +53,8 @@
       
       switch(urlName){
         case 'movie': case 'movie_detail':case 'Movie': i = 1;break;
-        case 'music': case 'Music':i = 2;break;
-        case 'comment':case 'Comment': i = 3;break;
+        case 'music': case 'Music':i = 3;break;
+        case 'comment':case 'Comment': i = 2;break;
         case '': i = 0;break;
       }
       $('.nav-top li').eq(i).children('a').addClass('curr').parent().siblings('li').children('a').removeClass('curr');
